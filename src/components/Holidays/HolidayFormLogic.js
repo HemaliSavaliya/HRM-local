@@ -61,7 +61,6 @@ const HolidayFormLogic = (holidayData, editHolidayId) => {
         if (selectedHoliday) {
             setFormData({
                 ...selectedHoliday,
-                // date: formatDateForInput(selectedHoliday.date) // Convert backend date to input format
             })
         } else {
             setFormData({

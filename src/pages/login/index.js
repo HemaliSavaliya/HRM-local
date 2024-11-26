@@ -22,7 +22,6 @@ import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
 import useAuth from 'src/hooks/useAuthData'
 import BlankLayout from 'src/@core/layouts/BlankLayout'
 import { Toaster } from 'react-hot-toast'
-// import Link from 'next/link'
 
 // ** Styled Components
 const Card = styled(MuiCard)(({ theme }) => ({
