@@ -1,8 +1,7 @@
-
 /* eslint-disable react/display-name */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { forwardRef, useEffect } from 'react'
-import { Grid, Button, TextField, CardContent, Box, Typography, Divider, Skeleton } from '@mui/material'
+import { Grid, Button, TextField, CardContent, Box, Typography, Divider, Skeleton, Avatar } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import DatePicker from 'react-datepicker'
 import { motion } from 'framer-motion'
@@ -105,21 +104,15 @@ const TabInfo = () => {
         date,
         dateJon,
         setDateJon,
-        onChange,
         handleChange,
         handleSaveChanges,
         resetProfileImage,
-        fetchProfileImage,
+        handleProfileImageUpload,
         imgSrc,
         authToken,
         userData,
         loadingImage
     } = useTabInfoData()
-
-    // Fetch the profile image when the component mounts
-    useEffect(() => {
-        fetchProfileImage()
-    }, [authToken])
 
     return (
         <CardContent>
@@ -146,26 +139,21 @@ const TabInfo = () => {
                                     <ImgStyled src={imgSrc} alt='Profile Pic' />
                                 </motion.div>
                             ) : (
-                                <AvatarStyled>
-                                    <Typography variant='h3' color='inherit'>
-                                        {authToken?.role === 'Admin'
-                                            ? authToken?.name.charAt(0).toUpperCase()
-                                            : userData.name.charAt(0).toUpperCase()}
-                                    </Typography>
-                                </AvatarStyled>
+                                <ImgStyled alt='John Doe' src="/images/avatars/default-face.png" />
                             )}
                             <Box>
                                 <ButtonStyled component='label' variant='contained' htmlFor='account-settings-upload-image'>
                                     <PencilOutline />
                                     <input
                                         hidden
-                                        type='file'
-                                        onChange={onChange}
-                                        accept='image/png, image/jpeg'
+                                        type="file"
+                                        name="profileImage"
+                                        accept="image/*"
+                                        onChange={handleProfileImageUpload}
                                         id='account-settings-upload-image'
                                     />
                                 </ButtonStyled>
-                                {authToken?.role === 'Admin' && (
+                                {authToken?.role === 'admin' && (
                                     <ResetButtonStyled variant='outlined' onClick={handleSaveChanges}>
                                         save
                                     </ResetButtonStyled>
@@ -180,7 +168,7 @@ const TabInfo = () => {
                         </BoxStyled>
                     </Grid>
 
-                    {authToken?.role === 'Admin' ? null : (
+                    {authToken?.role === 'admin' ? null : (
                         <>
                             <Divider
                                 textAlign='center'
@@ -194,7 +182,7 @@ const TabInfo = () => {
                             >
                                 <TypographyHeaderText noWrap>Personal Information</TypographyHeaderText>
                             </Divider>
-                            <Grid item xs={12}>
+                            {/* <Grid item xs={12}>
                                 <TextField
                                     fullWidth
                                     multiline
@@ -203,7 +191,7 @@ const TabInfo = () => {
                                     placeholder='Bio'
                                     defaultValue='The name’s John Deo. I am a tireless seeker of knowledge, occasional purveyor of wisdom and also, coincidentally, a graphic designer. Algolia helps businesses across industries quickly create relevant 😎, scalable 😀, and lightning 😍 fast search and discovery experiences.'
                                 />
-                            </Grid>
+                            </Grid> */}
                             <Grid item xs={12} sm={3}>
                                 <TextField
                                     fullWidth

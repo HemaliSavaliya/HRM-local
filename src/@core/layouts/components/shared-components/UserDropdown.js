@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/link-passhref */
-import { useState, Fragment } from 'react'
+import { useState, Fragment, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { Box, Menu, Badge, MenuItem, Typography, useTheme } from '@mui/material'
+import { Box, Menu, Badge, MenuItem, Typography, useTheme, Avatar } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import LogoutVariant from 'mdi-material-ui/LogoutVariant'
 import axios from 'axios'
@@ -45,9 +45,21 @@ const styles = {
 
 const UserDropdown = () => {
   const [anchorEl, setAnchorEl] = useState(null)
+  const [imgSrc, setImgSrc] = useState(null)
   const router = useRouter()
   const theme = useTheme()
   const authToken = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('login-details')) : null
+
+  // Fetch employee data from localStorage and set profile image on mount
+  useEffect(() => {
+    if (authToken?.email) {
+      const employees = JSON.parse(localStorage.getItem('employee')) || []
+      const currentUser = employees.find(employee => employee.email === authToken.email)
+      if (currentUser && currentUser.profileImage) {
+        setImgSrc(currentUser.profileImage) // Set the profile image if available
+      }
+    }
+  }, [authToken])
 
   const handleDropdownOpen = event => {
     setAnchorEl(event.currentTarget)
@@ -76,11 +88,11 @@ const UserDropdown = () => {
         badgeContent={<BadgeContentSpan />}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       >
-        <AvatarStyled>
-          <Typography variant='h6' color='inherit'>
-            {authToken?.name.charAt(0).toUpperCase()}
-          </Typography>
-        </AvatarStyled>
+        {imgSrc ? (
+          <Avatar alt='John Doe' onClick={handleDropdownOpen} sx={{ width: 40, height: 40 }} src={imgSrc} />
+        ) : (
+          <Avatar alt='John Doe' onClick={handleDropdownOpen} sx={{ width: 40, height: 40 }} src="/images/avatars/default-face.png" />
+        )}
       </Badge>
       <Box ml={4} sx={{ cursor: 'pointer' }} onClick={handleDropdownOpen}>
         <Typography sx={{ fontWeight: 600, textTransform: 'capitalize' }}>{authToken?.name}</Typography>
@@ -119,7 +131,7 @@ const UserDropdown = () => {
           Logout
         </MenuItem>
       </Menu>
-    </Fragment>
+    </Fragment >
   )
 }
 

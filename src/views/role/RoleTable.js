@@ -34,9 +34,9 @@ const RoleTable = ({ searchQuery, roleData, loading, updateRoleStatus }) => {
   // Filter data based on search query
   const filteredData = roleData.filter((role) => {
     return (
-      role.roleName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      role.date.includes(searchQuery) ||
-      role.status.toLowerCase().includes(searchQuery.toLowerCase())
+      role?.roleName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      role?.date.includes(searchQuery) ||
+      role?.status?.toLowerCase().includes(searchQuery.toLowerCase())
     );
   });
 
@@ -83,7 +83,7 @@ const RoleTable = ({ searchQuery, roleData, loading, updateRoleStatus }) => {
       >
         <Box sx={{ width: '100%' }}>
           {loading ? (
-            <TableContainer sx={{ height: '280px', border: `1px solid ${theme.palette.action.focus}` }}>
+            <TableContainer sx={{ height: '245px', border: `1px solid ${theme.palette.action.focus}` }}>
               <Table stickyHeader sx={{ minWidth: { xs: 800, sm: 800, lg: 800 } }} aria-labelledby="tableTitle">
                 <EnhancedTableHead
                   headCells={roleCells}
@@ -117,7 +117,7 @@ const RoleTable = ({ searchQuery, roleData, loading, updateRoleStatus }) => {
             </Typography>
           ) : (
             <>
-              <TableContainer sx={{ height: '280px', border: `1px solid ${theme.palette.action.focus}` }}>
+              <TableContainer sx={{ height: '245px', border: `1px solid ${theme.palette.action.focus}` }}>
                 <Table
                   stickyHeader
                   sx={{ minWidth: { xs: 800, sm: 800, lg: 800 } }}

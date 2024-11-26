@@ -50,7 +50,7 @@ const App = props => {
   return (
     <>
       <Head>
-        <title>HRM (Super Admin)</title>
+        <title>HRM</title>
         <meta name='description' content='Dashboard' />
         <meta name='keywords' content='HRM Super Admin Dashboard' />
         <meta name='viewport' content='initial-scale=1, width=device-width' />

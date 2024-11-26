@@ -52,10 +52,10 @@ const TabForgotPassword = () => {
                     label='Employee'
                     defaultValue=''
                     labelId='form-layouts-separator-select-label'
-                    id='employeeName'
-                    name='employeeName'
-                    value={values.employeeName}
-                    onChange={handleEmployeeName('employeeName')}
+                    id='name'
+                    name='name'
+                    value={values.name}
+                    onChange={handleEmployeeName('name')}
                   >
                     {userPassword.length === 0 ? (
                       <MenuItem disabled>No Employee</MenuItem>

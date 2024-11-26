@@ -11,6 +11,12 @@ const useRoleData = () => {
     const [searchQuery, setSearchQuery] = useState('')
     const theme = useTheme()
 
+    // Default roles
+    const defaultRoles = [
+        { id: Date.now(), roleName: 'hr', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
+        { id: Date.now(), roleName: 'employee', date: new Date().toLocaleDateString('en-GB'), status: 'Disable' },
+    ];
+
     // Handle search input
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value)
@@ -38,13 +44,20 @@ const useRoleData = () => {
         setScroll(scrollType)
     }
 
-    // Fetch roles from localStorage
+    // Fetch roles from localStorage or initialize with default roles
     const fetchRole = () => {
-        setLoading(true)
-        const roles = getRolesFromLocalStorage()
-        setRoleData(roles)
-        setLoading(false)
-    }
+        setLoading(true);
+        const roles = getRolesFromLocalStorage();
+
+        if (roles.length === 0) {
+            // Initialize with default roles if no roles exist
+            setRolesToLocalStorage(defaultRoles);
+            setRoleData(defaultRoles);
+        } else {
+            setRoleData(roles);
+        }
+        setLoading(false);
+    };
 
     useEffect(() => {
         fetchRole() // Fetch roles from localStorage when component mounts

@@ -8,7 +8,7 @@ import VerticalNavHeader from './VerticalNavHeader'
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
 
 const StyledBoxForShadow = styled(Box)({
-  top: 50,
+  top: 63,
   left: -8,
   zIndex: 2,
   height: 75,

@@ -129,6 +129,7 @@ export function TimerProvider({ children }) {
             const seconds = Math.floor(timeElapsedInSeconds % 60)
 
             const newProject = {
+                userName: authToken?.name,
                 date: currentDate,
                 projectName: projectName,
                 description: description,

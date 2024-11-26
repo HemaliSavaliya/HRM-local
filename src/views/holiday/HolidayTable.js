@@ -75,7 +75,7 @@ const HolidayTable = ({ searchQuery, holidayData, loading, handleEdit, handleDel
             >
                 <Box sx={{ width: '100%' }}>
                     {loading ? (
-                        <TableContainer sx={{ height: '280px', border: `1px solid ${theme.palette.action.focus}` }}>
+                        <TableContainer sx={{ height: '245px', border: `1px solid ${theme.palette.action.focus}` }}>
                             <Table stickyHeader sx={{ minWidth: { xs: 800, sm: 800, lg: 800 } }} aria-labelledby="tableTitle">
                                 <EnhancedTableHead
                                     headCells={holidayCells}
@@ -109,7 +109,7 @@ const HolidayTable = ({ searchQuery, holidayData, loading, handleEdit, handleDel
                         </Typography>
                     ) : (
                         <>
-                            <TableContainer sx={{ height: '280px', border: `1px solid ${theme.palette.action.focus}` }}>
+                            <TableContainer sx={{ height: '245px', border: `1px solid ${theme.palette.action.focus}` }}>
                                 <Table
                                     stickyHeader
                                     sx={{ minWidth: { xs: 600, sm: 600, lg: 600 } }}

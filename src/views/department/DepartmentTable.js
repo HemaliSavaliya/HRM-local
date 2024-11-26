@@ -93,7 +93,7 @@ const DepartmentTable = ({ searchQuery,
             >
                 <Box sx={{ width: '100%' }}>
                     {loading ? (
-                        <TableContainer sx={{ height: '280px', border: `1px solid ${theme.palette.action.focus}` }}>
+                        <TableContainer sx={{ height: '180px', border: `1px solid ${theme.palette.action.focus}` }}>
                             <Table stickyHeader sx={{ minWidth: { xs: 1500, sm: 1500, lg: 1500 } }} aria-labelledby='tableTitle'>
                                 <EnhancedTableHead
                                     headCells={departmentCells}
@@ -127,7 +127,7 @@ const DepartmentTable = ({ searchQuery,
                         </Typography>
                     ) : (
                         <>
-                            <TableContainer sx={{ height: '390px', border: `1px solid ${theme.palette.action.focus}` }}>
+                            <TableContainer sx={{ height: '180px', border: `1px solid ${theme.palette.action.focus}` }}>
                                 <Table
                                     stickyHeader
                                     sx={{ minWidth: { xs: 1300, sm: 1300, lg: 1300 } }}

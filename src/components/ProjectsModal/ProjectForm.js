@@ -16,7 +16,6 @@ import {
 import { DropFiles } from 'src/@core/DropFile/DropFiles'
 import { useEffect, useState } from 'react'
 import ProjectFormLogic from './ProjectFormLogic'
-import axios from 'axios'
 
 const ProjectForm = ({ handleClose, editProjectId, setOpen, projectData, addProjects, editProjects }) => {
     const {
@@ -44,7 +43,7 @@ const ProjectForm = ({ handleClose, editProjectId, setOpen, projectData, addProj
                 const empList = storedEmpData ? JSON.parse(storedEmpData) : []
 
                 // Filter out employees with the role of 'HR'
-                const filteredTeamMemberData = empList.filter(item => item.role !== 'HR')
+                const filteredTeamMemberData = empList.filter(item => item.role !== 'hr')
 
                 // Map the filtered data to get names and IDs
                 const fetchedTeamMemberData = filteredTeamMemberData.map(item => item.name)

@@ -76,7 +76,7 @@ const AwardsTable = ({ searchQuery, awardsData, loading, handleEdit, handleDelet
             >
                 <Box sx={{ width: '100%' }}>
                     {loading ? (
-                        <TableContainer sx={{ height: '280px', border: `1px solid ${theme.palette.action.focus}` }}>
+                        <TableContainer sx={{ height: '245px', border: `1px solid ${theme.palette.action.focus}` }}>
                             <Table stickyHeader sx={{ minWidth: { xs: 800, sm: 800, lg: 800 } }} aria-labelledby="tableTitle">
                                 <EnhancedTableHead
                                     headCells={awardCells}
@@ -110,7 +110,7 @@ const AwardsTable = ({ searchQuery, awardsData, loading, handleEdit, handleDelet
                         </Typography>
                     ) : (
                         <>
-                            <TableContainer sx={{ height: '280px', border: `1px solid ${theme.palette.action.focus}` }}>
+                            <TableContainer sx={{ height: '245px', border: `1px solid ${theme.palette.action.focus}` }}>
                                 <Table
                                     stickyHeader
                                     sx={{ minWidth: { xs: 900, sm: 900, lg: 900 } }}

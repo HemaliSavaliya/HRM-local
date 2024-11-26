@@ -46,7 +46,7 @@ const useForgotPasswordData = () => {
     // Find the user by name and update employeeId
     const selectedUser = userPassword.find(user => user.name === event.target.value)
     if (selectedUser) {
-      setValues({ ...values, [prop]: event.target.value, employeeId: selectedUser.id })
+      setValues({ ...values, [prop]: event.target.value, id: selectedUser.id })
     }
   }
 

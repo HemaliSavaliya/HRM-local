@@ -20,6 +20,11 @@ const navigation = () => {
       path: '/'
     },
     {
+      title: 'Role',
+      icon: AccountCogOutline,
+      path: '/role'
+    },
+    {
       title: 'Employees',
       icon: Account,
       path: '/employee'
@@ -28,11 +33,6 @@ const navigation = () => {
       title: 'Projects',
       icon: Project,
       path: '/projects'
-    },
-    {
-      title: 'Role',
-      icon: AccountCogOutline,
-      path: '/role'
     },
     {
       title: 'Permission',

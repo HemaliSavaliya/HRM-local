@@ -12,11 +12,11 @@ import {
     TextField,
     InputAdornment,
     Typography,
-    Skeleton
+    Skeleton,
+    useTheme
 } from '@mui/material'
 import { motion } from 'framer-motion'
 import { Magnify } from 'mdi-material-ui'
-import axios from 'axios'
 import { getComparator, stableSort } from 'src/common/CommonLogic'
 import { EnhancedTableHead } from 'src/common/EnhancedTableHead'
 import { roleWiseCells } from 'src/TableHeader/TableHeader'
@@ -24,39 +24,92 @@ import { roleWiseCells } from 'src/TableHeader/TableHeader'
 const RoleWiseAttendance = () => {
     // for table
     const [order, setOrder] = useState('asc')
-    const [orderBy, setOrderBy] = useState('name')
+    const [orderBy, setOrderBy] = useState('userName')
     const [page, setPage] = useState(0)
     const [rowsPerPage, setRowsPerPage] = useState(5)
     const [roleAttendance, setRoleAttendance] = useState([])
     const [searchQuery, setSearchQuery] = useState('')
     const [loading, setLoading] = useState(true)
-    const authToken = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('login-details')) : null
+    const theme = useTheme();
 
-    // Fetch data
-    const fetchTimer = async () => {
-        setLoading(true)
+    const fetchTimerDataFromLocalStorage = () => {
+        setLoading(true);
         try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_URL}/timer-list-role`, {
-                headers: {
-                    Authorization: `Bearer ${authToken?.token}`
-                }
-            })
+            const timerData = JSON.parse(localStorage.getItem('timerData')) || []; // Get all data from localStorage
 
-            setRoleAttendance(response.data)
+            const loginDetails = JSON.parse(localStorage.getItem('login-details')) || {}; // Fetch user details
+            const userRole = loginDetails.role; // Retrieve the logged-in user's role (e.g., 'admin' or 'hr')
+
+            // Role-based filtering: if 'hr', show only 'employee' data; if 'admin', show all
+            const filteredData =
+                userRole === 'hr' ? timerData.filter((data) => data.role === 'employee') : timerData;
+
+            const processedData = processAttendanceData(filteredData); // Process data for calculated fields
+            setRoleAttendance(processedData);
         } catch (error) {
-            console.error('Error fetching Role Wise Attendance', error)
+            console.error('Error fetching timer data from localStorage', error);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }
+    };
 
     useEffect(() => {
-        fetchTimer()
-    }, [authToken?.token])
+        fetchTimerDataFromLocalStorage();
+    }, []);
 
-    // For Search data
-    const handleSearch = event => {
-        setSearchQuery(event.target.value.toLowerCase())
+    const calculateTotalHours = (startTime, stopTime) => {
+        if (!startTime || !stopTime) return 0; // Handle missing times
+
+        try {
+            // Parse the time strings into consistent Date objects
+            const start = new Date(`1970-01-01T${convertTo24HourFormat(startTime)}`);
+            const stop = new Date(`1970-01-01T${convertTo24HourFormat(stopTime)}`);
+
+            if (isNaN(start.getTime()) || isNaN(stop.getTime())) {
+                console.error('Invalid time format:', { startTime, stopTime });
+                return 0;
+            }
+
+            const diffMs = stop - start; // Difference in milliseconds
+            const diffHours = diffMs / (1000 * 60 * 60); // Convert to hours
+            return diffHours.toFixed(2); // Round to 2 decimal places
+        } catch (error) {
+            console.error('Error calculating total hours:', error);
+            return 0;
+        }
+    };
+
+    // Helper function to convert time to 24-hour format
+    const convertTo24HourFormat = (timeString) => {
+        const [time, modifier] = timeString.split(' '); // Split into time and AM/PM
+        let [hours, minutes, seconds] = time.split(':');
+
+        if (modifier === 'PM' && hours !== '12') {
+            hours = parseInt(hours, 10) + 12; // Convert PM to 24-hour
+        } else if (modifier === 'AM' && hours === '12') {
+            hours = '00'; // Midnight case
+        }
+
+        return `${hours}:${minutes}:${seconds}`;
+    };
+
+    const calculateStatus = (totalHours) => {
+        if (totalHours >= 8) return 'Present';
+        if (totalHours > 0) return 'Late';
+        return 'Absent';
+    };
+
+    const processAttendanceData = (data) => {
+        return data.map((row) => {
+            const totalHours = calculateTotalHours(row.startTime, row.stopTime);
+            const status = calculateStatus(totalHours);
+            return { ...row, totalHours, status };
+        });
+    };
+
+    // Handle search input
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value)
     }
 
     // Filter data based on search query
@@ -64,10 +117,10 @@ const RoleWiseAttendance = () => {
         const lowerCaseQuery = searchQuery.toLowerCase()
 
         return (
-            row.userName.toLowerCase().includes(lowerCaseQuery) ||
-            row.date.toLowerCase().includes(lowerCaseQuery) ||
-            row.role.toLowerCase().includes(lowerCaseQuery) ||
-            row.status.toLowerCase().includes(lowerCaseQuery)
+            row?.userName.toLowerCase().includes(lowerCaseQuery) ||
+            row?.date.toLowerCase().includes(lowerCaseQuery) ||
+            row?.role.toLowerCase().includes(lowerCaseQuery) ||
+            row?.status.toLowerCase().includes(lowerCaseQuery)
         )
     })
 
@@ -95,34 +148,35 @@ const RoleWiseAttendance = () => {
     )
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exist={{ opacity: 0, y: 15 }}
-            transition={{ delay: 0.25 }}
-        >
-            <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'end', mt: 3 }}>
-                <Box className='actions-left' sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
-                    <TextField
-                        autoComplete='off'
-                        size='small'
-                        placeholder='Search Here'
-                        onChange={handleSearch}
-                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position='start'>
-                                    <Magnify fontSize='small' />
-                                </InputAdornment>
-                            )
-                        }}
-                    />
-                </Box>
+        <Card sx={{ mt: 4, p: 5, boxShadow: '0px 9px 20px rgba(46, 35, 94, 0.07)' }}>
+            <Box
+                sx={{
+                    width: '100%',
+                    display: { xs: 'grid', sm: 'flex', lg: 'flex' },
+                    alignItems: 'center',
+                    justifyContent: 'end'
+                }}
+                mb={4}
+            >
+                <TextField
+                    sx={{ mt: { xs: 3, sm: 0, lg: 0 } }}
+                    label='Search Attendance'
+                    variant='outlined'
+                    size='small'
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                />
             </Box>
-            <Card sx={{ mt: 3 }}>
+
+            <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exist={{ opacity: 0, y: 15 }}
+                transition={{ delay: 0.25 }}
+            >
                 <Box sx={{ width: '100%' }}>
                     {loading ? (
-                        <TableContainer sx={{ height: '380px' }}>
+                        <TableContainer sx={{ height: '245px', border: `1px solid ${theme.palette.action.focus}` }}>
                             <Table stickyHeader sx={{ minWidth: 1500 }} aria-labelledby='tableTitle'>
                                 <EnhancedTableHead
                                     headCells={roleWiseCells}
@@ -156,7 +210,7 @@ const RoleWiseAttendance = () => {
                         </Typography>
                     ) : (
                         <>
-                            <TableContainer sx={{ height: '330px' }}>
+                            <TableContainer sx={{ height: '245px', border: `1px solid ${theme.palette.action.focus}` }}>
                                 <Table
                                     stickyHeader
                                     sx={{ minWidth: { xs: 1000, sm: 1000, lg: 1000 } }}
@@ -205,8 +259,8 @@ const RoleWiseAttendance = () => {
                         </>
                     )}
                 </Box>
-            </Card>
-        </motion.div>
+            </motion.div>
+        </Card>
     )
 }
 

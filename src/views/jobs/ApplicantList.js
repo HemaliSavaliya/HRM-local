@@ -112,7 +112,7 @@ const ApplicantList = () => {
       >
         <Box sx={{ width: '100%' }}>
           {loading ? (
-            <TableContainer sx={{ height: '380px', border: `1px solid ${theme.palette.action.focus}` }}>
+            <TableContainer sx={{ height: '180px', border: `1px solid ${theme.palette.action.focus}` }}>
               <Table stickyHeader sx={{ minWidth: { xs: 1500, sm: 1500, lg: 1500 } }} aria-labelledby='tableTitle'>
                 <EnhancedTableHead
                   headCells={applicantCells}
@@ -146,7 +146,7 @@ const ApplicantList = () => {
             </Typography>
           ) : (
             <>
-              <TableContainer sx={{ height: '380px' }}>
+              <TableContainer sx={{ height: '180px', border: `1px solid ${theme.palette.action.focus}` }}>
                 <Table
                   stickyHeader
                   sx={{ minWidth: { xs: 1000, sm: 1000, lg: 1000 } }}

@@ -9,7 +9,8 @@ import {
     TablePagination,
     TableRow,
     Typography,
-    Skeleton
+    Skeleton,
+    useTheme
 } from '@mui/material'
 import { motion } from 'framer-motion'
 import { useTimer } from 'src/@core/context/TimerContext'
@@ -19,6 +20,7 @@ import { getComparator, stableSort } from 'src/common/CommonLogic'
 
 const AttendanceTable = () => {
     const { role, savedProjects, loading } = useTimer()
+    const theme = useTheme()
 
     // for table
     const [order, setOrder] = useState('asc')
@@ -50,8 +52,8 @@ const AttendanceTable = () => {
         page * rowsPerPage + rowsPerPage
     )
 
-    const HRData = visibleRows.filter(item => item.role === 'HR')
-    const EmpData = visibleRows.filter(item => item.role === 'Employee')
+    const HRData = visibleRows.filter(item => item.role === 'hr')
+    const EmpData = visibleRows.filter(item => item.role === 'employee')
 
     return (
         <motion.div
@@ -63,7 +65,7 @@ const AttendanceTable = () => {
             <Card sx={{ mt: 5 }}>
                 <Box sx={{ width: '100%' }}>
                     {loading ? (
-                        <TableContainer sx={{ height: '380px' }}>
+                        <TableContainer sx={{ height: '200px', border: `1px solid ${theme.palette.action.focus}` }}>
                             <Table stickyHeader sx={{ minWidth: 1500 }} aria-labelledby='tableTitle'>
                                 <EnhancedTableHead
                                     headCells={trackerCells}
@@ -97,7 +99,7 @@ const AttendanceTable = () => {
                         </Typography>
                     ) : (
                         <>
-                            <TableContainer sx={{ height: '200px' }}>
+                            <TableContainer sx={{ height: '150px', border: `1px solid ${theme.palette.action.focus}` }}>
                                 <Table
                                     stickyHeader
                                     sx={{ minWidth: { xs: 1500, sm: 1500, lg: 1500 } }}
@@ -110,26 +112,29 @@ const AttendanceTable = () => {
                                         orderBy={orderBy}
                                         onRequestSort={handleRequestSort}
                                     />
-                                    <TableBody>
-                                        {savedProjects.map((row, index) => {
-                                            return (
-                                                <TableRow key={row.id} sx={{ cursor: 'pointer' }}>
-                                                    <TableCell align='left'>{index + 1 + page * rowsPerPage}</TableCell>
-                                                    <TableCell align='left'>{ipAddress}</TableCell>
-                                                    <TableCell align='left'>{row.date}</TableCell>
-                                                    <TableCell align='left'>{row.description || '-'}</TableCell>
-                                                    <TableCell align='left'>{row.startTime}</TableCell>
-                                                    <TableCell align='left'>{row.resumeTime || '-'}</TableCell>
-                                                    <TableCell align='left'>{row.pauseTime || '-'}</TableCell>
-                                                    <TableCell align='left'>{row.stopTime}</TableCell>
-                                                    <TableCell align='left'>{row.hours} hours</TableCell>
-                                                    <TableCell align='left'>{row.minutes} minutes</TableCell>
-                                                    <TableCell align='left'>{row.seconds} seconds</TableCell>
-                                                </TableRow>
-                                            )
-                                        })}
 
-                                        {/* {role === 'Employee' &&
+                                    <TableBody>
+                                        {role === 'hr' &&
+                                            HRData &&
+                                            HRData.map((row, index) => {
+                                                return (
+                                                    <TableRow hover role='checkbox' tabIndex={-1} key={row.id} sx={{ cursor: 'pointer' }}>
+                                                        <TableCell align='left'>{index + 1 + page * rowsPerPage}</TableCell>
+                                                        <TableCell align='left'>{ipAddress}</TableCell>
+                                                        <TableCell align='left'>{row.date}</TableCell>
+                                                        <TableCell align='left'>{row.description || '-'}</TableCell>
+                                                        <TableCell align='left'>{row.startTime}</TableCell>
+                                                        <TableCell align='left'>{row.resumeTime || '-'}</TableCell>
+                                                        <TableCell align='left'>{row.pauseTime || '-'}</TableCell>
+                                                        <TableCell align='left'>{row.stopTime}</TableCell>
+                                                        <TableCell align='left'>{row.hours} hours</TableCell>
+                                                        <TableCell align='left'>{row.minutes} minutes</TableCell>
+                                                        <TableCell align='left'>{row.seconds} seconds</TableCell>
+                                                    </TableRow>
+                                                )
+                                            })}
+
+                                        {role === 'employee' &&
                                             EmpData &&
                                             EmpData.map((row, index) => {
                                                 return (
@@ -147,12 +152,11 @@ const AttendanceTable = () => {
                                                         <TableCell align='left'>{row.seconds} seconds</TableCell>
                                                     </TableRow>
                                                 )
-                                            })
-                                        } */}
+                                            })}
 
                                         {emptyRows > 0 && (
                                             <TableRow style={{ height: 53 * emptyRows }}>
-                                                <TableCell colSpan={trackerCells.length} />
+                                                <TableCell colSpan={headCells.length} />
                                             </TableRow>
                                         )}
                                     </TableBody>

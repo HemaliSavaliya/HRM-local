@@ -84,7 +84,7 @@ const EmployeeTable = ({
       >
         <Box sx={{ width: '100%' }}>
           {loading ? (
-            <TableContainer sx={{ height: '280px', border: `1px solid ${theme.palette.action.focus}` }}>
+            <TableContainer sx={{ height: '245px', border: `1px solid ${theme.palette.action.focus}` }}>
               <Table stickyHeader sx={{ minWidth: { xs: 400, sm: 400, lg: 400 } }} aria-labelledby="tableTitle">
                 <EnhancedTableHead
                   headCells={EmployeeCells}
@@ -118,7 +118,7 @@ const EmployeeTable = ({
             </Typography>
           ) : (
             <>
-              <TableContainer sx={{ height: '280px', border: `1px solid ${theme.palette.action.focus}` }}>
+              <TableContainer sx={{ height: '245px', border: `1px solid ${theme.palette.action.focus}` }}>
                 <Table
                   stickyHeader
                   sx={{ minWidth: { xs: 2000, sm: 2000, lg: 2000 } }}

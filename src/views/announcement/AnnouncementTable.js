@@ -81,7 +81,7 @@ const AnnouncementTable = ({ searchQuery, announcementData, loading, handleEdit,
             >
                 <Box sx={{ width: '100%' }}>
                     {loading ? (
-                        <TableContainer sx={{ height: '280px', border: `1px solid ${theme.palette.action.focus}` }}>
+                        <TableContainer sx={{ height: '245px', border: `1px solid ${theme.palette.action.focus}` }}>
                             <Table stickyHeader sx={{ minWidth: { xs: 1200, sm: 1200, lg: 1200 } }} aria-labelledby="tableTitle">
                                 <EnhancedTableHead
                                     headCells={announcementCells}
@@ -115,7 +115,7 @@ const AnnouncementTable = ({ searchQuery, announcementData, loading, handleEdit,
                         </Typography>
                     ) : (
                         <>
-                            <TableContainer sx={{ height: '280px', border: `1px solid ${theme.palette.action.focus}` }}>
+                            <TableContainer sx={{ height: '245px', border: `1px solid ${theme.palette.action.focus}` }}>
                                 <Table
                                     stickyHeader
                                     sx={{ minWidth: { xs: 1000, sm: 1000, lg: 1000 } }}

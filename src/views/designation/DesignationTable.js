@@ -89,7 +89,7 @@ const DesignationTable = ({
             >
                 <Box sx={{ width: '100%' }}>
                     {loading ? (
-                        <TableContainer sx={{ height: '280px', border: `1px solid ${theme.palette.action.focus}` }}>
+                        <TableContainer sx={{ height: '180px', border: `1px solid ${theme.palette.action.focus}` }}>
                             <Table stickyHeader sx={{ minWidth: { xs: 800, sm: 800, lg: 800 } }} aria-labelledby='tableTitle'>
                                 <EnhancedTableHead
                                     headCells={designationCells}
@@ -123,7 +123,7 @@ const DesignationTable = ({
                         </Typography>
                     ) : (
                         <>
-                            <TableContainer sx={{ height: '390px', border: `1px solid ${theme.palette.action.focus}` }}>
+                            <TableContainer sx={{ height: '180px', border: `1px solid ${theme.palette.action.focus}` }}>
                                 <Table
                                     stickyHeader
                                     sx={{ minWidth: { xs: 800, sm: 800, lg: 800 } }}

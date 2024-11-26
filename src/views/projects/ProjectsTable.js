@@ -104,7 +104,7 @@ const ProjectsTable = ({
       >
         <Box sx={{ width: '100%' }}>
           {loading ? (
-            <TableContainer sx={{ height: '280px', border: `1px solid ${theme.palette.action.focus}` }}>
+            <TableContainer sx={{ height: '245px', border: `1px solid ${theme.palette.action.focus}` }}>
               <Table stickyHeader sx={{ minWidth: { xs: 800, sm: 800, lg: 800 } }} aria-labelledby="tableTitle">
                 <EnhancedTableHead
                   headCells={projectCells}
@@ -138,7 +138,7 @@ const ProjectsTable = ({
             </Typography>
           ) : (
             <>
-              <TableContainer sx={{ height: '280px', border: `1px solid ${theme.palette.action.focus}` }}>
+              <TableContainer sx={{ height: '245px', border: `1px solid ${theme.palette.action.focus}` }}>
                 <Table
                   stickyHeader
                   sx={{ minWidth: { xs: 1900, sm: 1900, lg: 1900 } }}

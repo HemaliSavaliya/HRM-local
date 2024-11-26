@@ -105,7 +105,7 @@ const Announcement = () => {
                 content='Are you sure you want to delete this announcement?'
             />
 
-            <Card sx={{ mt: 4, p: 5, boxShadow: '0px 9px 20px rgba(46, 35, 94, 0.07)' }}>
+            <Card sx={{ p: 5, boxShadow: '0px 9px 20px rgba(46, 35, 94, 0.07)' }}>
                 <Box
                     sx={{
                         width: '100%',
