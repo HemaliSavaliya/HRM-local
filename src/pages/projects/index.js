@@ -24,7 +24,6 @@ const Project = () => {
     handleEdit,
     addProjects,
     editProjects,
-    // updateProjectStatus,
     deleteDocumentData,
     deleteModalOpen,
     setDeleteModalOpen,

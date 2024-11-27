@@ -42,6 +42,7 @@ const Dashboard = () => {
       const currentDate = new Date();
       const upcomingHolidays = holidays.filter(holiday => {
         const holidayDate = new Date(holiday.date);
+        
         return holidayDate >= currentDate; // Filter holidays on or after the current date
       }).length;
 
