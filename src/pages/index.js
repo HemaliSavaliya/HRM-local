@@ -40,9 +40,11 @@ const Dashboard = () => {
       // Get holidays from localStorage
       const holidays = JSON.parse(localStorage.getItem('holiday')) || [];
       const currentDate = new Date();
+      
       const upcomingHolidays = holidays.filter(holiday => {
+
         const holidayDate = new Date(holiday.date);
-        
+
         return holidayDate >= currentDate; // Filter holidays on or after the current date
       }).length;
 

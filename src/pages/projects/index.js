@@ -141,7 +141,6 @@ const Project = () => {
           handleEdit={handleEdit}
           handleDeleteProject={handleDeleteProject}
           handleButtonClick={handleButtonClick}
-          // updateProjectStatus={updateProjectStatus}
         />
       </Card>
     </>
