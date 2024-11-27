@@ -52,11 +52,16 @@ const UserDropdown = () => {
 
   // Fetch employee data from localStorage and set profile image on mount
   useEffect(() => {
-    if (authToken?.email) {
-      const employees = JSON.parse(localStorage.getItem('employee')) || []
-      const currentUser = employees.find(employee => employee.email === authToken.email)
-      if (currentUser && currentUser.profileImage) {
-        setImgSrc(currentUser.profileImage) // Set the profile image if available
+    if (authToken) {
+      if (authToken.role === 'admin') {
+        // Fetch admin-specific data
+        const adminData = JSON.parse(localStorage.getItem('admin-data')) || {}
+        setImgSrc(adminData.profileImage || '/images/avatars/default-face.png') // Default image fallback
+      } else if (authToken.email) {
+        // Fetch employee-specific data
+        const employees = JSON.parse(localStorage.getItem('employee')) || []
+        const currentUser = employees.find(employee => employee.email === authToken.email)
+        setImgSrc(currentUser?.profileImage || '/images/avatars/default-face.png') // Default image fallback
       }
     }
   }, [authToken])

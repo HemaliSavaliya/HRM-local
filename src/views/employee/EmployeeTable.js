@@ -210,9 +210,9 @@ const EmployeeTable = ({
                                   }}
                                   variant='outlined'
                                   size='small'
-                                  onClick={() => handleButtonClick(document.path, row.id)}
+                                  onClick={() => handleButtonClick(document.name, row.id)}
                                 >
-                                  {document.path}
+                                  {document?.name}
                                 </Button>
                                 {index % 2 === 1 && <br />}
                               </React.Fragment>

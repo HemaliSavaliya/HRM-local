@@ -180,12 +180,28 @@ const EmployeeModalLogic = (employeeData, editEmployeeId) => {
         })
     }
 
-    const handleImageChange = files => {
+    const handleImageChange = async (files) => {
+        const base64Files = await Promise.all(Array.from(files).map(file => {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    // Create an object with the file name and Base64 data
+                    resolve({
+                        name: file.name, // Store the file name
+                        data: reader.result // Store the Base64 encoded data
+                    });
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }));
+
         setFormData({
             ...formData,
-            governmentDocument: files // Store the selected image
-        })
-    }
+            governmentDocument: base64Files // Store the array of objects
+        });
+    };
+
 
     useEffect(() => {
         const selectedEmployee = employeeData.find(employee => employee.id === editEmployeeId)

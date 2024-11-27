@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react'
 import {
   Card,
@@ -25,7 +24,7 @@ const Project = () => {
     handleEdit,
     addProjects,
     editProjects,
-    updateProjectStatus,
+    // updateProjectStatus,
     deleteDocumentData,
     deleteModalOpen,
     setDeleteModalOpen,
@@ -50,14 +49,14 @@ const Project = () => {
 
       // Find the project and document by ID and name
       const selectedProject = storedProject.find((project) => project.id === id);
-      const selectedDocument = selectedProject?.document.find((doc) => doc.path === documentName);
+      const selectedDocument = selectedProject?.document.find((doc) => doc.name === documentName);
 
       if (selectedDocument) {
         // Using the preview URL from the localStorage structure
-        setFileData(selectedDocument.preview);
-        setFileName(documentName);
+        setFileData(selectedDocument.data);
+        setFileName(selectedDocument.name);
         setFileId(id);
-        setFileType("blob");
+        setFileType(selectedDocument.type || 'image/jpeg');
         setOpenModal(true);
       } else {
         console.error("Document not found");
@@ -143,7 +142,7 @@ const Project = () => {
           handleEdit={handleEdit}
           handleDeleteProject={handleDeleteProject}
           handleButtonClick={handleButtonClick}
-          updateProjectStatus={updateProjectStatus}
+          // updateProjectStatus={updateProjectStatus}
         />
       </Card>
     </>

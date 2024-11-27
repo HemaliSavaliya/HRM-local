@@ -33,8 +33,8 @@ const DocumentModal = ({ fileData, fileType, fileName, open, onClose, scroll, de
                                         <a href={fileData}>Download PDF</a>
                                     </Box>
                                 </object>
-                            ) : fileType === 'png' || fileType === 'jpeg' || fileType === 'jpg' ? (
-                                <img width={550} height={300} src={fileData} alt='png' />
+                            ) : fileType === 'image/png' || fileType === 'image/jpeg' || fileType === 'image/jpg' ? (
+                                <img width={'100%'} height={300} src={fileData} alt={fileName} />
                             ) : fileType === 'pptx' || fileType === 'docx' || fileType === 'xlsx' ? (
                                 <>
                                     <Box>

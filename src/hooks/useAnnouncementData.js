@@ -1,6 +1,4 @@
-
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { useTheme } from '@mui/material/styles'
@@ -84,15 +82,23 @@ const useAnnouncementData = () => {
 
     // Function to edit form data to localStorage
     const editAnnouncement = async (updatedData) => {
-        const announcement = getAnnouncementFromLocalStorage()
+        const announcement = getAnnouncementFromLocalStorage();
 
-        // Find the Announcement and update it
-        const updatedAnnouncement = announcement.map((anno) =>
-            anno.id === updatedData.id ? updatedData : anno
-        )
+        // Find the announcement and merge the existing documents with the new ones
+        const updatedAnnouncement = announcement.map((anno) => {
+            if (anno.id === updatedData.id) {
+                return {
+                    // ...anno,
+                    ...updatedData,
+                    document: [...(updatedData.document || [])], // Merge existing and new documents
+                };
+            }
 
-        setAnnouncementToLocalStorage(updatedAnnouncement)
-        setAnnouncementData(updatedAnnouncement)
+            return anno;
+        });
+
+        setAnnouncementToLocalStorage(updatedAnnouncement);
+        setAnnouncementData(updatedAnnouncement);
 
         toast.success('Announcement Updated Successfully!', {
             duration: 2000,
@@ -100,13 +106,13 @@ const useAnnouncementData = () => {
             style: {
                 background: theme.palette.background.paper,
                 color: theme.palette.text.primary,
-                fontSize: '15px'
-            }
-        })
+                fontSize: '15px',
+            },
+        });
 
-        setOpen(false)
-        setEditAnnoId(null)
-    }
+        setOpen(false);
+        setEditAnnoId(null);
+    };
 
     const handleDeleteAnnouncement = id => {
         setDeleteTargetId(id)
@@ -155,7 +161,7 @@ const useAnnouncementData = () => {
         const updatedAnnouncement = announcement.map((anno) => {
             if (anno.id === announcementId) {
                 // Remove the document with the matching fileName from the document array
-                const updatedDocuments = anno.document.filter(doc => doc.path !== fileName)
+                const updatedDocuments = anno.document.filter(doc => doc.name !== fileName)
 
                 return { ...anno, document: updatedDocuments }
             }

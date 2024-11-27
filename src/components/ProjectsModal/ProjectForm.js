@@ -197,15 +197,16 @@ const ProjectForm = ({ handleClose, editProjectId, setOpen, projectData, addProj
                                 <InputLabel id='form-layouts-separator-select-label'>Status</InputLabel>
                                 <Select
                                     label='Status'
-                                    defaultValue='Active'
+                                    defaultValue='Upcoming'
                                     labelId='form-layouts-separator-select-label'
                                     id='status'
                                     name='status'
                                     value={formData.status}
                                     onChange={handleInputChange}
                                 >
-                                    <MenuItem value='Active'>Active</MenuItem>
-                                    <MenuItem value='Inactive'>Inactive</MenuItem>
+                                    <MenuItem value='Upcoming'>Upcoming</MenuItem>
+                                    <MenuItem value='Inprogress'>Inprogress</MenuItem>
+                                    <MenuItem value='Completed'>Completed</MenuItem>
                                 </Select>
                             </FormControl>
                         </Grid>

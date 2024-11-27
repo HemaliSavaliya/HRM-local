@@ -176,7 +176,7 @@ const RoleWiseAttendance = () => {
             >
                 <Box sx={{ width: '100%' }}>
                     {loading ? (
-                        <TableContainer sx={{ height: '245px', border: `1px solid ${theme.palette.action.focus}` }}>
+                        <TableContainer sx={{ height: '180px', border: `1px solid ${theme.palette.action.focus}` }}>
                             <Table stickyHeader sx={{ minWidth: 1500 }} aria-labelledby='tableTitle'>
                                 <EnhancedTableHead
                                     headCells={roleWiseCells}
@@ -210,7 +210,7 @@ const RoleWiseAttendance = () => {
                         </Typography>
                     ) : (
                         <>
-                            <TableContainer sx={{ height: '245px', border: `1px solid ${theme.palette.action.focus}` }}>
+                            <TableContainer sx={{ height: '180px', border: `1px solid ${theme.palette.action.focus}` }}>
                                 <Table
                                     stickyHeader
                                     sx={{ minWidth: { xs: 1000, sm: 1000, lg: 1000 } }}

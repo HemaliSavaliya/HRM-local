@@ -46,7 +46,7 @@ const TabSecurity = () => {
         <Grid container spacing={5}>
           <Grid item xs={12} sm={6}>
             <Grid container spacing={5}>
-              <Grid item xs={12} sx={{ marginTop: 4.75 }}>
+              <Grid item xs={12}>
                 <FormControl fullWidth>
                   <InputLabel htmlFor='account-settings-current-password'>Current Password</InputLabel>
                   <OutlinedInput
@@ -129,7 +129,7 @@ const TabSecurity = () => {
             xs={12}
             sx={{ display: 'flex', marginTop: [7.5, 2.5], alignItems: 'center', justifyContent: 'center' }}
           >
-            <img alt='avatar' src='/images/pages/secure.svg' width={380} />
+            <img alt='avatar' src='/images/pages/secure.svg' width={330} />
           </Grid>
         </Grid>
       </CardContent>

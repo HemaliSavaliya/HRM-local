@@ -25,6 +25,11 @@ const navigation = () => {
       path: '/role'
     },
     {
+      title: 'Departments',
+      icon: Layers,
+      path: '/departments'
+    },
+    {
       title: 'Employees',
       icon: Account,
       path: '/employee'
@@ -53,11 +58,6 @@ const navigation = () => {
       title: 'Leave Management',
       icon: Leave,
       path: '/leave-management'
-    },
-    {
-      title: 'Departments',
-      icon: Layers,
-      path: '/departments'
     },
     {
       title: 'Job',

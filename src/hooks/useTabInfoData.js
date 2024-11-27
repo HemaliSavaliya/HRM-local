@@ -7,18 +7,7 @@ const useTabInfoData = () => {
     const [dateJon, setDateJon] = useState(null)
     const [imgSrc, setImgSrc] = useState(null)
     const [authToken, setAuthToken] = useState(null)
-    const [loadingImage, setLoadingImage] = useState(false) // Add loading state
     const theme = useTheme()
-
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const authToken = JSON.parse(localStorage.getItem('login-details'))
-            if (authToken) {
-                setAuthToken(authToken)
-            }
-        }
-    }, [])
-
     const [userData, setUserData] = useState({
         id: '',
         name: '',
@@ -39,7 +28,20 @@ const useTabInfoData = () => {
     })
 
     useEffect(() => {
-        if (authToken?.email) {
+        if (typeof window !== 'undefined') {
+            const authToken = JSON.parse(localStorage.getItem('login-details'))
+            if (authToken) {
+                setAuthToken(authToken)
+            }
+        }
+    }, [])
+
+    useEffect(() => {
+        if (authToken?.role === "admin") {
+            // Admin-specific logic
+            const adminData = JSON.parse(localStorage.getItem('admin-data')) || {}
+            setImgSrc(adminData.profileImage || null)
+        } else if (authToken?.email) {
             const employees = JSON.parse(localStorage.getItem('employee')) || []
             const currentUser = employees.find(employee => employee.email === authToken.email)
 
@@ -101,11 +103,49 @@ const useTabInfoData = () => {
             const reader = new FileReader()
             reader.onloadend = () => {
                 const profileImage = reader.result
-                updateProfileImageInLocalStorage(profileImage)
+
+                if (authToken?.role === 'admin') {
+                    updateAdminProfileImage(profileImage)
+                } else {
+                    updateProfileImageInLocalStorage(profileImage)
+                }
             }
             reader.readAsDataURL(file)
         } else {
             toast.error('No file selected!', {
+                duration: 2000,
+                position: 'top-center',
+                style: {
+                    background: theme.palette.background.paper,
+                    color: theme.palette.text.primary,
+                    fontSize: '15px'
+                }
+            })
+        }
+    }
+
+    // Update admin profile image in localStorage
+    const updateAdminProfileImage = (profileImage) => {
+        try {
+            const adminData = JSON.parse(localStorage.getItem('admin-data')) || {}
+            const updateAdminData = {
+                ...adminData, profileImage
+            }
+
+            localStorage.setItem('admin-data', JSON.stringify(updateAdminData))
+            setImgSrc(profileImage)
+
+            toast.success('Admin profile image updated successfully!', {
+                duration: 2000,
+                position: 'top-center',
+                style: {
+                    background: theme.palette.background.paper,
+                    color: theme.palette.text.primary,
+                    fontSize: '15px'
+                }
+            })
+        } catch (error) {
+            toast.error('Error updating admin profile image. Please try again.', {
                 duration: 2000,
                 position: 'top-center',
                 style: {
@@ -165,16 +205,21 @@ const useTabInfoData = () => {
 
     // Reset profile image to null
     const resetProfileImage = async () => {
-        const updatedUserData = { ...userData, profileImage: null }
-        setUserData(updatedUserData)
+        if (authToken?.role === 'admin') {
+            localStorage.setItem('admin-data', JSON.stringify({ profileImage: null }))
+            setImgSrc(null)
+        } else {
+            const updatedUserData = { ...userData, profileImage: null }
+            setUserData(updatedUserData)
 
-        const employees = JSON.parse(localStorage.getItem('employee')) || []
-        const updatedEmployees = employees.map(employee =>
-            employee.email === authToken?.email ? updatedUserData : employee
-        )
+            const employees = JSON.parse(localStorage.getItem('employee')) || []
+            const updatedEmployees = employees.map(employee =>
+                employee.email === authToken?.email ? updatedUserData : employee
+            )
 
-        localStorage.setItem('employee', JSON.stringify(updatedEmployees))
-        setImgSrc(null)
+            localStorage.setItem('employee', JSON.stringify(updatedEmployees))
+            setImgSrc(null)
+        }
 
         toast.success('Profile image reset successfully!', {
             duration: 2000,
@@ -188,7 +233,6 @@ const useTabInfoData = () => {
     }
 
     return {
-        loadingImage,
         date,
         dateJon,
         setDateJon,

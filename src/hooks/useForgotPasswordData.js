@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useTheme } from '@emotion/react'
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
@@ -44,11 +43,11 @@ const useForgotPasswordData = () => {
 
   const handleEmployeeName = prop => event => {
     // Find the user by name and update employeeId
-    const selectedUser = userPassword.find(user => user.name === event.target.value)
+    const selectedUser = userPassword.find(user => user.name === event.target.value);
     if (selectedUser) {
-      setValues({ ...values, [prop]: event.target.value, id: selectedUser.id })
+      setValues({ ...values, [prop]: event.target.value, employeeId: selectedUser.id });
     }
-  }
+  };
 
   useEffect(() => {
     const fetchUserList = async () => {
@@ -80,24 +79,27 @@ const useForgotPasswordData = () => {
 
   const handleChangePassword = async () => {
     try {
-      // Update password logic (you might need to handle this in localStorage too)
-      const storedUsers = JSON.parse(localStorage.getItem('employee')) || []
+      // Fetch user data from localStorage
+      const storedUsers = JSON.parse(localStorage.getItem('employee')) || [];
+
+      // Update the password for the selected user
       const updatedUsers = storedUsers.map(user =>
         user.id === values.employeeId
-          ? { ...user, password: values.newPassword } // Update password for the selected user
+          ? { ...user, password: values.newPassword } // Update the password
           : user
-      )
+      );
 
-      localStorage.setItem('employee', JSON.stringify(updatedUsers))
+      // Save the updated users back to localStorage
+      localStorage.setItem('employee', JSON.stringify(updatedUsers));
 
-      // Reset form after success
+      // Reset the form after success
       setValues({
         employeeId: '',
         newPassword: '',
         showNewPassword: false,
         confirmPassword: '',
         showConfirmPassword: false
-      })
+      });
 
       toast.success('Employee/HR Password Updated Successfully!', {
         duration: 2000,
@@ -107,22 +109,19 @@ const useForgotPasswordData = () => {
           color: theme.palette.text.primary,
           fontSize: '15px'
         }
-      })
+      });
     } catch (error) {
-      console.error('Error updating password:', error)
       toast.error('Error Updating Employee/HR Password. Please try again.', {
         duration: 2000,
         position: 'top-center',
-
-        // Styling
         style: {
           background: theme.palette.background.paper,
           color: theme.palette.text.primary,
           fontSize: '15px'
         }
-      })
+      });
     }
-  }
+  };
 
   return {
     handleNewPasswordChange,

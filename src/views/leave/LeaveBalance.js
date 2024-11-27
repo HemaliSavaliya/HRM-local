@@ -126,7 +126,7 @@ const LeaveBalance = () => {
                             <TableContainer sx={{ height: '235px', border: `1px solid ${theme.palette.action.focus}` }}>
                                 <Table
                                     stickyHeader
-                                    sx={{ minWidth: { xs: 1000, sm: 1000, lg: 1000 } }}
+                                    sx={{ minWidth: { xs: 900, sm: 900, lg: 900 } }}
                                     size='small'
                                     aria-label='a dense table'
                                 >

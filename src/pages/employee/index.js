@@ -47,14 +47,13 @@ const Employee = () => {
 
       // Find the employee and document by ID and name
       const selectedEmployee = storedEmployee.find((employee) => employee.id === id);
-      const selectedDocument = selectedEmployee?.governmentDocument.find((doc) => doc.path === documentName);
+      const selectedDocument = selectedEmployee?.governmentDocument.find((doc) => doc.name === documentName);
 
       if (selectedDocument) {
-        // Using the preview URL from the localStorage structure
-        setFileData(selectedDocument.preview);
-        setFileName(documentName);
+        setFileData(selectedDocument.data); // This should be the Base64 string
+        setFileName(selectedDocument.name);
         setFileId(id);
-        setFileType("blob");
+        setFileType(selectedDocument.type || 'image/jpeg'); // Set the type based on your document structure
         setOpenModal(true);
       } else {
         console.error("Document not found");

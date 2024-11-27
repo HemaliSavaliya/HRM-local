@@ -72,7 +72,7 @@ export const DropFiles = ({ handleImageChange }) => {
         <section className="container">
             <div {...getRootProps({ className: 'dropzone' })}>
                 <input {...getInputProps()} />
-                <p className="text-center">Drag 'n' drop your company logo</p>
+                <p className="text-center">Drag 'n' drop your Documents</p>
             </div>
             <aside style={thumbsContainer}>{thumbs}</aside>
         </section>

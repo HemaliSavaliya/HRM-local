@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react'
 import {
     Card,
@@ -7,11 +6,9 @@ import {
 } from '@mui/material'
 import useAnnouncementData from 'src/hooks/useAnnouncementData'
 import AnnouncementModal from 'src/components/AnnouncementModal/AnnouncementModal'
-import axios from 'axios'
 import DocumentModal from 'src/common/DocumentModal'
 import { Toaster } from 'react-hot-toast'
 import ConfirmationModal from 'src/common/ConfirmationModal'
-import { useTheme } from '@mui/material/styles'
 import AnnouncementTable from 'src/views/announcement/AnnouncementTable'
 
 const Announcement = () => {
@@ -45,19 +42,15 @@ const Announcement = () => {
 
     const handleButtonClick = (documentName, id) => {
         try {
-            // Retrieve the stored announcement data from localStorage
             const storedAnnouncements = JSON.parse(localStorage.getItem("announcement"));
-
-            // Find the announcement and document by ID and name
             const selectedAnnouncement = storedAnnouncements.find((announcement) => announcement.id === id);
-            const selectedDocument = selectedAnnouncement?.document.find((doc) => doc.path === documentName);
+            const selectedDocument = selectedAnnouncement?.document.find((doc) => doc.name === documentName);
 
             if (selectedDocument) {
-                // Using the preview URL from the localStorage structure
-                setFileData(selectedDocument.preview);
-                setFileName(documentName);
+                setFileData(selectedDocument.data); // This should be the Base64 string
+                setFileName(selectedDocument.name);
                 setFileId(id);
-                setFileType("blob");
+                setFileType(selectedDocument.type || 'image/jpeg'); // Set the type based on your document structure
                 setOpenModal(true);
             } else {
                 console.error("Document not found");

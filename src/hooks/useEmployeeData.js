@@ -83,10 +83,18 @@ const useEmployeeData = () => {
     const editEmployee = async (updatedData) => {
         const employee = getEmployeeFromLocalStorage()
 
-        // Find the Employee and update it
-        const updatedEmployee = employee.map((emp) =>
-            emp.id === updatedData.id ? updatedData : emp
-        )
+        // Find the employee and merge the existing documents with the new ones
+        const updatedEmployee = employee.map((emp) => {
+            if (emp.id === updatedData.id) {
+                return {
+                    // ...emp,
+                    ...updatedData,
+                    governmentDocument: [...(updatedData.governmentDocument || [])], // Merge existing and new documents
+                };
+            }
+
+            return emp;
+        });
 
         setEmployeeToLocalStorage(updatedEmployee)
         setEmployeeData(updatedEmployee)
@@ -151,7 +159,7 @@ const useEmployeeData = () => {
         const updatedEmployee = employee.map((emp) => {
             if (emp.id === empId) {
                 // Remove the document with the matching fileName from the document array
-                const updatedDocuments = emp.governmentDocument.filter(doc => doc.path !== fileName)
+                const updatedDocuments = emp.governmentDocument.filter(doc => doc.name !== fileName)
 
                 return { ...emp, governmentDocument: updatedDocuments }
             }

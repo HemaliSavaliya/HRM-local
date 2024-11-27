@@ -1,23 +1,19 @@
 import {
     Box,
     Button,
-    Chip,
     Skeleton,
     Table,
     TableBody,
     TableCell,
     TableContainer,
-    TableHead,
     TablePagination,
     TableRow,
-    TableSortLabel,
     Tooltip,
     Typography,
     useTheme
 } from '@mui/material';
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { visuallyHidden } from '@mui/utils';
 import { Toaster } from 'react-hot-toast';
 import { DeleteOutline, PencilOutline } from 'mdi-material-ui';
 import { getComparator, stableSort } from 'src/common/CommonLogic';
@@ -195,15 +191,14 @@ const AnnouncementTable = ({ searchQuery, announcementData, loading, handleEdit,
                                                                     }}
                                                                     variant='outlined'
                                                                     size='small'
-                                                                    onClick={() => handleButtonClick(document.path, row.id)}  // Pass the correct loading index
+                                                                    onClick={() => handleButtonClick(document.name, row.id)}  // Pass the image name
                                                                 >
-                                                                    {document?.path}
+                                                                    {document?.name}
                                                                 </Button>
                                                                 {index % 2 === 1 && <br />}
                                                             </React.Fragment>
-                                                        )
                                                         ))
-                                                    }
+                                                    )}
                                                 </TableCell>
                                             </TableRow>
                                         ))}

@@ -10,7 +10,8 @@ import {
   OutlinedInput,
   InputAdornment,
   Select,
-  MenuItem
+  MenuItem,
+  useTheme
 } from '@mui/material'
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
@@ -32,6 +33,7 @@ const TabForgotPassword = () => {
     setValues,
     userPassword
   } = useForgotPasswordData()
+  const theme = useTheme()
 
   return (
     <motion.form
@@ -70,7 +72,7 @@ const TabForgotPassword = () => {
                 </FormControl>
               </Grid>
 
-              <Grid item xs={12} sx={{ marginTop: 6 }}>
+              <Grid item xs={12}>
                 <FormControl fullWidth>
                   <InputLabel htmlFor='account-settings-new-password'>New Password</InputLabel>
                   <OutlinedInput
@@ -128,7 +130,7 @@ const TabForgotPassword = () => {
             xs={12}
             sx={{ display: 'flex', marginTop: [7.5, 2.5], alignItems: 'center', justifyContent: 'center' }}
           >
-            <img alt='avatar' width={400} src='/images/pages/forgot.svg' />
+            <img alt='avatar' src='/images/pages/secure.svg' width={330} />
           </Grid>
         </Grid>
       </CardContent>
@@ -136,19 +138,26 @@ const TabForgotPassword = () => {
       <Divider sx={{ margin: 0 }} />
 
       <CardContent>
-        <Box sx={{ mt: 11 }}>
-          <Button variant='contained' sx={{ marginRight: 3.5 }} onClick={handleChangePassword}>
-            Save Changes
-          </Button>
-          <Button
-            type='reset'
-            variant='outlined'
-            color='secondary'
-            onClick={() => setValues({ ...values, employeeId: '', newPassword: '', confirmPassword: '' })}
-          >
-            Reset
-          </Button>
-        </Box>
+        <Button
+          variant='contained'
+          sx={{
+            mr: 3.5,
+            '&.MuiButton-root:hover': {
+              backgroundColor: theme.palette.primary.hover
+            }
+          }}
+          onClick={handleChangePassword}
+        >
+          Save Changes
+        </Button>
+        <Button
+          type='reset'
+          variant='outlined'
+          color='secondary'
+          onClick={() => setValues({ ...values, employeeId: '', newPassword: '', confirmPassword: '' })}
+        >
+          Reset
+        </Button>
       </CardContent>
     </motion.form>
   )

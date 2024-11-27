@@ -47,27 +47,27 @@ const useProjectData = () => {
     setScroll(scrollType)
   }
 
-  // Function for toggle status
-  const updateProjectStatus = async (id, newStatus) => {
-    const project = getProjectFromLocalStorage()
+  // // Function for toggle status
+  // const updateProjectStatus = async (id, newStatus) => {
+  //   const project = getProjectFromLocalStorage()
 
-    const updatedProject = project.map((pro) =>
-      pro.id === id ? { ...pro, status: newStatus } : pro
-    )
+  //   const updatedProject = project.map((pro) =>
+  //     pro.id === id ? { ...pro, status: newStatus } : pro
+  //   )
 
-    setProjectToLocalStorage(updatedProject)
-    setProjectData(updatedProject)
+  //   setProjectToLocalStorage(updatedProject)
+  //   setProjectData(updatedProject)
 
-    toast.success('Project Status Updated!', {
-      duration: 2000,
-      position: 'top-center',
-      style: {
-        background: theme.palette.background.paper,
-        color: theme.palette.text.primary,
-        fontSize: '15px'
-      }
-    })
-  }
+  //   toast.success('Project Status Updated!', {
+  //     duration: 2000,
+  //     position: 'top-center',
+  //     style: {
+  //       background: theme.palette.background.paper,
+  //       color: theme.palette.text.primary,
+  //       fontSize: '15px'
+  //     }
+  //   })
+  // }
 
   const fetchProjects = async () => {
     setLoading(true)
@@ -107,9 +107,17 @@ const useProjectData = () => {
     const project = getProjectFromLocalStorage()
 
     // Find the project and update it
-    const updatedProject = project.map((pro) =>
-      pro.id === updatedData.id ? updatedData : pro
-    )
+    const updatedProject = project.map((pro) => {
+      if (pro.id === updatedData.id) {
+        return {
+          // ...pro,
+          ...updatedData,
+          document: [...(updatedData.document || [])]
+        };
+      }
+
+      return pro;
+    });
 
     setProjectToLocalStorage(updatedProject)
     setProjectData(updatedProject)
@@ -175,7 +183,7 @@ const useProjectData = () => {
     const updatedProject = project.map((emp) => {
       if (emp.id === projectId) {
         // Remove the document with the matching fileName from the document array
-        const updatedDocuments = emp.document.filter(doc => doc.path !== fileName)
+        const updatedDocuments = emp.document.filter(doc => doc.name !== fileName)
 
         return { ...emp, document: updatedDocuments }
       }
@@ -213,7 +221,7 @@ const useProjectData = () => {
     addProjects,
     editProjects,
     deleteProjects,
-    updateProjectStatus,
+    // updateProjectStatus,
     deleteDocumentData,
     deleteModalOpen,
     setDeleteModalOpen,

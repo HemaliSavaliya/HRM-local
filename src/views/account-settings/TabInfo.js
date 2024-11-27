@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { forwardRef, useEffect } from 'react'
-import { Grid, Button, TextField, CardContent, Box, Typography, Divider, Skeleton, Avatar } from '@mui/material'
+import { forwardRef } from 'react'
+import { Grid, Button, TextField, CardContent, Box, Typography, Divider, Skeleton, Avatar, useTheme } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import DatePicker from 'react-datepicker'
 import { motion } from 'framer-motion'
@@ -63,6 +63,9 @@ const AvatarStyled = styled(Box)(({ theme }) => ({
 }))
 
 const ButtonStyled = styled(Button)(({ theme }) => ({
+    '&.MuiButton-root:hover': {
+        backgroundColor: theme.palette.primary.hover
+    },
     [theme.breakpoints.down('sm')]: {
         width: '100%',
         textAlign: 'center'
@@ -110,9 +113,9 @@ const TabInfo = () => {
         handleProfileImageUpload,
         imgSrc,
         authToken,
-        userData,
-        loadingImage
+        userData
     } = useTabInfoData()
+    const theme = useTheme()
 
     return (
         <CardContent>
@@ -126,11 +129,7 @@ const TabInfo = () => {
                 <Grid container spacing={7}>
                     <Grid item xs={12} sx={{ marginTop: 4.8, marginBottom: 3 }}>
                         <BoxStyled>
-                            {loadingImage ? (
-                                <ImgStyled1>
-                                    <Skeleton variant='rectangular' height={109} />
-                                </ImgStyled1>
-                            ) : imgSrc ? (
+                            {imgSrc ? (
                                 <motion.div
                                     animate={{ opacity: 1 }}
                                     initial={{ opacity: 0 }}
@@ -346,7 +345,17 @@ const TabInfo = () => {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <Button variant='contained' sx={{ lineHeight: 0, padding: '20px 25px' }} onClick={handleSaveChanges}>
+                                <Button
+                                    variant='contained'
+                                    sx={{
+                                        lineHeight: 0,
+                                        padding: '20px 25px !important',
+                                        '&.MuiButton-root:hover': {
+                                            backgroundColor: theme.palette.primary.hover
+                                        }
+                                    }}
+                                    onClick={handleSaveChanges}
+                                >
                                     Save Changes
                                 </Button>
                             </Grid>

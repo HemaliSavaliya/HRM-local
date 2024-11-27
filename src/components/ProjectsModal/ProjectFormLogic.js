@@ -8,7 +8,7 @@ const ProjectFormLogic = (projectData, editProjectId) => {
         clientEmail: '',
         startDate: '',
         endDate: '',
-        status: 'Active',
+        status: 'Upcoming',
         userId: [],
         teamMembers: [],
         document: []
@@ -89,12 +89,27 @@ const ProjectFormLogic = (projectData, editProjectId) => {
         })
     }
 
-    const handleImageChange = files => {
+    const handleImageChange = async (files) => {
+        const base64Files = await Promise.all(Array.from(files).map(file => {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    // Create an object with the file name and Base64 data
+                    resolve({
+                        name: file.name, // Store the file name
+                        data: reader.result // Store the Base64 encoded data
+                    });
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }));
+
         setFormData({
             ...formData,
-            document: files // Store the selected image
-        })
-    }
+            document: base64Files // Store the array of objects
+        });
+    };
 
     useEffect(() => {
         const selectedProject = projectData.find(project => project.id === editProjectId)
