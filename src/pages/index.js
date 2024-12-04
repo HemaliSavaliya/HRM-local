@@ -1,5 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { styled } from '@mui/material/styles'
 import { Grid, Card, CardContent, Typography, Box, Divider } from '@mui/material';
+import { AccountGroup, NewspaperCheck, NoteSearchOutline, Projector } from 'mdi-material-ui';
+
+const StyledBoxForSVG = styled(Box)({
+  width: "30%",
+  height: "100px",
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  transition: 'all 0.5s',
+  background: ' rgb(115 102 255 / 20%)',
+  color: '#7366FF'
+})
 
 const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState({
@@ -16,6 +29,10 @@ const Dashboard = () => {
       completed: 0,
       inprogress: 0,
       upcoming: 0,
+    },
+    eventStatus: {
+      todaysEvents: 0,
+      upcomingEvents: 0,
     },
   });
 
@@ -40,7 +57,7 @@ const Dashboard = () => {
       // Get holidays from localStorage
       const holidays = JSON.parse(localStorage.getItem('holiday')) || [];
       const currentDate = new Date();
-      
+
       const upcomingHolidays = holidays.filter(holiday => {
 
         const holidayDate = new Date(holiday.date);
@@ -59,6 +76,23 @@ const Dashboard = () => {
         rejected: leaveRequests.filter((leave) => leave.status.toLowerCase() === 'rejected').length,
       };
 
+      // Get events from localStorage
+      const events = JSON.parse(localStorage.getItem('calendarEvents')) || [];
+      const startOfDay = new Date(currentDate.setHours(0, 0, 0, 0));
+      const endOfDay = new Date(currentDate.setHours(23, 59, 59, 999));
+
+      const eventStatus = {
+        todaysEvents: events.filter((event) => {
+          const eventStart = new Date(event.start);
+          const eventEnd = event.end ? new Date(event.end) : eventStart;
+          return eventStart <= endOfDay && eventEnd >= startOfDay;
+        }).length,
+        upcomingEvents: events.filter((event) => {
+          const eventStart = new Date(event.start);
+          return eventStart > endOfDay;
+        }).length,
+      };
+
       // Update state with the calculated data
       setDashboardData({
         totalEmployees,
@@ -66,7 +100,8 @@ const Dashboard = () => {
         upcomingHolidays,
         totalLeaves,
         leaveStatus,
-        projectStatus
+        projectStatus,
+        eventStatus
       });
     };
 
@@ -80,9 +115,14 @@ const Dashboard = () => {
         {/* Total Employees */}
         <Grid item xs={12} sm={6} md={3}>
           <Card>
-            <CardContent>
-              <Typography variant="h5">{dashboardData.totalEmployees}</Typography>
-              <Typography variant="subtitle2">Total Employees</Typography>
+            <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
+              <StyledBoxForSVG>
+                <AccountGroup sx={{ fontSize: "35px" }} />
+              </StyledBoxForSVG>
+              <Box padding={3}>
+                <Typography variant="h5">{dashboardData.totalEmployees}</Typography>
+                <Typography variant="subtitle2">Total Employees</Typography>
+              </Box>
             </CardContent>
           </Card>
         </Grid>
@@ -90,9 +130,14 @@ const Dashboard = () => {
         {/* Number of Leaves */}
         <Grid item xs={12} sm={6} md={3}>
           <Card>
-            <CardContent>
-              <Typography variant="h5">{dashboardData.totalLeaves}</Typography>
-              <Typography variant="subtitle2">Number of Leaves</Typography>
+            <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
+              <StyledBoxForSVG>
+                <NoteSearchOutline sx={{ fontSize: "35px" }} />
+              </StyledBoxForSVG>
+              <Box padding={3}>
+                <Typography variant="h5">{dashboardData.totalLeaves}</Typography>
+                <Typography variant="subtitle2">Number of Leaves</Typography>
+              </Box>
             </CardContent>
           </Card>
         </Grid>
@@ -100,9 +145,14 @@ const Dashboard = () => {
         {/* Total Projects */}
         <Grid item xs={12} sm={6} md={3}>
           <Card>
-            <CardContent>
-              <Typography variant="h5">{dashboardData.totalProjects}</Typography>
-              <Typography variant="subtitle2">Total Projects</Typography>
+            <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
+              <StyledBoxForSVG>
+                <Projector sx={{ fontSize: "35px" }} />
+              </StyledBoxForSVG>
+              <Box padding={3}>
+                <Typography variant="h5">{dashboardData.totalProjects}</Typography>
+                <Typography variant="subtitle2">Total Projects</Typography>
+              </Box>
             </CardContent>
           </Card>
         </Grid>
@@ -110,9 +160,14 @@ const Dashboard = () => {
         {/* Upcoming Holidays */}
         <Grid item xs={12} sm={6} md={3}>
           <Card>
-            <CardContent>
-              <Typography variant="h5">{dashboardData.upcomingHolidays}</Typography>
-              <Typography variant="subtitle2">Upcoming Holidays</Typography>
+            <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
+              <StyledBoxForSVG>
+                <NewspaperCheck sx={{ fontSize: "35px" }} />
+              </StyledBoxForSVG>
+              <Box padding={3}>
+                <Typography variant="h5">{dashboardData.upcomingHolidays}</Typography>
+                <Typography variant="subtitle2">Upcoming Holidays</Typography>
+              </Box>
             </CardContent>
           </Card>
         </Grid>
@@ -120,7 +175,7 @@ const Dashboard = () => {
         {/* Leave status */}
         <Grid item xs={12} sm={6} md={4}>
           <Card>
-            <CardContent>
+            <CardContent sx={{ height: "200px" }}>
               <Typography variant="h6" mb={4}>Leave Requests</Typography>
               <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
                 <Typography variant="body1">Pending Leave</Typography>
@@ -143,7 +198,7 @@ const Dashboard = () => {
         {/* Project status */}
         <Grid item xs={12} sm={6} md={4}>
           <Card>
-            <CardContent>
+            <CardContent sx={{ height: "200px" }}>
               <Typography variant="h6" mb={4}>Project Status</Typography>
               <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
                 <Typography variant="body1">Completed</Typography>
@@ -166,16 +221,16 @@ const Dashboard = () => {
         {/* Event Status */}
         <Grid item xs={12} sm={6} md={4}>
           <Card>
-            <CardContent>
+            <CardContent sx={{ height: "200px" }}>
               <Typography variant="h6" mb={4}>Event Status</Typography>
               <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
                 <Typography variant="body1">Today's Events</Typography>
-                <Typography variant="subtitle2">210</Typography>
+                <Typography variant="subtitle2">{dashboardData.eventStatus.todaysEvents}</Typography>
               </Box>
               <Divider />
               <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
                 <Typography variant="body1">Upcoming Events</Typography>
-                <Typography variant="subtitle2">20</Typography>
+                <Typography variant="subtitle2">{dashboardData.eventStatus.upcomingEvents}</Typography>
               </Box>
             </CardContent>
           </Card>
