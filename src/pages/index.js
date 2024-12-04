@@ -85,10 +85,12 @@ const Dashboard = () => {
         todaysEvents: events.filter((event) => {
           const eventStart = new Date(event.start);
           const eventEnd = event.end ? new Date(event.end) : eventStart;
+
           return eventStart <= endOfDay && eventEnd >= startOfDay;
         }).length,
         upcomingEvents: events.filter((event) => {
           const eventStart = new Date(event.start);
+          
           return eventStart > endOfDay;
         }).length,
       };
