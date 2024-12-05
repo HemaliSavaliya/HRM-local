@@ -20,7 +20,15 @@ const useLeaveReqData = () => {
     // Utility function to get leave request from localStorage
     const getLeaveReqFromLocalStorage = () => {
         const storedLeaveReq = localStorage.getItem('leaveRequest')
-        return storedLeaveReq ? JSON.parse(storedLeaveReq) : []
+
+        // Filter data based on role
+        const filteredData = authToken?.role === 'hr'
+            ? storedLeaveReq.filter(req => req.role === 'hr')
+            : authToken?.role === 'employee'
+                ? storedLeaveReq.filter(req => req.role === 'employee')
+                : storedLeaveReq;
+
+        return filteredData ? JSON.parse(filteredData) : []
     }
 
     // Utility function to set leave in localStorage
@@ -62,7 +70,15 @@ const useLeaveReqData = () => {
     const fetchLeaveRequest = async () => {
         setLoading(true)
         const storedData = JSON.parse(localStorage.getItem('leaveRequest')) || []
-        setLeaveReqData(storedData)
+
+        // Filter data based on role
+        const filteredData = authToken?.role === 'hr'
+            ? storedData.filter(req => req.role === 'hr')
+            : authToken?.role === 'employee'
+                ? storedData.filter(req => req.role === 'employee')
+                : storedData;
+
+        setLeaveReqData(filteredData)
         setLoading(false)
     }
 
@@ -78,7 +94,15 @@ const useLeaveReqData = () => {
         const today = new Date().toLocaleDateString('en-GB')
 
         // Add a unique ID and today's date to each new role
-        const updatedLeaveReq = [...leaveReq, { ...newLeaveReq, name: authToken?.name, id: Date.now(), applyingDate: today, status: 'pending' }]
+        const updatedLeaveReq = [...leaveReq,
+        {
+            ...newLeaveReq,
+            name: authToken?.name,
+            role: authToken?.role,
+            id: Date.now(),
+            applyingDate: today,
+            status: 'pending'
+        }]
         setLeaveReqToLocalStorage(updatedLeaveReq)
         setLeaveReqData(updatedLeaveReq)
 

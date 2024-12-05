@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 
 const useLeaveReqData = () => {
     const [leaveReqData, setLeaveReqData] = useState([])
     const [loading, setLoading] = useState(true)
+    const authToken = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('login-details')) : null
+    const role = authToken?.role
 
     const updateLeaveRequestStatus = async (leaveRequestId, newStatus) => {
         try {
@@ -28,7 +29,13 @@ const useLeaveReqData = () => {
         try {
             // Retrieve leave requests from localStorage
             const storedData = JSON.parse(localStorage.getItem('leaveRequest')) || [];
-            setLeaveReqData(storedData);
+
+            // Filter data based on role
+            const filteredData = role === 'hr'
+                ? storedData.filter(req => req.role === 'employee')
+                : storedData;
+
+            setLeaveReqData(filteredData);
         } catch (error) {
             console.error('Error fetching leave request', error)
         } finally {

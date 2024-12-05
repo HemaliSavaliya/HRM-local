@@ -10,11 +10,11 @@ import {
     MenuItem,
     InputLabel,
     FormControl,
-    Select
+    Select,
+    useTheme
 } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
 import LeaveRequestFormLogic from './LeaveRequestFormLogic'
-import axios from 'axios'
 
 const LeaveRequestForm = ({ handleClose, setOpen, addLeaveRequest }) => {
     const { formData, handleInputChange, errors, validateForm, setFormData, initialFormValue } = LeaveRequestFormLogic()
@@ -22,6 +22,7 @@ const LeaveRequestForm = ({ handleClose, setOpen, addLeaveRequest }) => {
     const [selectedTotalDays, setSelectedTotalDays] = useState('')
     const [loading, setLoading] = useState(false) // Add loading state
     const [leaveType, setLeaveType] = useState([])
+    const theme = useTheme()
 
     const fetchLeaveRequest = async () => {
         const storedLeaveType = localStorage.getItem('leaveType');

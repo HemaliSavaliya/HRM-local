@@ -47,7 +47,7 @@ const TabForgotPassword = () => {
         <Grid container spacing={5}>
           <Grid item xs={12} sm={6}>
             <Grid container spacing={5}>
-              <Grid item xs={12} sx={{ marginTop: 4.75 }}>
+              <Grid item xs={12}>
                 <FormControl fullWidth>
                   <InputLabel id='form-layouts-separator-select-label'>Employee</InputLabel>
                   <Select

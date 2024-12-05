@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles'
 import { Grid, Card, CardContent, Typography, Box, Divider } from '@mui/material';
-import { AccountGroup, NewspaperCheck, NoteSearchOutline, Projector } from 'mdi-material-ui';
+import { AccountGroup, BullhornOutline, NewspaperCheck, NoteSearchOutline, Projector, Seal } from 'mdi-material-ui';
 
 const StyledBoxForSVG = styled(Box)({
   width: "30%",
@@ -15,11 +15,16 @@ const StyledBoxForSVG = styled(Box)({
 })
 
 const Dashboard = () => {
+  const authToken = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('login-details')) : null
+  const role = authToken?.role
+
   const [dashboardData, setDashboardData] = useState({
     totalEmployees: 0,
     totalProjects: 0,
     upcomingHolidays: 0,
     totalLeaves: 0,
+    totalAnnouncement: 0,
+    awards: 0,
     leaveStatus: {
       pending: 0,
       approved: 0,
@@ -42,6 +47,10 @@ const Dashboard = () => {
       // Get employees from localStorage
       const employees = JSON.parse(localStorage.getItem('employee')) || [];
       const totalEmployees = employees.length;
+
+      // Get announcement from localStorage
+      const announcement = JSON.parse(localStorage.getItem('announcement')) || [];
+      const totalAnnouncement = announcement.length;
 
       // Get projects from localStorage
       const projects = JSON.parse(localStorage.getItem('project')) || [];
@@ -69,11 +78,18 @@ const Dashboard = () => {
       const leaveRequests = JSON.parse(localStorage.getItem('leaveRequest')) || [];
       const totalLeaves = leaveRequests.length;
 
+      // Filter leave requests for HR role
+      const filterLeave = role === 'hr'
+        ? leaveRequests.filter((leave) => leave.role.toLowerCase() === 'hr')
+        : role === 'employee'
+          ? leaveRequests.filter((leave) => leave.role.toLowerCase() === 'employee')
+          : leaveRequests;
+
       // Calculate leave status counts
       const leaveStatus = {
-        pending: leaveRequests.filter((leave) => leave.status.toLowerCase() === 'pending').length,
-        approved: leaveRequests.filter((leave) => leave.status.toLowerCase() === 'approved').length,
-        rejected: leaveRequests.filter((leave) => leave.status.toLowerCase() === 'rejected').length,
+        pending: filterLeave.filter((leave) => leave.status.toLowerCase() === 'pending').length,
+        approved: filterLeave.filter((leave) => leave.status.toLowerCase() === 'approved').length,
+        rejected: filterLeave.filter((leave) => leave.status.toLowerCase() === 'rejected').length,
       };
 
       // Get events from localStorage
@@ -90,7 +106,7 @@ const Dashboard = () => {
         }).length,
         upcomingEvents: events.filter((event) => {
           const eventStart = new Date(event.start);
-          
+
           return eventStart > endOfDay;
         }).length,
       };
@@ -99,6 +115,7 @@ const Dashboard = () => {
       setDashboardData({
         totalEmployees,
         totalProjects,
+        totalAnnouncement,
         upcomingHolidays,
         totalLeaves,
         leaveStatus,
@@ -112,132 +129,336 @@ const Dashboard = () => {
 
   return (
     <Box>
-      {/* Summary Cards */}
-      <Grid container spacing={3}>
-        {/* Total Employees */}
-        <Grid item xs={12} sm={6} md={3}>
-          <Card>
-            <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
-              <StyledBoxForSVG>
-                <AccountGroup sx={{ fontSize: "35px" }} />
-              </StyledBoxForSVG>
-              <Box padding={3}>
-                <Typography variant="h5">{dashboardData.totalEmployees}</Typography>
-                <Typography variant="subtitle2">Total Employees</Typography>
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
+      {role === 'admin' && (
+        <Grid container spacing={3}>
+          {/* Total Employees */}
+          <Grid item xs={12} sm={6} md={3}>
+            <Card>
+              <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
+                <StyledBoxForSVG>
+                  <AccountGroup sx={{ fontSize: "35px" }} />
+                </StyledBoxForSVG>
+                <Box padding={3}>
+                  <Typography variant="h5">{dashboardData.totalEmployees}</Typography>
+                  <Typography variant="subtitle2">Total Employees</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
 
-        {/* Number of Leaves */}
-        <Grid item xs={12} sm={6} md={3}>
-          <Card>
-            <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
-              <StyledBoxForSVG>
-                <NoteSearchOutline sx={{ fontSize: "35px" }} />
-              </StyledBoxForSVG>
-              <Box padding={3}>
-                <Typography variant="h5">{dashboardData.totalLeaves}</Typography>
-                <Typography variant="subtitle2">Number of Leaves</Typography>
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
+          {/* Number of Leaves */}
+          <Grid item xs={12} sm={6} md={3}>
+            <Card>
+              <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
+                <StyledBoxForSVG>
+                  <NoteSearchOutline sx={{ fontSize: "35px" }} />
+                </StyledBoxForSVG>
+                <Box padding={3}>
+                  <Typography variant="h5">{dashboardData.totalLeaves}</Typography>
+                  <Typography variant="subtitle2">Number of Leaves</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
 
-        {/* Total Projects */}
-        <Grid item xs={12} sm={6} md={3}>
-          <Card>
-            <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
-              <StyledBoxForSVG>
-                <Projector sx={{ fontSize: "35px" }} />
-              </StyledBoxForSVG>
-              <Box padding={3}>
-                <Typography variant="h5">{dashboardData.totalProjects}</Typography>
-                <Typography variant="subtitle2">Total Projects</Typography>
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
+          {/* Total Projects */}
+          <Grid item xs={12} sm={6} md={3}>
+            <Card>
+              <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
+                <StyledBoxForSVG>
+                  <Projector sx={{ fontSize: "35px" }} />
+                </StyledBoxForSVG>
+                <Box padding={3}>
+                  <Typography variant="h5">{dashboardData.totalProjects}</Typography>
+                  <Typography variant="subtitle2">Total Projects</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
 
-        {/* Upcoming Holidays */}
-        <Grid item xs={12} sm={6} md={3}>
-          <Card>
-            <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
-              <StyledBoxForSVG>
-                <NewspaperCheck sx={{ fontSize: "35px" }} />
-              </StyledBoxForSVG>
-              <Box padding={3}>
-                <Typography variant="h5">{dashboardData.upcomingHolidays}</Typography>
-                <Typography variant="subtitle2">Upcoming Holidays</Typography>
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
+          {/* Upcoming Holidays */}
+          <Grid item xs={12} sm={6} md={3}>
+            <Card>
+              <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
+                <StyledBoxForSVG>
+                  <NewspaperCheck sx={{ fontSize: "35px" }} />
+                </StyledBoxForSVG>
+                <Box padding={3}>
+                  <Typography variant="h5">{dashboardData.upcomingHolidays}</Typography>
+                  <Typography variant="subtitle2">Upcoming Holidays</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
 
-        {/* Leave status */}
-        <Grid item xs={12} sm={6} md={4}>
-          <Card>
-            <CardContent sx={{ height: "200px" }}>
-              <Typography variant="h6" mb={4}>Leave Requests</Typography>
-              <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
-                <Typography variant="body1">Pending Leave</Typography>
-                <Typography variant="subtitle2">{dashboardData.leaveStatus.pending}</Typography>
-              </Box>
-              <Divider />
-              <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
-                <Typography variant="body1">Approved Leave</Typography>
-                <Typography variant="subtitle2">{dashboardData.leaveStatus.approved}</Typography>
-              </Box>
-              <Divider />
-              <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
-                <Typography variant="body1">Reject Leave</Typography>
-                <Typography variant="subtitle2">{dashboardData.leaveStatus.rejected}</Typography>
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
+          {/* Leave status */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Card>
+              <CardContent sx={{ height: "200px" }}>
+                <Typography variant="h6" mb={4}>Leave Requests</Typography>
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Pending Leave</Typography>
+                  <Typography variant="subtitle2">{dashboardData.leaveStatus.pending}</Typography>
+                </Box>
+                <Divider />
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Approved Leave</Typography>
+                  <Typography variant="subtitle2">{dashboardData.leaveStatus.approved}</Typography>
+                </Box>
+                <Divider />
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Reject Leave</Typography>
+                  <Typography variant="subtitle2">{dashboardData.leaveStatus.rejected}</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
 
-        {/* Project status */}
-        <Grid item xs={12} sm={6} md={4}>
-          <Card>
-            <CardContent sx={{ height: "200px" }}>
-              <Typography variant="h6" mb={4}>Project Status</Typography>
-              <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
-                <Typography variant="body1">Completed</Typography>
-                <Typography variant="subtitle2">{dashboardData.projectStatus.completed}</Typography>
-              </Box>
-              <Divider />
-              <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
-                <Typography variant="body1">In Progress</Typography>
-                <Typography variant="subtitle2">{dashboardData.projectStatus.inprogress}</Typography>
-              </Box>
-              <Divider />
-              <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
-                <Typography variant="body1">Upcoming</Typography>
-                <Typography variant="subtitle2">{dashboardData.projectStatus.upcoming}</Typography>
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
+          {/* Project status */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Card>
+              <CardContent sx={{ height: "200px" }}>
+                <Typography variant="h6" mb={4}>Project Status</Typography>
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Completed</Typography>
+                  <Typography variant="subtitle2">{dashboardData.projectStatus.completed}</Typography>
+                </Box>
+                <Divider />
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">In Progress</Typography>
+                  <Typography variant="subtitle2">{dashboardData.projectStatus.inprogress}</Typography>
+                </Box>
+                <Divider />
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Upcoming</Typography>
+                  <Typography variant="subtitle2">{dashboardData.projectStatus.upcoming}</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
 
-        {/* Event Status */}
-        <Grid item xs={12} sm={6} md={4}>
-          <Card>
-            <CardContent sx={{ height: "200px" }}>
-              <Typography variant="h6" mb={4}>Event Status</Typography>
-              <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
-                <Typography variant="body1">Today's Events</Typography>
-                <Typography variant="subtitle2">{dashboardData.eventStatus.todaysEvents}</Typography>
-              </Box>
-              <Divider />
-              <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
-                <Typography variant="body1">Upcoming Events</Typography>
-                <Typography variant="subtitle2">{dashboardData.eventStatus.upcomingEvents}</Typography>
-              </Box>
-            </CardContent>
-          </Card>
+          {/* Event Status */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Card>
+              <CardContent sx={{ height: "200px" }}>
+                <Typography variant="h6" mb={4}>Event Status</Typography>
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Today's Events</Typography>
+                  <Typography variant="subtitle2">{dashboardData.eventStatus.todaysEvents}</Typography>
+                </Box>
+                <Divider />
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Upcoming Events</Typography>
+                  <Typography variant="subtitle2">{dashboardData.eventStatus.upcomingEvents}</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
-      </Grid>
+      )}
+
+      {role === "hr" && (
+        <Grid container spacing={3}>
+          {/* Total Employees */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Card>
+              <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
+                <StyledBoxForSVG>
+                  <AccountGroup sx={{ fontSize: "35px" }} />
+                </StyledBoxForSVG>
+                <Box padding={3}>
+                  <Typography variant="h5">{dashboardData.totalEmployees}</Typography>
+                  <Typography variant="subtitle2">Total Employees</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Number of Leaves */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Card>
+              <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
+                <StyledBoxForSVG>
+                  <NoteSearchOutline sx={{ fontSize: "35px" }} />
+                </StyledBoxForSVG>
+                <Box padding={3}>
+                  <Typography variant="h5">{dashboardData.totalLeaves}</Typography>
+                  <Typography variant="subtitle2">Number of Leaves</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Upcoming Holidays */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Card>
+              <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
+                <StyledBoxForSVG>
+                  <NewspaperCheck sx={{ fontSize: "35px" }} />
+                </StyledBoxForSVG>
+                <Box padding={3}>
+                  <Typography variant="h5">{dashboardData.upcomingHolidays}</Typography>
+                  <Typography variant="subtitle2">Upcoming Holidays</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Leave status */}
+          <Grid item xs={12} sm={6} md={6}>
+            <Card>
+              <CardContent sx={{ height: "200px" }}>
+                <Typography variant="h6" mb={4}>Leave Requests</Typography>
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Total Pending Leave</Typography>
+                  <Typography variant="subtitle2">{dashboardData.leaveStatus.pending}</Typography>
+                </Box>
+                <Divider />
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Total Approved Leave</Typography>
+                  <Typography variant="subtitle2">{dashboardData.leaveStatus.approved}</Typography>
+                </Box>
+                <Divider />
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Total Reject Leave</Typography>
+                  <Typography variant="subtitle2">{dashboardData.leaveStatus.rejected}</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Event Status */}
+          <Grid item xs={12} sm={6} md={6}>
+            <Card>
+              <CardContent sx={{ height: "200px" }}>
+                <Typography variant="h6" mb={4}>Event Status</Typography>
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Today's Events</Typography>
+                  <Typography variant="subtitle2">{dashboardData.eventStatus.todaysEvents}</Typography>
+                </Box>
+                <Divider />
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Upcoming Events</Typography>
+                  <Typography variant="subtitle2">{dashboardData.eventStatus.upcomingEvents}</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      )}
+
+      {role === "employee" && (
+        <Grid container spacing={3}>
+          {/* Upcoming Holidays */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Card>
+              <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
+                <StyledBoxForSVG>
+                  <NewspaperCheck sx={{ fontSize: "35px" }} />
+                </StyledBoxForSVG>
+                <Box padding={3}>
+                  <Typography variant="h5">{dashboardData.upcomingHolidays}</Typography>
+                  <Typography variant="subtitle2">Upcoming Holidays</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* announcement */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Card>
+              <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
+                <StyledBoxForSVG>
+                  <BullhornOutline sx={{ fontSize: "35px" }} />
+                </StyledBoxForSVG>
+                <Box padding={3}>
+                  <Typography variant="h5">{dashboardData.totalAnnouncement}</Typography>
+                  <Typography variant="subtitle2">Announcement</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Awards */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Card>
+              <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
+                <StyledBoxForSVG>
+                  <Seal sx={{ fontSize: "35px" }} />
+                </StyledBoxForSVG>
+                <Box padding={3}>
+                  <Typography variant="h5">0</Typography>
+                  <Typography variant="subtitle2">Awards</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Leave status */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Card>
+              <CardContent sx={{ height: "200px" }}>
+                <Typography variant="h6" mb={4}>Leave Requests</Typography>
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Total Pending Leave</Typography>
+                  <Typography variant="subtitle2">{dashboardData.leaveStatus.pending}</Typography>
+                </Box>
+                <Divider />
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Total Approved Leave</Typography>
+                  <Typography variant="subtitle2">{dashboardData.leaveStatus.approved}</Typography>
+                </Box>
+                <Divider />
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Total Reject Leave</Typography>
+                  <Typography variant="subtitle2">{dashboardData.leaveStatus.rejected}</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Project status */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Card>
+              <CardContent sx={{ height: "200px" }}>
+                <Typography variant="h6" mb={4}>Projects</Typography>
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Completed</Typography>
+                  <Typography variant="subtitle2">0</Typography>
+                </Box>
+                <Divider />
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">In Progress</Typography>
+                  <Typography variant="subtitle2">0</Typography>
+                </Box>
+                <Divider />
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Upcoming</Typography>
+                  <Typography variant="subtitle2">0</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Event Status */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Card>
+              <CardContent sx={{ height: "200px" }}>
+                <Typography variant="h6" mb={4}>Event Status</Typography>
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Today's Events</Typography>
+                  <Typography variant="subtitle2">{dashboardData.eventStatus.todaysEvents}</Typography>
+                </Box>
+                <Divider />
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography variant="body1">Upcoming Events</Typography>
+                  <Typography variant="subtitle2">{dashboardData.eventStatus.upcomingEvents}</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      )}
     </Box>
   );
 };
