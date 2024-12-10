@@ -29,9 +29,10 @@ const AwardsForm = ({ handleClose, editAwardId, awardsData, setOpen, addAwards, 
         const storedUser = localStorage.getItem('employee');
 
         if (storedUser) {
+            
             // Parse and filter active employee
             const parsedData = JSON.parse(storedUser);
-            
+
             const activeEmployees = parsedData.filter(
                 (data) => data.status === 'Active' && data.role === 'employee'
             );
