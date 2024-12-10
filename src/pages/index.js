@@ -81,6 +81,7 @@ const Dashboard = () => {
 
       // Get leave requests from localStorage
       const leaveRequests = JSON.parse(localStorage.getItem('leaveRequest')) || [];
+      
       const filteredLeaveRequests =
         role === 'hr'
           ? leaveRequests.filter((leave) => leave.role === 'employee') // Only employee roles for HR
