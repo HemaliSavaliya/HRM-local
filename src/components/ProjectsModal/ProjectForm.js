@@ -68,8 +68,8 @@ const ProjectForm = ({ handleClose, editProjectId, setOpen, projectData, addProj
         }
 
         // Convert the team members from an array of objects to an array of strings
-        const teamMembersArray = formData.teamMembers.map(member => member)
-        const teamMembersIdArray = formData.userId.map(member => member)
+        const teamMembersArray = formData.teamMembers.map(member => member.name)
+        const teamMembersIdArray = formData.userId.map(member => member.id)
 
         // Update the formData object to include the team members array
         const updatedFormData = {

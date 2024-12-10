@@ -31,8 +31,10 @@ const AwardsForm = ({ handleClose, editAwardId, awardsData, setOpen, addAwards, 
         if (storedUser) {
             // Parse and filter active employee
             const parsedData = JSON.parse(storedUser);
-            const activeUser = parsedData.filter(data => data.status === 'Active');
-            setAwardsUser(activeUser);
+            const activeEmployees = parsedData.filter(
+                (data) => data.status === 'Active' && data.role === 'employee'
+            );
+            setAwardsUser(activeEmployees);
         } else {
             console.warn('No employee data found in localStorage');
         }

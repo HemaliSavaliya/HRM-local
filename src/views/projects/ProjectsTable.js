@@ -45,6 +45,7 @@ const ProjectsTable = ({
   // For fetch login detail wise role
   const authToken = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('login-details')) : null
   const role = authToken?.role
+  const loggedInUserId = authToken?.id
 
   // Filter data based on search query
   const filteredData = projectData.filter((project) => {
@@ -72,8 +73,17 @@ const ProjectsTable = ({
     setPage(0);
   };
 
-  // Further filter data based on the role
-  const roleBasedData = role === 'admin' ? filteredData : filteredData.filter((project) => project.status === 'Inprogress');
+  // Further filter data based on the role and ID condition
+  const roleBasedData =
+    role === 'admin'
+      ? filteredData // Admin sees all filtered projects
+      : role === 'employee' && authToken?.id === ''
+        ? filteredData.filter((project) => ['Upcoming', 'Inprogress'].includes(project.status)) // Employee with no ID sees all upcoming and in-progress projects
+        : filteredData.filter(
+          (project) =>
+            project.userId.includes(authToken?.id) &&
+            ['Upcoming', 'Inprogress'].includes(project.status)
+        ); // Employee with ID sees only their upcoming and in-progress projects
 
   const visibleRows = stableSort(roleBasedData, getComparator(order, orderBy)).slice(
     page * rowsPerPage,
@@ -82,19 +92,6 @@ const ProjectsTable = ({
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - visibleRows.length) : 0;
-
-  // For toggle status
-  // const handleStatusToggle = (id, currentStatus) => {
-  //   const newStatus = currentStatus === 'Active' ? 'Inactive' : 'Active';
-  //   updateProjectStatus(id, newStatus);
-  // };
-
-  // // Filter the Active and Inactive status separately
-  // const activeRows = projectData.filter(item => item.status === 'Inprogress')
-  // const inactiveRows = projectData.filter(item => item.status === 'Upcoming' || 'Inprogress' || 'Completed')
-
-  // // Concatenate active and inactive rows
-  // const allVisibleRows = activeRows.concat(inactiveRows)
 
   return (
     <>
@@ -160,48 +157,50 @@ const ProjectsTable = ({
                       visibleRows.map((row, index) => {
                         return (
                           <TableRow key={row.id} sx={{ cursor: 'pointer' }}>
-                            {role === 'admin' && (
-                              <TableCell
-                                align='left'
-                                sx={{
-                                  position: 'sticky',
-                                  background: theme.palette.background.paper,
-                                  left: 0,
-                                  zIndex: 1
-                                }}
-                              >
-                                <Tooltip title='Edit Project'>
-                                  <Button
-                                    onClick={() => handleEdit(row.id)}
-                                    sx={{
-                                      background: theme.palette.background.paper,
-                                      boxShadow: 'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px',
-                                      height: '32px',
-                                      margin: '0 3px',
-                                      minWidth: '32px',
-                                      width: '32px'
-                                    }}
-                                  >
-                                    <PencilOutline sx={{ fontSize: '20px', color: '#7366FF' }} />
-                                  </Button>
-                                </Tooltip>
-                                <Tooltip title='Delete Project'>
-                                  <Button
-                                    onClick={() => handleDeleteProject(row.id)}
-                                    sx={{
-                                      background: theme.palette.background.paper,
-                                      boxShadow: 'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px',
-                                      height: '32px',
-                                      margin: '0 3px',
-                                      minWidth: '32px',
-                                      width: '32px'
-                                    }}
-                                  >
-                                    <DeleteOutline sx={{ fontSize: '20px', color: 'rgb(211, 47, 47)' }} />
-                                  </Button>
-                                </Tooltip>
-                              </TableCell>
-                            )}
+                            <TableCell
+                              align='left'
+                              sx={{
+                                position: 'sticky',
+                                background: theme.palette.background.paper,
+                                left: 0,
+                                zIndex: 1
+                              }}
+                            >
+                              {role === 'admin' && (
+                                <>
+                                  <Tooltip title='Edit Project'>
+                                    <Button
+                                      onClick={() => handleEdit(row.id)}
+                                      sx={{
+                                        background: theme.palette.background.paper,
+                                        boxShadow: 'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px',
+                                        height: '32px',
+                                        margin: '0 3px',
+                                        minWidth: '32px',
+                                        width: '32px'
+                                      }}
+                                    >
+                                      <PencilOutline sx={{ fontSize: '20px', color: '#7366FF' }} />
+                                    </Button>
+                                  </Tooltip>
+                                  <Tooltip title='Delete Project'>
+                                    <Button
+                                      onClick={() => handleDeleteProject(row.id)}
+                                      sx={{
+                                        background: theme.palette.background.paper,
+                                        boxShadow: 'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px',
+                                        height: '32px',
+                                        margin: '0 3px',
+                                        minWidth: '32px',
+                                        width: '32px'
+                                      }}
+                                    >
+                                      <DeleteOutline sx={{ fontSize: '20px', color: 'rgb(211, 47, 47)' }} />
+                                    </Button>
+                                  </Tooltip>
+                                </>
+                              )}
+                            </TableCell>
                             <TableCell align='left'>{index + 1 + page * rowsPerPage}</TableCell>
                             <TableCell align='left'>{row.projectName}</TableCell>
                             <TableCell align='left'>{row.clientName}</TableCell>
@@ -252,61 +251,6 @@ const ProjectsTable = ({
                         )
                       })
                     }
-
-                    {/* {role === 'employee' &&
-                      activeRows.map((row, index) => {
-                        return (
-                          <TableRow key={row.id} sx={{ cursor: 'pointer' }}>
-                            <TableCell align='left' />
-                            <TableCell align='left'>{index + 1 + page * rowsPerPage}</TableCell>
-                            <TableCell align='left'>{row.projectName}</TableCell>
-                            <TableCell align='left'>{row.clientName}</TableCell>
-                            <TableCell align='left'>{row.clientEmail}</TableCell>
-                            <TableCell align='left'>{row.startDate}</TableCell>
-                            <TableCell align='left'>{row.endDate || '-'}</TableCell>
-                            <TableCell align='left'>
-                              <Chip
-                                label={row.status}
-                                color={statusObj[row.status]}
-                                sx={{
-                                  height: 24,
-                                  fontSize: '0.75rem',
-                                  textTransform: 'capitalize',
-                                  '& .MuiChip-label': { fontWeight: 500 }
-                                }}
-                              />
-                            </TableCell>
-                            <TableCell align='left'>{row.teamMembers.length}</TableCell>
-                            <TableCell align='left'>
-                              {row.document?.length === 0 ? (
-                                <span>No documents available</span>
-                              ) : (
-                                row.document?.map((document, index) => (
-                                  <React.Fragment key={index}>
-                                    <Button
-                                      sx={{
-                                        mt: 1,
-                                        mb: 1,
-                                        mr: 2,
-                                        fontSize: 14,
-                                        textTransform: 'none !important',
-                                        borderRadius: 0
-                                      }}
-                                      variant='outlined'
-                                      size='small'
-                                      onClick={() => handleButtonClick(document.name, row.id)}  // Pass the correct loading index
-                                    >
-                                      {document?.name}
-                                    </Button>
-                                    {index % 2 === 1 && <br />}
-                                  </React.Fragment>
-                                ))
-                              )}
-                            </TableCell>
-                          </TableRow>
-                        )
-                      })
-                    } */}
 
                     {emptyRows > 0 && (
                       <TableRow style={{ height: 53 * emptyRows }}>

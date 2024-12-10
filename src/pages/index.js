@@ -24,7 +24,7 @@ const Dashboard = () => {
     upcomingHolidays: 0,
     totalLeaves: 0,
     totalAnnouncement: 0,
-    awards: 0,
+    totalAwards: 0,
     leaveStatus: {
       pending: 0,
       approved: 0,
@@ -52,6 +52,11 @@ const Dashboard = () => {
       const announcement = JSON.parse(localStorage.getItem('announcement')) || [];
       const totalAnnouncement = announcement.length;
 
+      // Get award from localStorage
+      const awards = JSON.parse(localStorage.getItem('award')) || [];
+      const userAwards = awards.filter((award) => award.employeeId === authToken?.id);
+      const totalAwards = userAwards.length;
+
       // Get projects from localStorage
       const projects = JSON.parse(localStorage.getItem('project')) || [];
       const totalProjects = projects.length;
@@ -76,7 +81,11 @@ const Dashboard = () => {
 
       // Get leave requests from localStorage
       const leaveRequests = JSON.parse(localStorage.getItem('leaveRequest')) || [];
-      const totalLeaves = leaveRequests.length;
+      const filteredLeaveRequests =
+        role === 'hr'
+          ? leaveRequests.filter((leave) => leave.role === 'employee') // Only employee roles for HR
+          : leaveRequests; // All leave requests for other roles like Admin
+      const totalLeaves = filteredLeaveRequests.length;
 
       // Filter leave requests for HR role
       const filterLeave = role === 'hr'
@@ -116,6 +125,7 @@ const Dashboard = () => {
         totalEmployees,
         totalProjects,
         totalAnnouncement,
+        totalAwards,
         upcomingHolidays,
         totalLeaves,
         leaveStatus,
@@ -260,7 +270,7 @@ const Dashboard = () => {
       {role === "hr" && (
         <Grid container spacing={3}>
           {/* Total Employees */}
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={4} md={4}>
             <Card>
               <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
                 <StyledBoxForSVG>
@@ -275,7 +285,7 @@ const Dashboard = () => {
           </Grid>
 
           {/* Number of Leaves */}
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={4} md={4}>
             <Card>
               <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
                 <StyledBoxForSVG>
@@ -290,7 +300,7 @@ const Dashboard = () => {
           </Grid>
 
           {/* Upcoming Holidays */}
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={4} md={4}>
             <Card>
               <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
                 <StyledBoxForSVG>
@@ -350,7 +360,7 @@ const Dashboard = () => {
       {role === "employee" && (
         <Grid container spacing={3}>
           {/* Upcoming Holidays */}
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={4} md={4}>
             <Card>
               <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
                 <StyledBoxForSVG>
@@ -365,7 +375,7 @@ const Dashboard = () => {
           </Grid>
 
           {/* announcement */}
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={4} md={4}>
             <Card>
               <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
                 <StyledBoxForSVG>
@@ -380,14 +390,14 @@ const Dashboard = () => {
           </Grid>
 
           {/* Awards */}
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={4} md={4}>
             <Card>
               <CardContent sx={{ display: "flex", justifyContent: "start", alignItems: "center", padding: 0, paddingBottom: '0px !important' }}>
                 <StyledBoxForSVG>
                   <Seal sx={{ fontSize: "35px" }} />
                 </StyledBoxForSVG>
                 <Box padding={3}>
-                  <Typography variant="h5">0</Typography>
+                  <Typography variant="h5">{dashboardData.totalAwards}</Typography>
                   <Typography variant="subtitle2">Awards</Typography>
                 </Box>
               </CardContent>

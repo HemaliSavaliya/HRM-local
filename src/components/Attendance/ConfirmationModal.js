@@ -39,9 +39,18 @@ const ConfirmationModal = ({
 
         if (storedProject) {
             // Parse and filter active project
-            const parsedData = JSON.parse(storedProject);
-            const activeProject = parsedData.filter(data => data.status === 'Active');
-            setProjectData(activeProject);
+            const parsedProjects = JSON.parse(storedProject);
+            const userId = authToken?.id;
+
+            // If userId is blank, show all projects, otherwise filter by userId
+            const filteredProjects = userId
+                ? parsedProjects.filter(
+                    (project) =>
+                        project.status === 'Inprogress' && project.userId.includes(userId)
+                )
+                : parsedProjects; // Display all projects if userId is blank
+
+            setProjectData(filteredProjects);
         } else {
             console.warn('No project data found in localStorage');
         }

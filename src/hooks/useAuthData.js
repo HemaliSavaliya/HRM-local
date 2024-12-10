@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useTheme } from '@mui/material/styles'
 
@@ -65,13 +64,51 @@ const useAuth = () => {
 
     const { email, password, role, name } = values
 
-    // Store the login details in local storage
-    localStorage.setItem('login-details', JSON.stringify({ email, password, role, name }))
+    try {
+      // Retrieve employee data from localStorage
+      const employees = JSON.parse(localStorage.getItem('employee')) || [];
 
-    // Optional: You can navigate to a different page after storing the data
-    router.push('/');
+      // Find the logged-in user by email and password
+      const loggedInUser = employees.find(
+        (user) => user.email === email && user.password === password
+      );
 
-    setIsSaving(false)
+      // Store the login details in local storage
+      localStorage.setItem('login-details', JSON.stringify({
+        email,
+        password,
+        role,
+        name: loggedInUser ? loggedInUser.name : name,
+        id: loggedInUser ? loggedInUser.id : ''
+      }))
+ 
+      // Display success toast upon successful login
+      toast.success('Login successful!', {
+        duration: 2000,
+        position: 'top-right',
+        style: {
+          background: theme.palette.background.paper,
+          color: theme.palette.text.primary,
+          fontSize: '15px'
+        }
+      })
+
+      // Optional: You can navigate to a different page after storing the data
+      router.push('/');
+    } catch (error) {
+      // Display error toast upon login failure
+      toast.error('Login failed. Please try again.', {
+        duration: 2000,
+        position: 'top-right',
+        style: {
+          background: theme.palette.background.paper,
+          color: theme.palette.text.primary,
+          fontSize: '15px'
+        }
+      })
+    } finally {
+      setIsSaving(false)
+    }
   }
 
   const handleKeyDown = e => {
@@ -79,7 +116,6 @@ const useAuth = () => {
       handleSubmit(e)
     }
   }
-
 
   return {
     isSaving,
