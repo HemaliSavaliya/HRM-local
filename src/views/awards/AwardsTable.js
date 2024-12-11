@@ -113,7 +113,7 @@ const AwardsTable = ({ searchQuery, awardsData, loading, handleEdit, handleDelet
                             <TableContainer sx={{ height: '245px', border: `1px solid ${theme.palette.action.focus}` }}>
                                 <Table
                                     stickyHeader
-                                    sx={{ minWidth: { xs: 900, sm: 900, lg: 900 } }}
+                                    sx={{ minWidth: { xs: 1500, sm: 1500, lg: 1500 } }}
                                     size='small'
                                     aria-label='a dense table'
                                 >

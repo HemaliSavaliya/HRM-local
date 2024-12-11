@@ -11,7 +11,8 @@ const usePermissionData = () => {
             try {
                 // Fetch roles
                 const storedRoles = JSON.parse(localStorage.getItem('roles')) || []
-                setRoles(storedRoles)
+                const filterRoles = storedRoles.filter((role) => role.status !== 'Disable')
+                setRoles(filterRoles)
 
                 // Fetch permissions for roles
                 const storedPermissions = JSON.parse(localStorage.getItem('rolePermissions')) || {}
@@ -25,7 +26,7 @@ const usePermissionData = () => {
 
         fetchRolesAndPermissions()
     }, [])
-    
+
     const handleToggleChange = async (menuItemTitle, role) => {
         const currentPermissions = rolePermissions[role] || [] // Ensure it's an array
 

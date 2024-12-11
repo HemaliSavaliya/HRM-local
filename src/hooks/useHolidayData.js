@@ -1,6 +1,5 @@
 
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { useTheme } from '@mui/material/styles'
@@ -49,6 +48,65 @@ const useHolidayData = () => {
         setScroll(scrollType)
     }
 
+    const initializeHolidays = () => {
+        const holidays = [
+            {
+                id: Date.now() + Math.random(),
+                name: "Hiram Guthrie",
+                date: "2005-03-12"
+            },
+            {
+                id: Date.now() + Math.random(),
+                name: "National Independence Day",
+                date: "2023-08-15"
+            },
+            {
+                id: Date.now() + Math.random(),
+                name: "Christmas Day",
+                date: "2023-12-25"
+            },
+            {
+                id: Date.now() + Math.random(),
+                name: "New Year's Day",
+                date: "2024-01-01"
+            },
+            {
+                id: Date.now() + Math.random(),
+                name: "Labor Day",
+                date: "2024-05-01"
+            },
+            {
+                id: Date.now() + Math.random(),
+                name: "Easter Sunday",
+                date: "2024-04-21"
+            },
+            {
+                id: Date.now() + Math.random(),
+                name: "Thanksgiving Day",
+                date: "2024-11-28"
+            },
+            {
+                id: Date.now() + Math.random(),
+                name: "Diwali",
+                date: "2023-10-24"
+            },
+            {
+                id: Date.now() + Math.random(),
+                name: "Halloween",
+                date: "2023-10-31"
+            },
+            {
+                id: Date.now() + Math.random(),
+                name: "Valentine's Day",
+                date: "2024-02-14"
+            }
+        ];
+
+        setHolidayToLocalStorage(holidays);
+        setHolidayData(holidays);
+    };
+
+
     const fetchHoliday = async () => {
         setLoading(true)
         const holiday = getHolidayFromLocalStorage()
@@ -57,7 +115,11 @@ const useHolidayData = () => {
     }
 
     useEffect(() => {
-        fetchHoliday()
+        if (!getHolidayFromLocalStorage().length) {
+            initializeHolidays(); // Initialize holiday if none exist in localStorage
+        } else {
+            fetchHoliday()
+        }
     }, [])
 
     // Function to add form data to localStorage

@@ -40,6 +40,24 @@ const useDesignationData = () => {
         setScroll(scrollType)
     }
 
+    // Function to initialize designations 
+    const initializeDesignations = () => {
+        const designations = [
+            { id: Date.now() + Math.random(), designationName: 'HR Manager', status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
+            { id: Date.now() + Math.random(), designationName: 'Finance Manager', status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
+            { id: Date.now() + Math.random(), designationName: 'Marketing Manager', status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
+            { id: Date.now() + Math.random(), designationName: 'IT Manager', status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
+            { id: Date.now() + Math.random(), designationName: 'Sales Manager', status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
+            { id: Date.now() + Math.random(), designationName: 'Operations Manager', status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
+            { id: Date.now() + Math.random(), designationName: 'Customer Service Manager', status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
+            { id: Date.now() + Math.random(), designationName: 'Legal Manager', status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
+            { id: Date.now() + Math.random(), designationName: 'R&D Manager', status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
+            { id: Date.now() + Math.random(), designationName: 'Procurement Manager', status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') }];
+
+        setDesignationToLocalStorage(designations);
+        setDesignationData(designations);
+    };
+
     const fetchDesignation = async () => {
         setLoading(true)
         const designation = getDesignationFromLocalStorage()
@@ -48,7 +66,11 @@ const useDesignationData = () => {
     }
 
     useEffect(() => {
-        fetchDesignation()
+        if (!getDesignationFromLocalStorage().length) {
+            initializeDesignations(); // Initialize designation if none exist in localStorage
+        } else {
+            fetchDesignation()
+        }
     }, [])
 
     // Function to add from data to localStorage

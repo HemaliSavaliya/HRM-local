@@ -13,8 +13,10 @@ const useRoleData = () => {
 
     // Default roles
     const defaultRoles = [
-        { id: Date.now(), roleName: 'hr', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
-        { id: Date.now(), roleName: 'employee', date: new Date().toLocaleDateString('en-GB'), status: 'Disable' },
+        { id: Date.now() + Math.random(), roleName: 'hr', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
+        { id: Date.now() + Math.random(), roleName: 'employee', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
+        { id: Date.now() + Math.random(), roleName: 'manager', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
+        { id: Date.now() + Math.random(), roleName: 'BDE', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
     ];
 
     // Handle search input

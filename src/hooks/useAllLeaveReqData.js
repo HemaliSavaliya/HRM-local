@@ -32,7 +32,7 @@ const useLeaveReqData = () => {
 
             // Filter data based on role
             const filteredData = role === 'hr'
-                ? storedData.filter(req => req.role === 'employee')
+                ? storedData.filter(req => req.role !== 'hr')
                 : storedData;
 
             setLeaveReqData(filteredData);

@@ -22,7 +22,7 @@ const Permission = () => {
     }
 
     return (
-        <Grid container spacing={5}>
+        <Grid container spacing={4}>
             {roles?.map(role => (
                 <Grid item key={role.roleName}>
                     <Typography

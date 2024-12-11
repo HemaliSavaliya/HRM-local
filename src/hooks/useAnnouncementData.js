@@ -47,6 +47,134 @@ const useAnnouncementData = () => {
         setScroll(scrollType)
     }
 
+    const initializeAnnouncements = () => {
+        const announcements = [
+            {
+                id: Date.now() + Math.random(),
+                announcementTitle: "Repellendus Culpa",
+                announcementDetails: "Labore consectetur",
+                selectDepartment: "Human Resources",
+                document: [
+                    {
+                        name: "client-2.jpg",
+                        data: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwI"
+                    }
+                ]
+            },
+            {
+                id: Date.now() + Math.random(),
+                announcementTitle: "Quarterly Meeting",
+                announcementDetails: "The quarterly meeting will be held next Monday.",
+                selectDepartment: "Finance",
+                document: [
+                    {
+                        name: "meeting-agenda.pdf",
+                        data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
+                    }
+                ]
+            },
+            {
+                id: Date.now() + Math.random(),
+                announcementTitle: "New Office Opening",
+                announcementDetails: "We are excited to announce the opening of our new office.",
+                selectDepartment: "Operations",
+                document: [
+                    {
+                        name: "office-opening.jpg",
+                        data: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwI"
+                    }
+                ]
+            },
+            {
+                id: Date.now() + Math.random(),
+                announcementTitle: "Health and Safety Training",
+                announcementDetails: "Mandatory health and safety training for all employees.",
+                selectDepartment: "Customer Service",
+                document: [
+                    {
+                        name: "training-schedule.pdf",
+                        data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
+                    }
+                ]
+            },
+            {
+                id: Date.now() + Math.random(),
+                announcementTitle: "Holiday Schedule",
+                announcementDetails: "Please find attached the holiday schedule for this year.",
+                selectDepartment: "Legal",
+                document: [
+                    {
+                        name: "holiday-schedule.pdf",
+                        data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
+                    }
+                ]
+            },
+            {
+                id: Date.now() + Math.random(),
+                announcementTitle: "Team Building Event",
+                announcementDetails: "Join us for a team-building event next Friday.",
+                selectDepartment: "Marketing",
+                document: [
+                    {
+                        name: "team-building.jpg",
+                        data: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwI"
+                    }
+                ]
+            },
+            {
+                id: Date.now() + Math.random(),
+                announcementTitle: "IT System Upgrade",
+                announcementDetails: "Scheduled IT system upgrade on Saturday.",
+                selectDepartment: "IT",
+                document: [
+                    {
+                        name: "it-upgrade.pdf",
+                        data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
+                    }
+                ]
+            },
+            {
+                id: Date.now() + Math.random(),
+                announcementTitle: "Employee Appreciation Day",
+                announcementDetails: "Celebrate Employee Appreciation Day with us!",
+                selectDepartment: "HR",
+                document: [
+                    {
+                        name: "employee-appreciation.jpg",
+                        data: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwI"
+                    }
+                ]
+            },
+            {
+                id: Date.now() + Math.random(),
+                announcementTitle: "Project Launch",
+                announcementDetails: "We are excited to launch our new project.",
+                selectDepartment: "Research and Development",
+                document: [
+                    {
+                        name: "project-launch.pdf",
+                        data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
+                    }
+                ]
+            },
+            {
+                id: Date.now() + Math.random(),
+                announcementTitle: "Client Visit",
+                announcementDetails: "Our client will be visiting the office next week.",
+                selectDepartment: "Sales",
+                document: [
+                    {
+                        name: "client-visit.jpg",
+                        data: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwI"
+                    }
+                ]
+            }
+        ];
+
+        setAnnouncementToLocalStorage(announcements);
+        setAnnouncementData(announcements);
+    };
+
     const fetchAnnouncement = async () => {
         setLoading(true)
         const announcement = getAnnouncementFromLocalStorage()
@@ -55,7 +183,11 @@ const useAnnouncementData = () => {
     }
 
     useEffect(() => {
-        fetchAnnouncement()
+        if (!getAnnouncementFromLocalStorage().length) {
+            initializeAnnouncements(); // Initialize departments if none exist in localStorage
+        } else {
+            fetchAnnouncement()
+        }
     }, [])
 
     // Function to add form data to localStorage

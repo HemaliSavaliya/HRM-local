@@ -1,6 +1,5 @@
 
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { useTheme } from '@mui/material/styles'
@@ -49,6 +48,94 @@ const useJobData = () => {
         setScroll(scrollType)
     }
 
+    const initializeJobs = () => {
+        const jobs = [
+            {
+                id: Date.now() + Math.random(),
+                jobTitle: "Dolor modi aut vitae",
+                position: "Earum ipsum beatae s",
+                department: "Human Resources",
+                noOfPosition: "7",
+                jobDescription: "Qui est est aute ul"
+            },
+            {
+                id: Date.now() + Math.random(),
+                jobTitle: "Software Engineer",
+                position: "Full Stack Developer",
+                department: "IT",
+                noOfPosition: "5",
+                jobDescription: "Responsible for developing and maintaining web applications"
+            },
+            {
+                id: Date.now() + Math.random(),
+                jobTitle: "Marketing Specialist",
+                position: "Content Creator",
+                department: "Marketing",
+                noOfPosition: "3",
+                jobDescription: "Create and manage content for marketing campaigns"
+            },
+            {
+                id: Date.now() + Math.random(),
+                jobTitle: "Sales Representative",
+                position: "Field Sales",
+                department: "Sales",
+                noOfPosition: "10",
+                jobDescription: "Manage client relations and drive sales"
+            },
+            {
+                id: Date.now() + Math.random(),
+                jobTitle: "Financial Analyst",
+                position: "Junior Analyst",
+                department: "Finance",
+                noOfPosition: "2",
+                jobDescription: "Analyze financial data and create reports"
+            },
+            {
+                id: Date.now() + Math.random(),
+                jobTitle: "Customer Support",
+                position: "Support Agent",
+                department: "Research and Development",
+                noOfPosition: "6",
+                jobDescription: "Assist customers with inquiries and issues"
+            },
+            {
+                id: Date.now() + Math.random(),
+                jobTitle: "HR Manager",
+                position: "Recruitment Specialist",
+                department: "Human Resources",
+                noOfPosition: "4",
+                jobDescription: "Manage recruitment and employee relations"
+            },
+            {
+                id: Date.now() + Math.random(),
+                jobTitle: "Operations Manager",
+                position: "Logistics Coordinator",
+                department: "Operations",
+                noOfPosition: "3",
+                jobDescription: "Oversee logistics and supply chain operations"
+            },
+            {
+                id: Date.now() + Math.random(),
+                jobTitle: "Legal Advisor",
+                position: "Corporate Lawyer",
+                department: "Operations",
+                noOfPosition: "2",
+                jobDescription: "Provide legal advice and handle corporate legal matters"
+            },
+            {
+                id: Date.now() + Math.random(),
+                jobTitle: "Research Scientist",
+                position: "Lab Technician",
+                department: "Research and Development",
+                noOfPosition: "5",
+                jobDescription: "Conduct experiments and research in the lab"
+            }
+        ];
+
+        setJobToLocalStorage(jobs);
+        setJobData(jobs);
+    };
+
     const fetchJobs = async () => {
         setLoading(true)
         const jobs = getJobFromLocalStorage()
@@ -57,7 +144,11 @@ const useJobData = () => {
     }
 
     useEffect(() => {
-        fetchJobs()
+        if (!getJobFromLocalStorage().length) {
+            initializeJobs(); // Initialize job if none exist in localStorage
+        } else {
+            fetchJobs()
+        }
     }, [])
 
     // Function to add form data to localStorage

@@ -35,15 +35,17 @@ const LeaveBalance = () => {
                 const leaveData = JSON.parse(localStorage.getItem('leaveType')) || [];
 
                 // Extract only required fields: leaveName and leaveBalance
-                const formattedData = leaveData.map(({ leaveName, leaveBalance, totalUtilized,
-                    totalBalanced,
-                    totalCarriedForward }) => ({
-                        leaveName,
-                        leaveBalance,
-                        totalUtilized,
+                const formattedData = leaveData
+                    .filter((leave) => leave.leaveStatus !== 'Inactive')
+                    .map(({ leaveName, leaveBalance, totalUtilized,
                         totalBalanced,
-                        totalCarriedForward
-                    }));
+                        totalCarriedForward }) => ({
+                            leaveName,
+                            leaveBalance,
+                            totalUtilized,
+                            totalBalanced,
+                            totalCarriedForward
+                        }));
 
                 setLeaveBal(formattedData);
             } catch (error) {

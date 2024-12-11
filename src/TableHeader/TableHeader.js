@@ -76,6 +76,7 @@ export const trackerCells = [
 export const allLeaveCells = [
   { id: 'no', label: 'No' },
   { id: 'name', label: 'Employee Name' },
+  { id: 'role', label: 'Employee Role' },
   { id: 'applyingDate', label: 'Applying Date' },
   { id: 'leaveName', label: 'Leave Type' },
   { id: 'startDate', label: 'Start Date' },

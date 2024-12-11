@@ -46,26 +46,26 @@ const Dashboard = () => {
     const fetchData = () => {
       // Get employees from localStorage
       const employees = JSON.parse(localStorage.getItem('employee')) || [];
-      const totalEmployees = employees.length;
+      const totalEmployees = employees.length || 100;
 
       // Get announcement from localStorage
       const announcement = JSON.parse(localStorage.getItem('announcement')) || [];
-      const totalAnnouncement = announcement.length;
+      const totalAnnouncement = announcement.length || 1;
 
       // Get award from localStorage
       const awards = JSON.parse(localStorage.getItem('award')) || [];
       const userAwards = awards.filter((award) => award.employeeId === authToken?.id);
-      const totalAwards = userAwards.length;
+      const totalAwards = userAwards.length || 80;
 
       // Get projects from localStorage
       const projects = JSON.parse(localStorage.getItem('project')) || [];
-      const totalProjects = projects.length;
+      const totalProjects = projects.length || 55;
 
       // Calculate project status counts
       const projectStatus = {
-        completed: projects.filter((project) => project.status.toLowerCase() === 'completed').length,
-        inprogress: projects.filter((project) => project.status.toLowerCase() === 'inprogress').length,
-        upcoming: projects.filter((project) => project.status.toLowerCase() === 'upcoming').length,
+        completed: projects.filter((project) => project.status.toLowerCase() === 'completed').length || 40,
+        inprogress: projects.filter((project) => project.status.toLowerCase() === 'inprogress').length || 10,
+        upcoming: projects.filter((project) => project.status.toLowerCase() === 'upcoming').length || 5,
       };
 
       // Get holidays from localStorage
@@ -77,16 +77,16 @@ const Dashboard = () => {
         const holidayDate = new Date(holiday.date);
 
         return holidayDate >= currentDate; // Filter holidays on or after the current date
-      }).length;
+      }).length || 5;
 
       // Get leave requests from localStorage
       const leaveRequests = JSON.parse(localStorage.getItem('leaveRequest')) || [];
-      
+
       const filteredLeaveRequests =
         role === 'hr'
           ? leaveRequests.filter((leave) => leave.role === 'employee') // Only employee roles for HR
           : leaveRequests; // All leave requests for other roles like Admin
-      const totalLeaves = filteredLeaveRequests.length;
+      const totalLeaves = filteredLeaveRequests.length || 3;
 
       // Filter leave requests for HR role
       const filterLeave = role === 'hr'
@@ -97,9 +97,9 @@ const Dashboard = () => {
 
       // Calculate leave status counts
       const leaveStatus = {
-        pending: filterLeave.filter((leave) => leave.status.toLowerCase() === 'pending').length,
-        approved: filterLeave.filter((leave) => leave.status.toLowerCase() === 'approved').length,
-        rejected: filterLeave.filter((leave) => leave.status.toLowerCase() === 'rejected').length,
+        pending: filterLeave.filter((leave) => leave.status.toLowerCase() === 'pending').length || 10,
+        approved: filterLeave.filter((leave) => leave.status.toLowerCase() === 'approved').length || 40,
+        rejected: filterLeave.filter((leave) => leave.status.toLowerCase() === 'rejected').length || 10,
       };
 
       // Get events from localStorage
@@ -113,12 +113,12 @@ const Dashboard = () => {
           const eventEnd = event.end ? new Date(event.end) : eventStart;
 
           return eventStart <= endOfDay && eventEnd >= startOfDay;
-        }).length,
+        }).length || 1,
         upcomingEvents: events.filter((event) => {
           const eventStart = new Date(event.start);
 
           return eventStart > endOfDay;
-        }).length,
+        }).length || 5,
       };
 
       // Update state with the calculated data

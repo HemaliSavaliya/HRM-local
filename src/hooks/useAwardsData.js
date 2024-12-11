@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { useTheme } from '@mui/material/styles'
@@ -48,6 +47,95 @@ const useAwardsData = () => {
         setScroll(scrollType)
     }
 
+    const initializeAwards = () => {
+        const awards = [
+            {
+                id: Date.now() + Math.random(),
+                awardsName: "Armand Mejia",
+                awardsDetails: "Maxime quis praesent",
+                employeeName: "John Doe",
+                reward: "Qui mollitia dolor s",
+                employeeId: 1733830327344.4414
+            },
+            {
+                id: Date.now() + Math.random(),
+                awardsName: "Employee of the Month",
+                awardsDetails: "Awarded for exceptional performance and dedication.",
+                employeeName: "Emily Davis",
+                reward: "Certificate of Excellence",
+                employeeId: 1733830327344.4415
+            },
+            {
+                id: Date.now() + Math.random(),
+                awardsName: "Best Salesperson",
+                awardsDetails: "For achieving the highest sales figures in Q1.",
+                employeeName: "Michael Johnson",
+                reward: "Bonus and Trophy",
+                employeeId: 1733830327344.4416
+            },
+            {
+                id: Date.now() + Math.random(),
+                awardsName: "Customer Service Star",
+                awardsDetails: "For outstanding customer service and support.",
+                employeeName: "Sophia Brown",
+                reward: "Gift Voucher",
+                employeeId: 1733830327344.4417
+            },
+            {
+                id: Date.now() + Math.random(),
+                awardsName: "Innovation Award",
+                awardsDetails: "For developing an innovative solution that improved efficiency.",
+                employeeName: "Oliver Moore",
+                reward: "Plaque and Bonus",
+                employeeId: 1733830327344.4418
+            },
+            {
+                id: Date.now() + Math.random(),
+                awardsName: "Leadership Excellence",
+                awardsDetails: "For demonstrating exceptional leadership skills.",
+                employeeName: "Ethan Wilson",
+                reward: "Leadership Certificate",
+                employeeId: 1733830327344.4419
+            },
+            {
+                id: Date.now() + Math.random(),
+                awardsName: "Team Player Award",
+                awardsDetails: "For outstanding teamwork and collaboration.",
+                employeeName: "Isabella Williams",
+                reward: "Team Player Trophy",
+                employeeId: 1733830327344.4420
+            },
+            {
+                id: Date.now() + Math.random(),
+                awardsName: "Rising Star",
+                awardsDetails: "For showing great potential and achieving significant milestones.",
+                employeeName: "James Martinez",
+                reward: "Certificate and Bonus",
+                employeeId: 1733830327344.4421
+            },
+            {
+                id: Date.now() + Math.random(),
+                awardsName: "Top Innovator",
+                awardsDetails: "For leading innovative projects that drove company growth.",
+                employeeName: "Ava Taylor",
+                reward: "Innovation Trophy",
+                employeeId: 1733830327344.4422
+            },
+            {
+                id: Date.now() + Math.random(),
+                awardsName: "Outstanding Achiever",
+                awardsDetails: "For consistently exceeding performance targets.",
+                employeeName: "Charlotte Lee",
+                reward: "Achievement Medal",
+                employeeId: 1733830327344.4423
+            }
+        ];
+
+        setAwardToLocalStorage(awards);
+        setAwardsData(awards);
+    };
+
+
     const fetchAwards = async () => {
         setLoading(true)
         const award = getAwardFromLocalStorage()
@@ -56,7 +144,11 @@ const useAwardsData = () => {
     }
 
     useEffect(() => {
-        fetchAwards()
+        if (!getAwardFromLocalStorage().length) {
+            initializeAwards(); // Initialize departments if none exist in localStorage
+        } else {
+            fetchAwards()
+        }
     }, [])
 
     // Function to add form data to localStorage

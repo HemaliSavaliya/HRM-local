@@ -124,7 +124,7 @@ const LeaveReqTable = ({
                             <TableContainer sx={{ height: '180px', border: `1px solid ${theme.palette.action.focus}` }}>
                                 <Table
                                     stickyHeader
-                                    sx={{ minWidth: { xs: 1100, sm: 1100, lg: 1100 } }}
+                                    sx={{ minWidth: { xs: 1400, sm: 1400, lg: 1400 } }}
                                     size='small'
                                     aria-label='a dense table'
                                 >

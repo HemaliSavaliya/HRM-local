@@ -30,38 +30,6 @@ const ImgStyled = styled('img')(({ theme }) => ({
     }
 }))
 
-const ImgStyled1 = styled(Box)(({ theme }) => ({
-    width: 120,
-    height: 120,
-    marginRight: theme.spacing(6.25),
-    marginBottom: theme.spacing(6.25),
-    borderRadius: theme.shape.borderRadius,
-    border: '1px solid rgba(231, 227, 252, 0.25)',
-    padding: '5px',
-    [theme.breakpoints.down('sm')]: {
-        marginRight: 0
-    }
-}))
-
-const AvatarStyled = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 120,
-    height: 120,
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: theme.palette.primary.main,
-    color: '#fff',
-    fontSize: '50px',
-    border: '1px solid rgba(231, 227, 252, 0.25)',
-    padding: '5px',
-    marginRight: theme.spacing(6.25),
-    marginBottom: theme.spacing(6.25),
-    [theme.breakpoints.down('sm')]: {
-        marginRight: 0
-    }
-}))
-
 const ButtonStyled = styled(Button)(({ theme }) => ({
     '&.MuiButton-root:hover': {
         backgroundColor: theme.palette.primary.hover

@@ -20,15 +20,7 @@ const useLeaveReqData = () => {
     // Utility function to get leave request from localStorage
     const getLeaveReqFromLocalStorage = () => {
         const storedLeaveReq = localStorage.getItem('leaveRequest')
-
-        // Filter data based on role
-        const filteredData = authToken?.role === 'hr'
-            ? storedLeaveReq.filter(req => req.role === 'hr')
-            : authToken?.role === 'employee'
-                ? storedLeaveReq.filter(req => req.role === 'employee')
-                : storedLeaveReq;
-
-        return filteredData ? JSON.parse(filteredData) : []
+        return storedLeaveReq ? JSON.parse(storedLeaveReq) : []
     }
 
     // Utility function to set leave in localStorage
@@ -67,6 +59,134 @@ const useLeaveReqData = () => {
         })
     }
 
+    const initializeLeaveRequests = () => {
+        const leaveRequests = [
+            {
+                id: Date.now() + Math.random(),
+                leaveName: "Casual Leave",
+                startDate: "2024-12-18",
+                endDate: "2024-12-20",
+                leaveType: "Full Day",
+                description: "Fugit omnis quae qu",
+                name: "Winter Stone",
+                role: "hr",
+                applyingDate: "11/12/2024",
+                status: "pending"
+            },
+            {
+                id: Date.now() + Math.random(),
+                leaveName: "Sick Leave",
+                startDate: "2024-12-13",
+                endDate: "",
+                leaveType: "Half Day",
+                description: "Modi debitis et nequ",
+                name: "Winter Stone",
+                role: "hr",
+                applyingDate: "11/12/2024",
+                status: "pending"
+            },
+            {
+                id: Date.now() + Math.random(),
+                leaveName: "Annual Leave",
+                startDate: "2025-01-10",
+                endDate: "",
+                leaveType: "Half Day",
+                description: "Annual vacation for the new year",
+                name: "Emily Davis",
+                role: "employee",
+                applyingDate: "10/12/2024",
+                status: "pending"
+            },
+            {
+                id: Date.now() + Math.random(),
+                leaveName: "Compensatory Leave",
+                startDate: "2024-12-25",
+                endDate: "2024-12-26",
+                leaveType: "Full Day",
+                description: "Compensation for working on a holiday",
+                name: "Michael Johnson",
+                role: "employee",
+                applyingDate: "09/12/2024",
+                status: "pending"
+            },
+            {
+                id: Date.now() + Math.random(),
+                leaveName: "Unpaid Leave",
+                startDate: "2025-02-01",
+                endDate: "2025-02-15",
+                leaveType: "Full Day",
+                description: "To spend time with newborn",
+                name: "Oliver Moore",
+                role: "manager",
+                applyingDate: "08/12/2024",
+                status: "pending"
+            },
+            {
+                id: Date.now() + Math.random(),
+                leaveName: "Unpaid Leave",
+                startDate: "2024-12-30",
+                endDate: "2025-01-05",
+                leaveType: "Full Day",
+                description: "Personal reasons",
+                name: "Sophia Brown",
+                role: "hr",
+                applyingDate: "07/12/2024",
+                status: "pending"
+            },
+            {
+                id: Date.now() + Math.random(),
+                leaveName: "Casual Leave",
+                startDate: "2025-03-01",
+                endDate: "",
+                leaveType: "Half Day",
+                description: "For attending a training program",
+                name: "Isabella Williams",
+                role: "employee",
+                applyingDate: "06/12/2024",
+                status: "pending"
+            },
+            {
+                id: Date.now() + Math.random(),
+                leaveName: "Marriage Leave",
+                startDate: "2025-04-10",
+                endDate: "2025-04-20",
+                leaveType: "Full Day",
+                description: "For wedding and related ceremonies",
+                name: "James Martinez",
+                role: "hr",
+                applyingDate: "05/12/2024",
+                status: "pending"
+            },
+            {
+                id: Date.now() + Math.random(),
+                leaveName: "Sick Leave",
+                startDate: "2025-05-05",
+                endDate: "2025-05-10",
+                leaveType: "Full Day",
+                description: "To attend the funeral of a relative",
+                name: "Ava Taylor",
+                role: "manager",
+                applyingDate: "04/12/2024",
+                status: "pending"
+            },
+            {
+                id: Date.now() + Math.random(),
+                leaveName: "Casual Leave",
+                startDate: "2024-12-22",
+                endDate: "",
+                leaveType: "Half Day",
+                description: "Personal matter",
+                name: "Charlotte Lee",
+                role: "manager",
+                applyingDate: "03/12/2024",
+                status: "pending"
+            }
+        ];
+
+        setLeaveReqToLocalStorage(leaveRequests);
+        setLeaveReqData(leaveRequests);
+    };
+
     const fetchLeaveRequest = async () => {
         setLoading(true)
         const storedData = JSON.parse(localStorage.getItem('leaveRequest')) || []
@@ -83,7 +203,11 @@ const useLeaveReqData = () => {
     }
 
     useEffect(() => {
-        fetchLeaveRequest()
+        if (!getLeaveReqFromLocalStorage().length) {
+            initializeLeaveRequests(); // Initialize departments if none exist in localStorage
+        } else {
+            fetchLeaveRequest()
+        }
     }, [])
 
     // Function to add form data to localStorage

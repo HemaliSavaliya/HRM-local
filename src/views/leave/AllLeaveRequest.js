@@ -159,7 +159,7 @@ const LeaveRequest = () => {
                             <TableContainer sx={{ height: '235px', border: `1px solid ${theme.palette.action.focus}` }}>
                                 <Table
                                     stickyHeader
-                                    sx={{ minWidth: { xs: 1500, sm: 1500, lg: 1500 } }}
+                                    sx={{ minWidth: { xs: 1800, sm: 1800, lg: 1800 } }}
                                     size='small'
                                     aria-label='a dense table'
                                 >
@@ -175,6 +175,7 @@ const LeaveRequest = () => {
                                                 <TableRow key={row.id} sx={{ cursor: 'pointer' }}>
                                                     <TableCell align='left'>{index + 1 + page * rowsPerPage}</TableCell>
                                                     <TableCell align='left'>{row.name}</TableCell>
+                                                    <TableCell align='left'>{row.role}</TableCell>
                                                     <TableCell align='left'>{row.applyingDate}</TableCell>
                                                     <TableCell align='left'>{row.leaveName}</TableCell>
                                                     <TableCell align='left'>{row.startDate}</TableCell>
