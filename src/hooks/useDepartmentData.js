@@ -89,7 +89,6 @@ const useDepartmentData = () => {
 
     // Fetch department from localStorage
     const fetchDepartment = () => {
-        setLoading(true)
         const department = getDepartmentsFromLocalStorage()
         setDepartmentData(department)
         setLoading(false)

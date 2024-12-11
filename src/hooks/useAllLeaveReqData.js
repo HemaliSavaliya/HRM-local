@@ -25,7 +25,6 @@ const useLeaveReqData = () => {
     }
 
     const fetchAllLeaveRequest = async () => {
-        setLoading(true)
         try {
             // Retrieve leave requests from localStorage
             const storedData = JSON.parse(localStorage.getItem('leaveRequest')) || [];

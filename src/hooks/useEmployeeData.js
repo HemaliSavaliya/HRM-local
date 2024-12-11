@@ -352,7 +352,6 @@ const useEmployeeData = () => {
     }
 
     const fetchData = async () => {
-        setLoading(true)
         const employee = getEmployeeFromLocalStorage()
         setEmployeeData(employee)
         setLoading(false)

@@ -48,7 +48,6 @@ const useRoleData = () => {
 
     // Fetch roles from localStorage or initialize with default roles
     const fetchRole = () => {
-        setLoading(true);
         const roles = getRolesFromLocalStorage();
 
         if (roles.length === 0) {

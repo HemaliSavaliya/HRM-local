@@ -137,7 +137,6 @@ const useJobData = () => {
     };
 
     const fetchJobs = async () => {
-        setLoading(true)
         const jobs = getJobFromLocalStorage()
         setJobData(jobs)
         setLoading(false)

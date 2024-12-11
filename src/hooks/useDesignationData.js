@@ -59,7 +59,6 @@ const useDesignationData = () => {
     };
 
     const fetchDesignation = async () => {
-        setLoading(true)
         const designation = getDesignationFromLocalStorage()
         setDesignationData(designation)
         setLoading(false)

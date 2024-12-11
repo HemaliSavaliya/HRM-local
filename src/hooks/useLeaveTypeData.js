@@ -148,7 +148,6 @@ const useLeaveTypeData = () => {
     };
 
     const fetchLeaveType = async () => {
-        setLoading(true)
         const leave = getLeaveFromLocalStorage()
         setLeaveTypeData(leave)
         setLoading(false)

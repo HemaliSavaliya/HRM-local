@@ -137,7 +137,6 @@ const useAwardsData = () => {
 
 
     const fetchAwards = async () => {
-        setLoading(true)
         const award = getAwardFromLocalStorage()
         setAwardsData(award)
         setLoading(false)

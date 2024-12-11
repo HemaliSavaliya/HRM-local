@@ -176,7 +176,6 @@ const useAnnouncementData = () => {
     };
 
     const fetchAnnouncement = async () => {
-        setLoading(true)
         const announcement = getAnnouncementFromLocalStorage()
         setAnnouncementData(announcement)
         setLoading(false)

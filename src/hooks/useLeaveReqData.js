@@ -188,7 +188,6 @@ const useLeaveReqData = () => {
     };
 
     const fetchLeaveRequest = async () => {
-        setLoading(true)
         const storedData = JSON.parse(localStorage.getItem('leaveRequest')) || []
 
         // Filter data based on role

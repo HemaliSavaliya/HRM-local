@@ -108,7 +108,6 @@ const useHolidayData = () => {
 
 
     const fetchHoliday = async () => {
-        setLoading(true)
         const holiday = getHolidayFromLocalStorage()
         setHolidayData(holiday)
         setLoading(false)

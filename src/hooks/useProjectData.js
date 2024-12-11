@@ -248,7 +248,6 @@ const useProjectData = () => {
   };
 
   const fetchProjects = async () => {
-    setLoading(true)
     const project = getProjectFromLocalStorage()
     setProjectData(project)
     setLoading(false)
