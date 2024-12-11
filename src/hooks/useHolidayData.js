@@ -48,77 +48,73 @@ const useHolidayData = () => {
         setScroll(scrollType)
     }
 
-    const initializeHolidays = () => {
-        const holidays = [
-            {
-                id: Date.now() + Math.random(),
-                name: "Hiram Guthrie",
-                date: "2005-03-12"
-            },
-            {
-                id: Date.now() + Math.random(),
-                name: "National Independence Day",
-                date: "2023-08-15"
-            },
-            {
-                id: Date.now() + Math.random(),
-                name: "Christmas Day",
-                date: "2023-12-25"
-            },
-            {
-                id: Date.now() + Math.random(),
-                name: "New Year's Day",
-                date: "2024-01-01"
-            },
-            {
-                id: Date.now() + Math.random(),
-                name: "Labor Day",
-                date: "2024-05-01"
-            },
-            {
-                id: Date.now() + Math.random(),
-                name: "Easter Sunday",
-                date: "2024-04-21"
-            },
-            {
-                id: Date.now() + Math.random(),
-                name: "Thanksgiving Day",
-                date: "2024-11-28"
-            },
-            {
-                id: Date.now() + Math.random(),
-                name: "Diwali",
-                date: "2023-10-24"
-            },
-            {
-                id: Date.now() + Math.random(),
-                name: "Halloween",
-                date: "2023-10-31"
-            },
-            {
-                id: Date.now() + Math.random(),
-                name: "Valentine's Day",
-                date: "2024-02-14"
-            }
-        ];
-
-        setHolidayToLocalStorage(holidays);
-        setHolidayData(holidays);
-    };
-
+    const defaultHolidays = [
+        {
+            id: Date.now() + Math.random(),
+            name: "Hiram Guthrie",
+            date: "2005-03-12"
+        },
+        {
+            id: Date.now() + Math.random(),
+            name: "National Independence Day",
+            date: "2023-08-15"
+        },
+        {
+            id: Date.now() + Math.random(),
+            name: "Christmas Day",
+            date: "2023-12-25"
+        },
+        {
+            id: Date.now() + Math.random(),
+            name: "New Year's Day",
+            date: "2024-01-01"
+        },
+        {
+            id: Date.now() + Math.random(),
+            name: "Labor Day",
+            date: "2024-05-01"
+        },
+        {
+            id: Date.now() + Math.random(),
+            name: "Easter Sunday",
+            date: "2024-04-21"
+        },
+        {
+            id: Date.now() + Math.random(),
+            name: "Thanksgiving Day",
+            date: "2024-11-28"
+        },
+        {
+            id: Date.now() + Math.random(),
+            name: "Diwali",
+            date: "2023-10-24"
+        },
+        {
+            id: Date.now() + Math.random(),
+            name: "Halloween",
+            date: "2023-10-31"
+        },
+        {
+            id: Date.now() + Math.random(),
+            name: "Valentine's Day",
+            date: "2024-02-14"
+        }
+    ];
 
     const fetchHoliday = async () => {
         const holiday = getHolidayFromLocalStorage()
-        setHolidayData(holiday)
+        if (holiday.length === 0) {
+            // Initialize with default roles if no roles exist
+            setHolidayToLocalStorage(defaultHolidays);
+            setHolidayData(defaultHolidays)
+        } else {
+            setHolidayData(holiday)
+        }
         setLoading(false)
     }
 
     useEffect(() => {
-        if (!getHolidayFromLocalStorage().length) {
-            initializeHolidays(); // Initialize holiday if none exist in localStorage
-        } else {
-            fetchHoliday()
-        }
+        fetchHoliday()
     }, [])
 
     // Function to add form data to localStorage

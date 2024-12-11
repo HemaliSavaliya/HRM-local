@@ -69,196 +69,193 @@ const useProjectData = () => {
   //   })
   // }
 
-  const initializeProjects = () => {
-    const projects = [
-      {
-        id: Date.now() + Math.random(),
-        projectName: "Jaquelyn Sullivan",
-        clientName: "Constance Morrow",
-        clientEmail: "zecifolimo@mailinator.com",
-        startDate: "2009-12-29",
-        endDate: "2010-03-03",
-        status: "Upcoming",
-        userId: [1733830327344.3777],
-        teamMembers: ["Dave Clark"],
-        document: [
-          {
-            name: "author-2.jpg",
-            data: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwIQAABtbnRy"
-          }
-        ]
-      },
-      {
-        id: Date.now() + Math.random(),
-        projectName: "Emily Davis",
-        clientName: "Michaela Turner",
-        clientEmail: "michaela.turner@mailinator.com",
-        startDate: "2018-04-10",
-        endDate: "2018-07-15",
-        status: "Inprogress",
-        userId: [1733830327344.3778],
-        teamMembers: ["Jane Smith"],
-        document: [
-          {
-            name: "project_doc.pdf",
-            data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
-          }
-        ]
-      },
-      {
-        id: Date.now() + Math.random(),
-        projectName: "Michael Johnson",
-        clientName: "Linda Harris",
-        clientEmail: "linda.harris@mailinator.com",
-        startDate: "2019-05-20",
-        endDate: "2019-11-10",
-        status: "Completed",
-        userId: [1733830327344.3779],
-        teamMembers: ["John Doe"],
-        document: [
-          {
-            name: "final_report.docx",
-            data: "data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,dGVzdCBkYXRhLg=="
-          }
-        ]
-      },
-      {
-        id: Date.now() + Math.random(),
-        projectName: "Sophia Brown",
-        clientName: "Alex Green",
-        clientEmail: "alex.green@mailinator.com",
-        startDate: "2021-08-12",
-        endDate: "2022-01-20",
-        status: "Upcoming",
-        userId: [1733830327344.3780],
-        teamMembers: ["Amanda White"],
-        document: [
-          {
-            name: "proposal.pptx",
-            data: "data:application/vnd.openxmlformats-officedocument.presentationml.presentation;base64,cGFzc3dvcmQh"
-          }
-        ]
-      },
-      {
-        id: Date.now() + Math.random(),
-        projectName: "Oliver Moore",
-        clientName: "Chloe Jackson",
-        clientEmail: "chloe.jackson@mailinator.com",
-        startDate: "2017-03-15",
-        endDate: "2017-08-25",
-        status: "Inprogress",
-        userId: [1733830327344.3781],
-        teamMembers: ["Brian Lee"],
-        document: [
-          {
-            name: "mockup.png",
-            data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAQ...5ErkJggg=="
-          }
-        ]
-      },
-      {
-        id: Date.now() + Math.random(),
-        projectName: "Ethan Wilson",
-        clientName: "Nina Scott",
-        clientEmail: "nina.scott@mailinator.com",
-        startDate: "2020-06-10",
-        endDate: "2020-12-05",
-        status: "Completed",
-        userId: [1733830327344.3782],
-        teamMembers: ["Chris Evans"],
-        document: [
-          {
-            name: "invoice.pdf",
-            data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
-          }
-        ]
-      },
-      {
-        id: Date.now() + Math.random(),
-        projectName: "Isabella Williams",
-        clientName: "Diana Ross",
-        clientEmail: "diana.ross@mailinator.com",
-        startDate: "2016-09-05",
-        endDate: "2017-02-28",
-        status: "Inprogress",
-        userId: [1733830327344.3783],
-        teamMembers: ["Steve Rogers"],
-        document: [
-          {
-            name: "requirements.docx",
-            data: "data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,dGVzdCBkYXRhLg=="
-          }
-        ]
-      },
-      {
-        id: Date.now() + Math.random(),
-        projectName: "James Martinez",
-        clientName: "Peter Parker",
-        clientEmail: "peter.parker@mailinator.com",
-        startDate: "2015-07-20",
-        endDate: "2016-01-10",
-        status: "Upcoming",
-        userId: [1733830327344.3784],
-        teamMembers: ["Tony Stark"],
-        document: [
-          {
-            name: "timeline.xlsx",
-            data: "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,dGVzdCBkYXRhLg=="
-          }
-        ]
-      },
-      {
-        id: Date.now() + Math.random(),
-        projectName: "Ava Taylor",
-        clientName: "Bruce Wayne",
-        clientEmail: "bruce.wayne@mailinator.com",
-        startDate: "2022-04-18",
-        endDate: "2022-09-30",
-        status: "Upcoming",
-        userId: [1733830327344.3785],
-        teamMembers: ["Clark Kent"],
-        document: [
-          {
-            name: "contract.pdf",
-            data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
-          }
-        ]
-      },
-      {
-        id: Date.now() + Math.random(),
-        projectName: "Charlotte Lee",
-        clientName: "Barry Allen",
-        clientEmail: "barry.allen@mailinator.com",
-        startDate: "2021-10-25",
-        endDate: "2022-03-15",
-        status: "Completed",
-        userId: [1733830327344.3786],
-        teamMembers: ["Diana Prince"],
-        document: [
-          {
-            name: "budget.xlsx",
-            data: "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,dGVzdCBkYXRhLg=="
-          }
-        ]
-      }
-    ];
-
-    setProjectToLocalStorage(projects);
-    setProjectData(projects);
-  };
+  const defaultProjects = [
+    {
+      id: Date.now() + Math.random(),
+      projectName: "Jaquelyn Sullivan",
+      clientName: "Constance Morrow",
+      clientEmail: "zecifolimo@mailinator.com",
+      startDate: "2009-12-29",
+      endDate: "2010-03-03",
+      status: "Upcoming",
+      userId: [1733830327344.3777],
+      teamMembers: ["Dave Clark"],
+      document: [
+        {
+          name: "author-2.jpg",
+          data: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwIQAABtbnRy"
+        }
+      ]
+    },
+    {
+      id: Date.now() + Math.random(),
+      projectName: "Emily Davis",
+      clientName: "Michaela Turner",
+      clientEmail: "michaela.turner@mailinator.com",
+      startDate: "2018-04-10",
+      endDate: "2018-07-15",
+      status: "Inprogress",
+      userId: [1733830327344.3778],
+      teamMembers: ["Jane Smith"],
+      document: [
+        {
+          name: "project_doc.pdf",
+          data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
+        }
+      ]
+    },
+    {
+      id: Date.now() + Math.random(),
+      projectName: "Michael Johnson",
+      clientName: "Linda Harris",
+      clientEmail: "linda.harris@mailinator.com",
+      startDate: "2019-05-20",
+      endDate: "2019-11-10",
+      status: "Completed",
+      userId: [1733830327344.3779],
+      teamMembers: ["John Doe"],
+      document: [
+        {
+          name: "final_report.docx",
+          data: "data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,dGVzdCBkYXRhLg=="
+        }
+      ]
+    },
+    {
+      id: Date.now() + Math.random(),
+      projectName: "Sophia Brown",
+      clientName: "Alex Green",
+      clientEmail: "alex.green@mailinator.com",
+      startDate: "2021-08-12",
+      endDate: "2022-01-20",
+      status: "Upcoming",
+      userId: [1733830327344.3780],
+      teamMembers: ["Amanda White"],
+      document: [
+        {
+          name: "proposal.pptx",
+          data: "data:application/vnd.openxmlformats-officedocument.presentationml.presentation;base64,cGFzc3dvcmQh"
+        }
+      ]
+    },
+    {
+      id: Date.now() + Math.random(),
+      projectName: "Oliver Moore",
+      clientName: "Chloe Jackson",
+      clientEmail: "chloe.jackson@mailinator.com",
+      startDate: "2017-03-15",
+      endDate: "2017-08-25",
+      status: "Inprogress",
+      userId: [1733830327344.3781],
+      teamMembers: ["Brian Lee"],
+      document: [
+        {
+          name: "mockup.png",
+          data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAQ...5ErkJggg=="
+        }
+      ]
+    },
+    {
+      id: Date.now() + Math.random(),
+      projectName: "Ethan Wilson",
+      clientName: "Nina Scott",
+      clientEmail: "nina.scott@mailinator.com",
+      startDate: "2020-06-10",
+      endDate: "2020-12-05",
+      status: "Completed",
+      userId: [1733830327344.3782],
+      teamMembers: ["Chris Evans"],
+      document: [
+        {
+          name: "invoice.pdf",
+          data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
+        }
+      ]
+    },
+    {
+      id: Date.now() + Math.random(),
+      projectName: "Isabella Williams",
+      clientName: "Diana Ross",
+      clientEmail: "diana.ross@mailinator.com",
+      startDate: "2016-09-05",
+      endDate: "2017-02-28",
+      status: "Inprogress",
+      userId: [1733830327344.3783],
+      teamMembers: ["Steve Rogers"],
+      document: [
+        {
+          name: "requirements.docx",
+          data: "data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,dGVzdCBkYXRhLg=="
+        }
+      ]
+    },
+    {
+      id: Date.now() + Math.random(),
+      projectName: "James Martinez",
+      clientName: "Peter Parker",
+      clientEmail: "peter.parker@mailinator.com",
+      startDate: "2015-07-20",
+      endDate: "2016-01-10",
+      status: "Upcoming",
+      userId: [1733830327344.3784],
+      teamMembers: ["Tony Stark"],
+      document: [
+        {
+          name: "timeline.xlsx",
+          data: "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,dGVzdCBkYXRhLg=="
+        }
+      ]
+    },
+    {
+      id: Date.now() + Math.random(),
+      projectName: "Ava Taylor",
+      clientName: "Bruce Wayne",
+      clientEmail: "bruce.wayne@mailinator.com",
+      startDate: "2022-04-18",
+      endDate: "2022-09-30",
+      status: "Upcoming",
+      userId: [1733830327344.3785],
+      teamMembers: ["Clark Kent"],
+      document: [
+        {
+          name: "contract.pdf",
+          data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
+        }
+      ]
+    },
+    {
+      id: Date.now() + Math.random(),
+      projectName: "Charlotte Lee",
+      clientName: "Barry Allen",
+      clientEmail: "barry.allen@mailinator.com",
+      startDate: "2021-10-25",
+      endDate: "2022-03-15",
+      status: "Completed",
+      userId: [1733830327344.3786],
+      teamMembers: ["Diana Prince"],
+      document: [
+        {
+          name: "budget.xlsx",
+          data: "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,dGVzdCBkYXRhLg=="
+        }
+      ]
+    }
+  ];
 
   const fetchProjects = async () => {
     const project = getProjectFromLocalStorage()
-    setProjectData(project)
+    if (project.length === 0) {
+      // Initialize with default roles if no roles exist
+      setProjectToLocalStorage(defaultProjects);
+      setProjectData(defaultProjects);
+    } else {
+      setProjectData(project)
+    }
     setLoading(false)
   }
 
   useEffect(() => {
-    if (!getProjectFromLocalStorage().length) {
-      initializeProjects(); // Initialize project if none exist in localStorage
-  } else {
       fetchProjects()
-  }
   }, [])
 
   // Function to add form data to localStorage

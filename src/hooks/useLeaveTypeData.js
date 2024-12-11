@@ -69,96 +69,93 @@ const useLeaveTypeData = () => {
         })
     }
 
-    const initializeLeaves = () => {
-        const leaves = [
-            {
-                id: Date.now() + Math.random(),
-                leaveName: "Sick Leave",
-                leaveBalance: "10",
-                leaveStatus: "Active",
-                leaveAddingDate: "11/12/2024"
-            },
-            {
-                id: Date.now() + Math.random(),
-                leaveName: "Casual Leave",
-                leaveBalance: "15",
-                leaveStatus: "Active",
-                leaveAddingDate: "10/12/2024"
-            },
-            {
-                id: Date.now() + Math.random(),
-                leaveName: "Maternity Leave",
-                leaveBalance: "12",
-                leaveStatus: "Active",
-                leaveAddingDate: "09/12/2024"
-            },
-            {
-                id: Date.now() + Math.random(),
-                leaveName: "Paternity Leave",
-                leaveBalance: "20",
-                leaveStatus: "Inactive",
-                leaveAddingDate: "08/12/2024"
-            },
-            {
-                id: Date.now() + Math.random(),
-                leaveName: "Annual Leave",
-                leaveBalance: "18",
-                leaveStatus: "Active",
-                leaveAddingDate: "07/12/2024"
-            },
-            {
-                id: Date.now() + Math.random(),
-                leaveName: "Bereavement Leave",
-                leaveBalance: "25",
-                leaveStatus: "Inactive",
-                leaveAddingDate: "06/12/2024"
-            },
-            {
-                id: Date.now() + Math.random(),
-                leaveName: "Unpaid Leave",
-                leaveBalance: "30",
-                leaveStatus: "Active",
-                leaveAddingDate: "05/12/2024"
-            },
-            {
-                id: Date.now() + Math.random(),
-                leaveName: "Study Leave",
-                leaveBalance: "10",
-                leaveStatus: "Inactive",
-                leaveAddingDate: "04/12/2024"
-            },
-            {
-                id: Date.now() + Math.random(),
-                leaveName: "Compensatory Leave",
-                leaveBalance: "15",
-                leaveStatus: "Active",
-                leaveAddingDate: "03/12/2024"
-            },
-            {
-                id: Date.now() + Math.random(),
-                leaveName: "Marriage Leave",
-                leaveBalance: "20",
-                leaveStatus: "Active",
-                leaveAddingDate: "02/12/2024"
-            }
-        ];
-
-        setLeaveToLocalStorage(leaves);
-        setLeaveTypeData(leaves);
-    };
+    const defaultLeaves = [
+        {
+            id: Date.now() + Math.random(),
+            leaveName: "Sick Leave",
+            leaveBalance: "10",
+            leaveStatus: "Active",
+            leaveAddingDate: "11/12/2024"
+        },
+        {
+            id: Date.now() + Math.random(),
+            leaveName: "Casual Leave",
+            leaveBalance: "15",
+            leaveStatus: "Active",
+            leaveAddingDate: "10/12/2024"
+        },
+        {
+            id: Date.now() + Math.random(),
+            leaveName: "Maternity Leave",
+            leaveBalance: "12",
+            leaveStatus: "Active",
+            leaveAddingDate: "09/12/2024"
+        },
+        {
+            id: Date.now() + Math.random(),
+            leaveName: "Paternity Leave",
+            leaveBalance: "20",
+            leaveStatus: "Inactive",
+            leaveAddingDate: "08/12/2024"
+        },
+        {
+            id: Date.now() + Math.random(),
+            leaveName: "Annual Leave",
+            leaveBalance: "18",
+            leaveStatus: "Active",
+            leaveAddingDate: "07/12/2024"
+        },
+        {
+            id: Date.now() + Math.random(),
+            leaveName: "Bereavement Leave",
+            leaveBalance: "25",
+            leaveStatus: "Inactive",
+            leaveAddingDate: "06/12/2024"
+        },
+        {
+            id: Date.now() + Math.random(),
+            leaveName: "Unpaid Leave",
+            leaveBalance: "30",
+            leaveStatus: "Active",
+            leaveAddingDate: "05/12/2024"
+        },
+        {
+            id: Date.now() + Math.random(),
+            leaveName: "Study Leave",
+            leaveBalance: "10",
+            leaveStatus: "Inactive",
+            leaveAddingDate: "04/12/2024"
+        },
+        {
+            id: Date.now() + Math.random(),
+            leaveName: "Compensatory Leave",
+            leaveBalance: "15",
+            leaveStatus: "Active",
+            leaveAddingDate: "03/12/2024"
+        },
+        {
+            id: Date.now() + Math.random(),
+            leaveName: "Marriage Leave",
+            leaveBalance: "20",
+            leaveStatus: "Active",
+            leaveAddingDate: "02/12/2024"
+        }
+    ];
 
     const fetchLeaveType = async () => {
         const leave = getLeaveFromLocalStorage()
-        setLeaveTypeData(leave)
+        if (leave.length === 0) {
+            // Initialize with default roles if no roles exist
+            setLeaveToLocalStorage(defaultLeaves);
+            setLeaveTypeData(defaultLeaves);
+        } else {
+            setLeaveTypeData(leave)
+        }
         setLoading(false)
     }
 
     useEffect(() => {
-        if (!getLeaveFromLocalStorage().length) {
-            initializeLeaves(); // Initialize leave if none exist in localStorage
-        } else {
-            fetchLeaveType()
-        }
+        fetchLeaveType()
     }, [])
 
     // Function to add form data to localStorage
