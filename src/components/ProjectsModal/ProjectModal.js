@@ -19,7 +19,7 @@ const ProjectModal = ({
 
     return (
         <>
-            {role === 'employee' ? null : (
+            {(role === 'admin' || role === 'hr') && (
                 <Button
                     component={motion.div}
                     whileHover={{

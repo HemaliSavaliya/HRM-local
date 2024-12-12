@@ -45,7 +45,6 @@ const ProjectsTable = ({
   // For fetch login detail wise role
   const authToken = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('login-details')) : null
   const role = authToken?.role
-  const loggedInUserId = authToken?.id
 
   // Filter data based on search query
   const filteredData = projectData.filter((project) => {
@@ -77,7 +76,7 @@ const ProjectsTable = ({
   const roleBasedData =
     role === 'admin'
       ? filteredData // Admin sees all filtered projects
-      : role === 'employee' && authToken?.id === ''
+      : role === role && authToken?.id === ''
         ? filteredData.filter((project) => ['Upcoming', 'Inprogress'].includes(project.status)) // Employee with no ID sees all upcoming and in-progress projects
         : filteredData.filter(
           (project) =>

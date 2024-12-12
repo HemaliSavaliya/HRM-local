@@ -132,7 +132,7 @@ const RoleTable = ({ searchQuery, roleData, loading, updateRoleStatus }) => {
                   />
                   <TableBody>
                     {visibleRows.map((row, index) => (
-                      <TableRow key={row.id} sx={{ cursor: 'pointer' }}>
+                      <TableRow key={row.id} sx={{ cursor: 'pointer' ,}} >
                         <TableCell align="left">{index + 1 + page * rowsPerPage}</TableCell>
                         <TableCell align="left">{row.roleName}</TableCell>
                         <TableCell align="left">{row.date}</TableCell>

@@ -9,7 +9,6 @@ const resolveNavItemComponent = item => {
 }
 
 const VerticalNavItems = props => {
-  // const [authToken, setAuthToken] = useState(null)
   const [userRole, setUserRole] = useState(null)
   const userPermissions = useUserPermissions(userRole) || []
 

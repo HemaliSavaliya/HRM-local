@@ -68,6 +68,7 @@ const useLeaveReqData = () => {
             leaveType: "Full Day",
             description: "Fugit omnis quae qu",
             name: "Winter Stone",
+            employeeId: 1733981078792.9788,
             role: "hr",
             applyingDate: "11/12/2024",
             status: "pending"
@@ -80,6 +81,7 @@ const useLeaveReqData = () => {
             leaveType: "Half Day",
             description: "Modi debitis et nequ",
             name: "Winter Stone",
+            employeeId: 1733981078792.9788,
             role: "hr",
             applyingDate: "11/12/2024",
             status: "pending"
@@ -92,7 +94,8 @@ const useLeaveReqData = () => {
             leaveType: "Half Day",
             description: "Annual vacation for the new year",
             name: "Emily Davis",
-            role: "employee",
+            employeeId: 1733981078792.0046,
+            role: "manager",
             applyingDate: "10/12/2024",
             status: "pending"
         },
@@ -104,7 +107,8 @@ const useLeaveReqData = () => {
             leaveType: "Full Day",
             description: "Compensation for working on a holiday",
             name: "Michael Johnson",
-            role: "employee",
+            employeeId: 1733981078792.4543,
+            role: "hr",
             applyingDate: "09/12/2024",
             status: "pending"
         },
@@ -115,8 +119,9 @@ const useLeaveReqData = () => {
             endDate: "2025-02-15",
             leaveType: "Full Day",
             description: "To spend time with newborn",
-            name: "Oliver Moore",
-            role: "manager",
+            name: "John Doe",
+            employeeId: 1733981078792.7847,
+            role: "employee",
             applyingDate: "08/12/2024",
             status: "pending"
         },
@@ -127,8 +132,9 @@ const useLeaveReqData = () => {
             endDate: "2025-01-05",
             leaveType: "Full Day",
             description: "Personal reasons",
-            name: "Sophia Brown",
-            role: "hr",
+            name: "Jane Smith",
+            employeeId: 1733981078792.275,
+            role: "manager",
             applyingDate: "07/12/2024",
             status: "pending"
         },
@@ -139,8 +145,9 @@ const useLeaveReqData = () => {
             endDate: "",
             leaveType: "Half Day",
             description: "For attending a training program",
-            name: "Isabella Williams",
-            role: "employee",
+            name: "Alice Johnson",
+            employeeId: 1733981078792.9553,
+            role: "hr",
             applyingDate: "06/12/2024",
             status: "pending"
         },
@@ -151,7 +158,8 @@ const useLeaveReqData = () => {
             endDate: "2025-04-20",
             leaveType: "Full Day",
             description: "For wedding and related ceremonies",
-            name: "James Martinez",
+            name: "Bob Brown",
+            employeeId: 1733981078792.884,
             role: "hr",
             applyingDate: "05/12/2024",
             status: "pending"
@@ -163,8 +171,9 @@ const useLeaveReqData = () => {
             endDate: "2025-05-10",
             leaveType: "Full Day",
             description: "To attend the funeral of a relative",
-            name: "Ava Taylor",
-            role: "manager",
+            name: "Carol White",
+            employeeId: 1733981078792.4077,
+            role: "employee",
             applyingDate: "04/12/2024",
             status: "pending"
         },
@@ -175,8 +184,9 @@ const useLeaveReqData = () => {
             endDate: "",
             leaveType: "Half Day",
             description: "Personal matter",
-            name: "Charlotte Lee",
-            role: "manager",
+            name: "Dave Clark",
+            employeeId: 1733981078792.038,
+            role: "employee",
             applyingDate: "03/12/2024",
             status: "pending"
         }
@@ -186,11 +196,9 @@ const useLeaveReqData = () => {
         const storedData = JSON.parse(localStorage.getItem('leaveRequest')) || []
 
         // Filter data based on role
-        const filteredData = authToken?.role === 'hr'
-            ? storedData.filter(req => req.role === 'hr')
-            : authToken?.role === 'employee'
-                ? storedData.filter(req => req.role === 'employee')
-                : storedData;
+        const filteredData = authToken?.role === authToken?.role
+            ? (storedData.filter(req => req.role === authToken?.role) && storedData.filter(req => req.employeeId === authToken?.id))
+            : storedData;
 
         if (filteredData.length === 0) {
             // Initialize with default roles if no roles exist
@@ -218,6 +226,7 @@ const useLeaveReqData = () => {
         {
             ...newLeaveReq,
             name: authToken?.name,
+            employeeId: authToken?.id,
             role: authToken?.role,
             id: Date.now(),
             applyingDate: today,

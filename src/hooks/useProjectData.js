@@ -78,12 +78,12 @@ const useProjectData = () => {
       startDate: "2009-12-29",
       endDate: "2010-03-03",
       status: "Upcoming",
-      userId: [1733830327344.3777],
+      userId: [1733981078792.038],
       teamMembers: ["Dave Clark"],
       document: [
         {
           name: "author-2.jpg",
-          data: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwIQAABtbnRy"
+          data: "https://img.freepik.com/free-photo/businessman-with-tablet-after-closing-deal_1098-3372.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
         }
       ]
     },
@@ -95,12 +95,12 @@ const useProjectData = () => {
       startDate: "2018-04-10",
       endDate: "2018-07-15",
       status: "Inprogress",
-      userId: [1733830327344.3778],
-      teamMembers: ["Jane Smith"],
+      userId: [1733981078792.6294],
+      teamMembers: ["Eve Martinez"],
       document: [
         {
           name: "project_doc.pdf",
-          data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
+          data: "https://img.freepik.com/premium-photo/project-proposal-template_1036687-64712.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
         }
       ]
     },
@@ -112,12 +112,12 @@ const useProjectData = () => {
       startDate: "2019-05-20",
       endDate: "2019-11-10",
       status: "Completed",
-      userId: [1733830327344.3779],
+      userId: [1733981078792.7847],
       teamMembers: ["John Doe"],
       document: [
         {
           name: "final_report.docx",
-          data: "data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,dGVzdCBkYXRhLg=="
+          data: "https://img.freepik.com/free-photo/men-suit-analyzing-results-chart_1232-1169.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
         }
       ]
     },
@@ -129,12 +129,12 @@ const useProjectData = () => {
       startDate: "2021-08-12",
       endDate: "2022-01-20",
       status: "Upcoming",
-      userId: [1733830327344.3780],
-      teamMembers: ["Amanda White"],
+      userId: [1733981078792.038],
+      teamMembers: ["Dave Clark"],
       document: [
         {
           name: "proposal.pptx",
-          data: "data:application/vnd.openxmlformats-officedocument.presentationml.presentation;base64,cGFzc3dvcmQh"
+          data: "https://img.freepik.com/free-photo/businessman-with-tablet-after-closing-deal_1098-3372.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
         }
       ]
     },
@@ -146,12 +146,12 @@ const useProjectData = () => {
       startDate: "2017-03-15",
       endDate: "2017-08-25",
       status: "Inprogress",
-      userId: [1733830327344.3781],
-      teamMembers: ["Brian Lee"],
+      userId: [1733981078792.4077],
+      teamMembers: ["Carol White"],
       document: [
         {
           name: "mockup.png",
-          data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAQ...5ErkJggg=="
+          data: "https://img.freepik.com/free-photo/round-red-sign_23-2147725020.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
         }
       ]
     },
@@ -163,12 +163,12 @@ const useProjectData = () => {
       startDate: "2020-06-10",
       endDate: "2020-12-05",
       status: "Completed",
-      userId: [1733830327344.3782],
-      teamMembers: ["Chris Evans"],
+      userId: [1733981078792.7847],
+      teamMembers: ["John Doe"],
       document: [
         {
           name: "invoice.pdf",
-          data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
+          data: "https://img.freepik.com/premium-photo/vector-modern-invoice-quotation-template_1048986-252.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
         }
       ]
     },
@@ -180,12 +180,12 @@ const useProjectData = () => {
       startDate: "2016-09-05",
       endDate: "2017-02-28",
       status: "Inprogress",
-      userId: [1733830327344.3783],
-      teamMembers: ["Steve Rogers"],
+      userId: [1733981078792.6294],
+      teamMembers: ["Eve Martinez"],
       document: [
         {
           name: "requirements.docx",
-          data: "data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,dGVzdCBkYXRhLg=="
+          data: "https://img.freepik.com/free-photo/parental-permission-form-contract-concept_53876-134018.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
         }
       ]
     },
@@ -197,12 +197,12 @@ const useProjectData = () => {
       startDate: "2015-07-20",
       endDate: "2016-01-10",
       status: "Upcoming",
-      userId: [1733830327344.3784],
-      teamMembers: ["Tony Stark"],
+      userId: [1733981078792.4077],
+      teamMembers: ["Carol White"],
       document: [
         {
           name: "timeline.xlsx",
-          data: "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,dGVzdCBkYXRhLg=="
+          data: "https://img.freepik.com/premium-photo/business-step-timeline-infographic-calendar-template-modern-milestone-element-timeline-diagram-vector-infographics_333603-1401.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
         }
       ]
     },
@@ -214,12 +214,12 @@ const useProjectData = () => {
       startDate: "2022-04-18",
       endDate: "2022-09-30",
       status: "Upcoming",
-      userId: [1733830327344.3785],
-      teamMembers: ["Clark Kent"],
+      userId: [1733981078792.6294],
+      teamMembers: ["Eve Martinez"],
       document: [
         {
           name: "contract.pdf",
-          data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
+          data: "https://img.freepik.com/free-psd/modern-business-corporate-letterhead-template_120329-3649.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
         }
       ]
     },
@@ -231,12 +231,12 @@ const useProjectData = () => {
       startDate: "2021-10-25",
       endDate: "2022-03-15",
       status: "Completed",
-      userId: [1733830327344.3786],
-      teamMembers: ["Diana Prince"],
+      userId: [1733981078792.4077],
+      teamMembers: ["Carol White"],
       document: [
         {
           name: "budget.xlsx",
-          data: "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,dGVzdCBkYXRhLg=="
+          data: "https://img.freepik.com/premium-photo/digital-tablet-with-sample-spreadsheet-document-screen_746318-5980.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
         }
       ]
     }
@@ -255,7 +255,7 @@ const useProjectData = () => {
   }
 
   useEffect(() => {
-      fetchProjects()
+    fetchProjects()
   }, [])
 
   // Function to add form data to localStorage

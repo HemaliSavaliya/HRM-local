@@ -22,30 +22,6 @@ const VerticalNavHeader = props => {
 
   const isDesktop = useMediaQuery(theme => theme.breakpoints.up('md'))
 
-  // // For company logo
-  // const [logoUrls, setLogoUrls] = useState(null)
-  // const authToken = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('login-details')) : null
-
-  // useEffect(() => {
-  //   const fetchCompanyLogos = async () => {
-  //     try {
-  //       const response = await axios.get(`${process.env.NEXT_PUBLIC_URL}/company-logo/${authToken?.companyId}`, {
-  //         responseType: 'arraybuffer'
-  //       })
-
-  //       const imageData = new Uint8Array(response.data)
-  //       const blob = new Blob([imageData], { type: 'image/png' })
-  //       const dataURL = URL.createObjectURL(blob)
-
-  //       setLogoUrls(dataURL)
-  //     } catch (error) {
-  //       console.error('Error fetching company logos:', error)
-  //     }
-  //   }
-
-  //   fetchCompanyLogos()
-  // }, [authToken?.companyId])
-
   return (
     <MenuHeaderWrapper className='nav-header'>
       {userVerticalNavMenuBranding ? (

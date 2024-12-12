@@ -56,7 +56,7 @@ const useAnnouncementData = () => {
             document: [
                 {
                     name: "client-2.jpg",
-                    data: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwI"
+                    data: "https://img.freepik.com/free-photo/happy-financial-consultant-greeting-his-clients-while-meeting-them-their-home-me-are-shaking-hands_637285-3763.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         },
@@ -68,7 +68,7 @@ const useAnnouncementData = () => {
             document: [
                 {
                     name: "meeting-agenda.pdf",
-                    data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
+                    data: "https://img.freepik.com/premium-photo/meeting-agenda-inscription-business-appointment-event-office-schedule_361816-376.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         },
@@ -80,7 +80,7 @@ const useAnnouncementData = () => {
             document: [
                 {
                     name: "office-opening.jpg",
-                    data: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwI"
+                    data: "https://img.freepik.com/premium-photo/happy-business-team-cutting-red-ribbon_13339-138683.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         },
@@ -92,7 +92,7 @@ const useAnnouncementData = () => {
             document: [
                 {
                     name: "training-schedule.pdf",
-                    data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
+                    data: "https://img.freepik.com/free-photo/daily-life-business-people-office_53876-47111.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         },
@@ -104,7 +104,7 @@ const useAnnouncementData = () => {
             document: [
                 {
                     name: "holiday-schedule.pdf",
-                    data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
+                    data: "https://img.freepik.com/free-photo/still-life-colorful-overloaded-bullet-journal_23-2150168648.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         },
@@ -116,7 +116,7 @@ const useAnnouncementData = () => {
             document: [
                 {
                     name: "team-building.jpg",
-                    data: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwI"
+                    data: "https://img.freepik.com/free-photo/teamwork-collaboration-team-graphic-word_53876-13828.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         },
@@ -128,7 +128,7 @@ const useAnnouncementData = () => {
             document: [
                 {
                     name: "it-upgrade.pdf",
-                    data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
+                    data: "https://img.freepik.com/free-photo/data-backup-online-connection_53876-120060.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         },
@@ -140,7 +140,7 @@ const useAnnouncementData = () => {
             document: [
                 {
                     name: "employee-appreciation.jpg",
-                    data: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwI"
+                    data: "https://img.freepik.com/free-photo/medium-shot-people-celebrating-work_23-2149295529.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         },
@@ -152,7 +152,7 @@ const useAnnouncementData = () => {
             document: [
                 {
                     name: "project-launch.pdf",
-                    data: "data:application/pdf;base64,JVBERi0xLjQKJeLjz9MNCjEgMCBvYmoKPDwvTGVuZ3..."
+                    data: "https://img.freepik.com/free-photo/plan-project-architecture-blueprint-drawing-concept_53876-13746.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         },
@@ -164,7 +164,7 @@ const useAnnouncementData = () => {
             document: [
                 {
                     name: "client-visit.jpg",
-                    data: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwI"
+                    data: "https://img.freepik.com/free-photo/business-people-informal-meeting_1262-1400.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         }

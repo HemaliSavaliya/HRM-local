@@ -27,25 +27,7 @@ const AddTodoModal = ({ open, handleClose, todos, setTodos }) => {
     const [color, setColor] = useState('#b32aa9')
     const [name, setName] = useState('')
     const [editingTodo, setEditingTodo] = useState(null)
-    const authToken = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('login-details')) : null
     const theme = useTheme()
-
-    // const fetchTodos = async () => {
-    //     try {
-    //         const response = await axios.get(`${process.env.NEXT_PUBLIC_URL}/todosList`, {
-    //             headers: {
-    //                 Authorization: `Bearer ${authToken?.token}`
-    //             }
-    //         })
-
-    //         // Filter out deleted todo before setting the state
-    //         const activeCalendarTodo = response.data.filter(todo => !todo.deleted)
-
-    //         setTodos(activeCalendarTodo, response.data)
-    //     } catch (error) {
-    //         console.error('Error fetching Todo List:', error)
-    //     }
-    // }
 
     useEffect(() => {
         const savedTodos = JSON.parse(localStorage.getItem('todos')) || []

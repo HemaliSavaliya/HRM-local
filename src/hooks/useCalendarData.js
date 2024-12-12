@@ -33,8 +33,7 @@ const useCalendarData = () => {
     const [scroll, setScroll] = useState('body')
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth())
     const currentDate = new Date()
-    const authToken = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('login-details')) : null
-
+    
     // ** Hooks
     const theme = useTheme()
 

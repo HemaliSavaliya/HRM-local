@@ -17,6 +17,16 @@ const useRoleData = () => {
         { id: Date.now() + Math.random(), roleName: 'employee', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
         { id: Date.now() + Math.random(), roleName: 'manager', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
         { id: Date.now() + Math.random(), roleName: 'BDE', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
+        { id: Date.now() + Math.random(), roleName: 'software engineer', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
+        { id: Date.now() + Math.random(), roleName: 'systems architect', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
+        { id: Date.now() + Math.random(), roleName: 'network engineer', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
+        { id: Date.now() + Math.random(), roleName: 'cybersecurity specialist', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
+        { id: Date.now() + Math.random(), roleName: 'data analyst', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
+        { id: Date.now() + Math.random(), roleName: 'cloud solutions architect', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
+        { id: Date.now() + Math.random(), roleName: 'devops specialist', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
+        { id: Date.now() + Math.random(), roleName: 'frontend developer', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
+        { id: Date.now() + Math.random(), roleName: 'backend developer', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
+        { id: Date.now() + Math.random(), roleName: 'AI/ML engineer', date: new Date().toLocaleDateString('en-GB'), status: 'Enable' },
     ];
 
     // Handle search input

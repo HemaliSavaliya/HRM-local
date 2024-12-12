@@ -73,8 +73,8 @@ const useEmployeeData = () => {
             showPassword: false,
             governmentDocument: [
                 {
-                    name: "category_img_3.png",
-                    data: "data:image/png;base64,iVBORw0KGgoAAAANSUh..."
+                    name: "insurance_card.png",
+                    data: "https://img.freepik.com/premium-vector/patient-insurance-card-icon-cartoon-vector-medical-doctor-hospital-care_98402-61850.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         },
@@ -104,7 +104,7 @@ const useEmployeeData = () => {
             governmentDocument: [
                 {
                     name: "id_doc.png",
-                    data: "data:image/png;base64,iVBORw0KGgoAAAANSUh..."
+                    data: "https://img.freepik.com/free-vector/graduation-party-leaflet-with-golden-details_23-2147634060.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         },
@@ -134,7 +134,7 @@ const useEmployeeData = () => {
             governmentDocument: [
                 {
                     name: "passport.png",
-                    data: "data:image/png;base64,iVBORw0KGgoAAAANSUh..."
+                    data: "https://img.freepik.com/free-vector/vector-front-cover-passport-isolated-white_1284-42900.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         },
@@ -164,7 +164,7 @@ const useEmployeeData = () => {
             governmentDocument: [
                 {
                     name: "driver_license.png",
-                    data: "data:image/png;base64,iVBORw0KGgoAAAANSUh..."
+                    data: "https://img.freepik.com/free-vector/flat-design-driving-license-template_23-2149949014.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         },
@@ -194,7 +194,7 @@ const useEmployeeData = () => {
             governmentDocument: [
                 {
                     name: "insurance_card.png",
-                    data: "data:image/png;base64,iVBORw0KGgoAAAANSUh..."
+                    data: "https://img.freepik.com/premium-vector/patient-insurance-card-icon-cartoon-vector-medical-doctor-hospital-care_98402-61850.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         },
@@ -224,7 +224,7 @@ const useEmployeeData = () => {
             governmentDocument: [
                 {
                     name: "aadhaar_card.png",
-                    data: "data:image/png;base64,iVBORw0KGgoAAAANSUh..."
+                    data: "https://img.freepik.com/premium-vector/aadhaar-card-vector-design_781648-1.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         },
@@ -254,7 +254,7 @@ const useEmployeeData = () => {
             governmentDocument: [
                 {
                     name: "pan_card.png",
-                    data: "data:image/png;base64,iVBORw0KGgoAAAANSUh..."
+                    data: "https://img.freepik.com/free-vector/flat-design-green-card-template_23-2149604663.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         },
@@ -284,7 +284,7 @@ const useEmployeeData = () => {
             governmentDocument: [
                 {
                     name: "pan_card.png",
-                    data: "data:image/png;base64,iVBORw0KGgoAAAANSUh..."
+                    data: "https://img.freepik.com/free-vector/flat-design-green-card-template_23-2149604663.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
                 }
             ]
         },
@@ -312,8 +312,8 @@ const useEmployeeData = () => {
             bankBranchLocation: "City XYZ",
             showPassword: false,
             governmentDocument: [{
-                name: "category_img_3.png",
-                data: "data:image/png;base64,iVBORw0KGgoAAAANSUh..."
+                name: "aadhaar_card.png",
+                data: "https://img.freepik.com/premium-vector/aadhaar-card-vector-design_781648-1.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
             }]
         },
         {
@@ -341,7 +341,7 @@ const useEmployeeData = () => {
             showPassword: false,
             governmentDocument: [{
                 name: "id_doc.png",
-                data: "data:image/png;base64,iVBORw0KGgoAAAANSUh..."
+                data: "https://img.freepik.com/free-vector/graduation-party-leaflet-with-golden-details_23-2147634060.jpg?ga=GA1.1.1394412994.1693369716&semt=ais_hybrid"
             }]
         }
     ];
