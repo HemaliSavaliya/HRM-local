@@ -76,6 +76,7 @@ const Dashboard = () => {
 
       // Get projects from localStorage
       const projects = JSON.parse(localStorage.getItem('project')) || [];
+      
       const filteredProject = role === 'admin'
         ? projects // Admin sees all projects
         : authToken?.id === ''
