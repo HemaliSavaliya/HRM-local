@@ -2,6 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles'
 import { Grid, Card, CardContent, Typography, Box, Divider } from '@mui/material';
 import { AccountGroup, BullhornOutline, NewspaperCheck, NoteSearchOutline, Projector, Seal } from 'mdi-material-ui';
+import { Bar, Line, PolarArea } from 'react-chartjs-2';
+import {
+  PointElement,
+  LineElement,
+  ArcElement,
+  RadialLinearScale,
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+// Register necessary Chart.js components
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, RadialLinearScale, ArcElement, BarElement, Title, Tooltip, Legend);
 
 const StyledBoxForSVG = styled(Box)({
   width: "30%",
@@ -59,13 +76,21 @@ const Dashboard = () => {
 
       // Get projects from localStorage
       const projects = JSON.parse(localStorage.getItem('project')) || [];
+      const filteredProject = role === 'admin'
+        ? projects // Admin sees all projects
+        : authToken?.id === ''
+          ? projects // Employee with no ID sees all projects
+          : projects.filter(
+            (project) =>
+              project.userId.includes(authToken?.id) // Employee sees only their projects
+          );
       const totalProjects = projects.length || 55;
 
       // Calculate project status counts
       const projectStatus = {
-        completed: projects.filter((project) => project.status.toLowerCase() === 'completed').length || 40,
-        inprogress: projects.filter((project) => project.status.toLowerCase() === 'inprogress').length || 10,
-        upcoming: projects.filter((project) => project.status.toLowerCase() === 'upcoming').length || 5,
+        completed: filteredProject.filter((project) => project.status.toLowerCase() === 'completed').length || 40,
+        inprogress: filteredProject.filter((project) => project.status.toLowerCase() === 'inprogress').length || 10,
+        upcoming: filteredProject.filter((project) => project.status.toLowerCase() === 'upcoming').length || 5,
       };
 
       // Get holidays from localStorage
@@ -249,7 +274,7 @@ const Dashboard = () => {
           </Grid>
 
           {/* Event Status */}
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={12} md={4}>
             <Card>
               <CardContent sx={{ height: "200px" }}>
                 <Typography variant="h6" mb={4}>Event Status</Typography>
@@ -261,6 +286,144 @@ const Dashboard = () => {
                 <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
                   <Typography variant="body1">Upcoming Events</Typography>
                   <Typography variant="subtitle2">{dashboardData.eventStatus.upcomingEvents}</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Leave chart */}
+          <Grid item xs={12} sm={12} md={6}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" mb={4}>Leave Chart</Typography>
+                <Bar
+                  data={{
+                    labels: ['Pending', 'Approved', 'Rejected'],
+                    datasets: [{
+                      label: 'Leave Requests',
+                      data: [
+                        dashboardData.leaveStatus.pending,
+                        dashboardData.leaveStatus.approved,
+                        dashboardData.leaveStatus.rejected,
+                      ],
+                      backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                      ],
+                      borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                      ],
+                      borderWidth: 1,
+                    }],
+                  }}
+                  options={{
+                    responsive: true,
+                    plugins: {
+                      title: {
+                        display: true,
+                        text: 'Leave Requests',
+                      },
+                    },
+                    scales: {
+                      x: {
+                        beginAtZero: true,
+                      },
+                      y: {
+                        beginAtZero: true,
+                      },
+                    },
+                  }}
+                />
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Project charts */}
+          <Grid item xs={12} sm={12} md={6}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" mb={4}>Project Chart</Typography>
+                <Line
+                  data={{
+                    labels: ['Completed', 'In Progress', 'Upcoming'],
+                    datasets: [{
+                      label: 'Project Status',
+                      data: [dashboardData.projectStatus.completed, dashboardData.projectStatus.inprogress, dashboardData.projectStatus.upcoming],
+                      backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                      ],
+                      borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                      ],
+                      borderWidth: 1
+                    }]
+                  }}
+                  options={{
+                    title: {
+                      display: true,
+                      text: 'Project Status'
+                    },
+                    scales: {
+                      yAxes: [{
+                        ticks: {
+                          beginAtZero: true
+                        }
+                      }]
+                    }
+                  }}
+                />
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Events chart */}
+          <Grid item xs={12} sm={12} md={12}>
+            <Card>
+              <CardContent sx={{ height: "400px" }}>
+                <Typography variant="h6" mb={4}>Event Chart</Typography>
+                <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                  <div style={{ height: '320px', width: '320px' }}>
+                    <PolarArea
+                      data={{
+                        labels: ["Today's Events", "Upcoming Events"],
+                        datasets: [
+                          {
+                            label: 'Event Status',
+                            data: [
+                              dashboardData.eventStatus.todaysEvents,
+                              dashboardData.eventStatus.upcomingEvents,
+                            ],
+                            backgroundColor: [
+                              'rgba(255, 99, 132, 0.2)',
+                              'rgba(54, 162, 235, 0.2)',
+                            ],
+                            borderColor: [
+                              'rgba(255, 99, 132, 1)',
+                              'rgba(54, 162, 235, 1)',
+                            ],
+                            borderWidth: 1,
+                          },
+                        ],
+                      }}
+                      options={{
+                        responsive: true,
+                        maintainAspectRatio: false, // Allows custom height and width
+                        plugins: {
+                          title: {
+                            display: true,
+                            text: 'Event Status',
+                          },
+                        },
+                      }}
+                    />
+                  </div>
                 </Box>
               </CardContent>
             </Card>
@@ -355,6 +518,102 @@ const Dashboard = () => {
               </CardContent>
             </Card>
           </Grid>
+
+          {/* Leave chart */}
+          <Grid item xs={12} sm={12} md={6}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" mb={4}>Leave Chart</Typography>
+                <Bar
+                  data={{
+                    labels: ['Pending', 'Approved', 'Rejected'],
+                    datasets: [{
+                      label: 'Leave Requests',
+                      data: [
+                        dashboardData.leaveStatus.pending,
+                        dashboardData.leaveStatus.approved,
+                        dashboardData.leaveStatus.rejected,
+                      ],
+                      backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                      ],
+                      borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                      ],
+                      borderWidth: 1,
+                    }],
+                  }}
+                  options={{
+                    responsive: true,
+                    plugins: {
+                      title: {
+                        display: true,
+                        text: 'Leave Requests',
+                      },
+                    },
+                    scales: {
+                      x: {
+                        beginAtZero: true,
+                      },
+                      y: {
+                        beginAtZero: true,
+                      },
+                    },
+                  }}
+                />
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Event chart */}
+          <Grid item xs={12} sm={12} md={6}>
+            <Card>
+              <CardContent sx={{ height: "400px" }}>
+                <Typography variant="h6" mb={4}>Event Chart</Typography>
+                <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                  <div style={{ height: '320px', width: '320px' }}>
+                    <PolarArea
+                      data={{
+                        labels: ["Today's Events", "Upcoming Events"],
+                        datasets: [
+                          {
+                            label: 'Event Status',
+                            data: [
+                              dashboardData.eventStatus.todaysEvents,
+                              dashboardData.eventStatus.upcomingEvents,
+                            ],
+                            backgroundColor: [
+                              'rgba(255, 99, 132, 0.2)',
+                              'rgba(54, 162, 235, 0.2)',
+                            ],
+                            borderColor: [
+                              'rgba(255, 99, 132, 1)',
+                              'rgba(54, 162, 235, 1)',
+                            ],
+                            borderWidth: 1,
+                          },
+                        ],
+                      }}
+                      options={{
+                        responsive: true,
+                        maintainAspectRatio: false, // Allows custom height and width
+                        plugins: {
+                          title: {
+                            display: true,
+                            text: 'Event Status',
+                          },
+                        },
+                      }}
+                    />
+                  </div>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
       )}
 
@@ -435,17 +694,17 @@ const Dashboard = () => {
                 <Typography variant="h6" mb={4}>Projects</Typography>
                 <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
                   <Typography variant="body1">Completed</Typography>
-                  <Typography variant="subtitle2">0</Typography>
+                  <Typography variant="subtitle2">{dashboardData.projectStatus.completed}</Typography>
                 </Box>
                 <Divider />
                 <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
                   <Typography variant="body1">In Progress</Typography>
-                  <Typography variant="subtitle2">0</Typography>
+                  <Typography variant="subtitle2">{dashboardData.projectStatus.inprogress}</Typography>
                 </Box>
                 <Divider />
                 <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
                   <Typography variant="body1">Upcoming</Typography>
-                  <Typography variant="subtitle2">0</Typography>
+                  <Typography variant="subtitle2">{dashboardData.projectStatus.upcoming}</Typography>
                 </Box>
               </CardContent>
             </Card>
@@ -468,9 +727,147 @@ const Dashboard = () => {
               </CardContent>
             </Card>
           </Grid>
+
+          {/* Leave chart */}
+          <Grid item xs={12} sm={12} md={6}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" mb={4}>Leave Chart</Typography>
+                <Bar
+                  data={{
+                    labels: ['Pending', 'Approved', 'Rejected'],
+                    datasets: [{
+                      label: 'Leave Requests',
+                      data: [
+                        dashboardData.leaveStatus.pending,
+                        dashboardData.leaveStatus.approved,
+                        dashboardData.leaveStatus.rejected,
+                      ],
+                      backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                      ],
+                      borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                      ],
+                      borderWidth: 1,
+                    }],
+                  }}
+                  options={{
+                    responsive: true,
+                    plugins: {
+                      title: {
+                        display: true,
+                        text: 'Leave Requests',
+                      },
+                    },
+                    scales: {
+                      x: {
+                        beginAtZero: true,
+                      },
+                      y: {
+                        beginAtZero: true,
+                      },
+                    },
+                  }}
+                />
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Project charts */}
+          <Grid item xs={12} sm={12} md={6}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" mb={4}>Project Chart</Typography>
+                <Line
+                  data={{
+                    labels: ['Completed', 'In Progress', 'Upcoming'],
+                    datasets: [{
+                      label: 'Project Status',
+                      data: [dashboardData.projectStatus.completed, dashboardData.projectStatus.inprogress, dashboardData.projectStatus.upcoming],
+                      backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                      ],
+                      borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                      ],
+                      borderWidth: 1
+                    }]
+                  }}
+                  options={{
+                    title: {
+                      display: true,
+                      text: 'Project Status'
+                    },
+                    scales: {
+                      yAxes: [{
+                        ticks: {
+                          beginAtZero: true
+                        }
+                      }]
+                    }
+                  }}
+                />
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Events chart */}
+          <Grid item xs={12} sm={12} md={12}>
+            <Card>
+              <CardContent sx={{ height: "400px" }}>
+                <Typography variant="h6" mb={4}>Event Chart</Typography>
+                <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                  <div style={{ height: '320px', width: '320px' }}>
+                    <PolarArea
+                      data={{
+                        labels: ["Today's Events", "Upcoming Events"],
+                        datasets: [
+                          {
+                            label: 'Event Status',
+                            data: [
+                              dashboardData.eventStatus.todaysEvents,
+                              dashboardData.eventStatus.upcomingEvents,
+                            ],
+                            backgroundColor: [
+                              'rgba(255, 99, 132, 0.2)',
+                              'rgba(54, 162, 235, 0.2)',
+                            ],
+                            borderColor: [
+                              'rgba(255, 99, 132, 1)',
+                              'rgba(54, 162, 235, 1)',
+                            ],
+                            borderWidth: 1,
+                          },
+                        ],
+                      }}
+                      options={{
+                        responsive: true,
+                        maintainAspectRatio: false, // Allows custom height and width
+                        plugins: {
+                          title: {
+                            display: true,
+                            text: 'Event Status',
+                          },
+                        },
+                      }}
+                    />
+                  </div>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
       )}
-    </Box>
+    </Box >
   );
 };
 
