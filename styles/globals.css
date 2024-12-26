@@ -47,8 +47,6 @@ code[class*='language-'] {
   background: rgba(58, 53, 65, 0.12);
 }
 
-/* rgba(145, 85, 253, 0.3) */
-
 /* Custom chip css */
 .switch-holder {
   display: flex;
@@ -106,4 +104,12 @@ code[class*='language-'] {
   background-color: #00b33c;
   /* box-shadow: 0px 0px 5px rgba(255, 255, 255, .5),
     3px 3px 5px #00b33c; */
+}
+
+/* chart */
+
+#totalProjectChart .apexcharts-legend-series {
+  border-radius: .125rem;
+  border: 1px solid rgb(226 232 240);
+  padding: .25rem .5rem;
 }

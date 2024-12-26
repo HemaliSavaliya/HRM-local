@@ -39,7 +39,9 @@ const DefaultPalette = (mode, themeColor) => {
       main: '#7366FF',
       hover: '#8378f9',
       dark: '#804BDF',
-      contrastText: '#FFF'
+      contrastText: '#FFF',
+      chart: 'rgb(224, 242, 254)',
+      chartDark: '#0ea5e933'
     },
     secondary: {
       light: '#9C9FA4',
