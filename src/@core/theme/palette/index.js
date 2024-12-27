@@ -106,6 +106,14 @@ const DefaultPalette = (mode, themeColor) => {
       disabled: `rgba(${mainColor}, 0.3)`,
       disabledBackground: `rgba(${mainColor}, 0.18)`,
       focus: `rgba(${mainColor}, 0.12)`
+    },
+    buttons: {
+      statusSuccess: mode === 'light' ? 'rgb(210, 244, 238)' : '#24978233',
+      statusError: mode === 'light' ? 'rgb(254, 226, 226)' : '#ef444433',
+      statusPending: mode === 'light' ? 'rgb(254, 249, 195)' : '#eab30833',
+      statusBorder: mode === 'light' ? 'rgb(160, 232, 219)' : '#24978233',
+      statusDisable: mode === 'light' ? 'rgb(241, 245, 249)' : '#64748b33',
+      statusDisableBorder: mode === 'light' ? 'rgb(226, 232, 240)' : '#64748b33',
     }
   }
 }

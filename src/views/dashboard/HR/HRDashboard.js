@@ -2,8 +2,8 @@ import { Avatar, Box, Button, Card, Checkbox, Chip, Divider, Grid, IconButton, L
 import { ArrowBottomLeft, ArrowTopRight, CalendarBlankOutline, ChevronRight, ClockOutline, DotsVertical, PencilOutline, TrashCanOutline, TrayArrowDown } from 'mdi-material-ui'
 import { styled } from '@mui/material/styles'
 import React, { useEffect, useRef, useState } from 'react'
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css'; // Import default styles
+import { Calendar } from 'vanilla-calendar-pro';
+import 'vanilla-calendar-pro/styles/index.css';
 import dynamic from 'next/dynamic';
 const EmployeeChart = dynamic(() => import('./charts/EmployeeChart'), { ssr: false });
 const TotalApplicationChart = dynamic(() => import('./charts/ApplicationChart'), { ssr: false });
@@ -55,27 +55,34 @@ const CustomStyledCheckbox = styled(Checkbox)(({ theme }) => ({
     },
 }));
 
-const EventItem = ({ day, month, title, time, creator }) => (
-    <Grid container spacing={2} alignItems="center">
-        <Grid item>
-            <Paper sx={{ width: '3rem', height: '3rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border: 1, borderColor: 'rgb(226 232 240 / 1)', borderRadius: .125, boxShadow: 'none' }}>
-                <Typography variant="subtitle1">{day}</Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>{month}</Typography>
-            </Paper>
+const EventItem = ({ day, month, title, time, creator }) => {
+    const theme = useTheme();
+
+    // Conditionally set border color based on the theme mode
+    const borderColor = theme.palette.mode === 'light' ? 'rgb(226, 232, 240)' : 'rgb(35, 58, 87)';
+
+    return (
+        <Grid container spacing={2} alignItems="center">
+            <Grid item>
+                <Paper sx={{ width: '3rem', height: '3rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border: 1, borderColor: borderColor, borderRadius: .125, boxShadow: 'none' }}>
+                    <Typography variant="subtitle1">{day}</Typography>
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>{month}</Typography>
+                </Paper>
+            </Grid>
+            <Grid item xs>
+                <Typography variant="body1" fontSize={'14px'} fontWeight={600}> {title}
+                    {time &&
+                        <Typography component="span" sx={{ display: 'inline-block', marginLeft: 1, padding: '2px 8px', fontSize: 11, borderRadius: 1, bgcolor: 'background.default', color: 'text.secondary' }}>
+                            {time}
+                        </Typography>
+                    }
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary', mt: 1 }}>{creator}
+                </Typography>
+            </Grid>
         </Grid>
-        <Grid item xs>
-            <Typography variant="body1" fontSize={'14px'} fontWeight={600}> {title}
-                {time &&
-                    <Typography component="span" sx={{ display: 'inline-block', marginLeft: 1, padding: '2px 8px', fontSize: 11, borderRadius: 1, bgcolor: 'background.default', color: 'text.secondary' }}>
-                        {time}
-                    </Typography>
-                }
-            </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary', mt: 1 }}>{creator}
-            </Typography>
-        </Grid>
-    </Grid>
-);
+    )
+};
 
 const HRDashboard = () => {
     const theme = useTheme();
@@ -85,7 +92,23 @@ const HRDashboard = () => {
     const open = Boolean(anchorEl);
     const openInter = Boolean(anchorElInter);
     const openRecent = Boolean(anchorElRecent);
-    const [date, setDate] = useState(new Date());
+    const calendarRef = useRef(null);
+
+    useEffect(() => {
+        if (calendarRef.current) {
+            const calendar = new Calendar(calendarRef.current, {
+                settings: {
+                    selection: {
+                        day: 'single', // Allow single day selection
+                    },
+                },
+                selectedTheme: theme.palette.mode === 'light' ? 'light' : 'dark'
+            });
+
+            // Initialize the calendar
+            calendar.init();
+        }
+    }, [theme.palette.mode]);
 
     const handleMenuClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -194,12 +217,12 @@ const HRDashboard = () => {
     ];
 
     const payrollData = [
-        { name: "Christopher Horn", amount: "$145.32", status: "Cancelled", color: "success" },
+        { name: "Christopher Horn", amount: "$145.32", status: "Cancelled", color: "error" },
         { name: "Richard Peters", amount: "$4512.99", status: "Pending", color: "warning" },
         { name: "James Perez", amount: "$879.99", status: "Paid", color: "success" },
         { name: "Myrtle Velez", amount: "$978.14", status: "Cancelled", color: "error" },
         { name: "Brad Castillo", amount: "$412.59", status: "Pending", color: "warning" },
-        { name: "Christopher Horn", amount: "$145.32", status: "Cancelled", color: "success" },
+        { name: "Christopher Horn", amount: "$145.32", status: "Cancelled", color: "error" },
         { name: "Richard Peters", amount: "$4512.99", status: "Pending", color: "warning" },
         { name: "James Perez", amount: "$879.99", status: "Paid", color: "success" },
         { name: "Myrtle Velez", amount: "$978.14", status: "Cancelled", color: "error" },
@@ -210,12 +233,10 @@ const HRDashboard = () => {
         <Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 2 }}>
                 <Box>
-                    <Typography variant="h5">HR</Typography>
+                    <Typography fontWeight={600} fontSize={'16px'}>HR</Typography>
                 </Box>
                 <List sx={{ display: 'flex', alignItems: 'center', gap: 2, fontSize: '1rem', fontWeight: 'normal', padding: 0 }}>
-                    <ListItem sx={{ padding: 0 }}>
-                        <Link href="/" sx={{ color: 'text.secondary', fontSize: 14 }}>Dashboards</Link>
-                    </ListItem>
+                    <ListItem sx={{ color: 'text.primary', padding: 0, fontSize: 14 }}>Dashboard</ListItem>
                     <ChevronRight sx={{ fontSize: 14 }} />
                     <ListItem sx={{ color: 'text.primary', padding: 0, fontSize: 14 }}>HR</ListItem>
                 </List>
@@ -418,7 +439,7 @@ const HRDashboard = () => {
                                                 <Box>
                                                     <Avatar width={'2.5rem'} height={'2.5rem'} src={employee.img} alt={employee.name} sx={{
                                                         borderRadius: '9999px',
-                                                        background: 'rgb(224, 242, 254)'
+                                                        background: theme.palette.mode === 'light' ? 'rgb(224, 242, 254)' : '#24978233'
                                                     }}
                                                     />
                                                 </Box>
@@ -451,8 +472,8 @@ const HRDashboard = () => {
                                                     paddingBottom: '.125rem',
                                                     paddingLeft: '.625rem',
                                                     paddingRight: '.625rem',
-                                                    background: employee.status === 'Active' ? 'rgb(210, 244, 238)' : 'rgb(241, 245, 249)',
-                                                    border: employee.status === 'Active' ? '1px solid rgb(160, 232, 219)' : '1px solid rgb(226, 232, 240)',
+                                                    background: employee.status === 'Active' ? theme.palette.buttons.statusSuccess : theme.palette.buttons.statusDisable,
+                                                    border: employee.status === 'Active' ? `1px solid ${theme.palette.buttons.statusBorder}` : `1px solid ${theme.palette.buttons.statusDisableBorder}`,
                                                     borderRadius: '.25rem',
                                                     textAlign: 'center',
                                                     width: 'fit-content'
@@ -465,7 +486,7 @@ const HRDashboard = () => {
                                             <Box display={'flex'} gap={'5px'}>
                                                 <Box
                                                     sx={{
-                                                        color: 'rgb(100, 116, 139)',
+                                                        color: theme.palette.mode === 'light' ? 'rgba(100, 116, 139, 0.7)' : 'rgb(146, 175, 211)',
                                                         borderRadius: '.375rem',
                                                         display: 'flex',
                                                         justifyContent: 'center',
@@ -473,9 +494,10 @@ const HRDashboard = () => {
                                                         width: '2rem',
                                                         height: '2rem',
                                                         cursor: 'pointer',
+                                                        background: theme.palette.mode === 'light' ? 'rgb(241, 245, 249)' : 'rgb(28, 46, 69)',
                                                         transition: 'background 0.3s, color 0.3s', // Optional: smooth transition
                                                         '&:hover': {
-                                                            background: 'rgb(219, 234, 254)',
+                                                            background: theme.palette.mode === 'light' ? 'rgb(219, 234, 254)' : '#3b82f633',
                                                             color: 'rgb(59, 130, 246)',
                                                         },
                                                     }}
@@ -484,7 +506,7 @@ const HRDashboard = () => {
                                                 </Box>
                                                 <Box
                                                     sx={{
-                                                        color: 'rgb(100, 116, 139)',
+                                                        color: theme.palette.mode === 'light' ? 'rgba(100, 116, 139, 0.7)' : 'rgb(146, 175, 211)',
                                                         borderRadius: '.375rem',
                                                         display: 'flex',
                                                         justifyContent: 'center',
@@ -492,9 +514,10 @@ const HRDashboard = () => {
                                                         width: '2rem',
                                                         height: '2rem',
                                                         cursor: 'pointer',
+                                                        background: theme.palette.mode === 'light' ? 'rgb(241, 245, 249)' : 'rgb(28, 46, 69)',
                                                         transition: 'background 0.3s, color 0.3s', // Optional: smooth transition
                                                         '&:hover': {
-                                                            background: 'rgb(254, 226, 226)',
+                                                            background: theme.palette.mode === 'light' ? 'rgb(254, 226, 226)' : '#ef444433',
                                                             color: 'rgb(239, 68, 68)',
                                                         },
                                                     }}
@@ -526,7 +549,7 @@ const HRDashboard = () => {
                             <Typography variant="subtitle1" fontWeight={600} mb={3}>Upcoming Scheduled</Typography>
                             <Box id="calendar" sx={{ width: 'auto', padding: 1 }}>
                             </Box>
-                            {/* <Calendar onChange={setDate} value={date} /> */}
+                            <Box ref={calendarRef} padding={0} />
                             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 3 }}> {/* Event Items */}
                                 <EventItem day="28" month="July" title="Meeting with Designer" time="09:57 AM" creator="Created by Admin" />
                                 <EventItem day="08" month="June" title="Developing Line Managers Conference" time="10:54 AM" creator="Created by HR" />
@@ -537,13 +560,13 @@ const HRDashboard = () => {
                                 <EventItem day="17" month="Jan" title="CIPD Festival of Work" time="01:29 PM" creator="Created by HR" />
                                 <EventItem day="03" month="Feb" title="HRO Today Forum" time="02:15 PM" creator="Created by Admin" />
                             </Box>
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, padding: 2, marginTop: 3, borderRadius: 1, bgcolor: '#3b82f6' }}>
+                            {/* <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, padding: 2, marginTop: 3, borderRadius: 1, bgcolor: '#3b82f6' }}>
                                 <Avatar src="/images/support.png" alt="Support Icon" sx={{ height: 96, width: 96 }} />
                                 <Box>
                                     <Typography variant="h6" sx={{ marginBottom: 1, color: 'white' }}>Need Help ?</Typography>
                                     <Typography variant="body2" sx={{ color: 'white' }}> If you would like to learn more about transferring the license to a customer </Typography>
                                 </Box>
-                            </Box>
+                            </Box> */}
                         </Box>
                     </Card>
                 </Grid>
@@ -567,12 +590,7 @@ const HRDashboard = () => {
                                             sx={{
                                                 width: 30,
                                                 height: 30,
-                                                backgroundColor: 'white',
                                                 color: 'text.secondary',
-                                                '&:hover': {
-                                                    backgroundColor: 'grey.100',
-                                                    color: 'text.secondary',
-                                                },
                                             }}
                                         >
                                             <DotsVertical />
@@ -585,7 +603,6 @@ const HRDashboard = () => {
                                             PaperProps={{
                                                 style: {
                                                     minWidth: '10rem',
-                                                    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
                                                 },
                                             }}
                                         >
@@ -594,12 +611,7 @@ const HRDashboard = () => {
                                                     key={option}
                                                     onClick={handleMenuClose}
                                                     sx={{
-                                                        fontSize: '1rem',
-                                                        color: 'text.secondary',
-                                                        '&:hover': {
-                                                            backgroundColor: 'grey.100',
-                                                            color: 'text.primary',
-                                                        },
+                                                        fontSize: '1rem'
                                                     }}
                                                 >
                                                     {option}
@@ -649,12 +661,7 @@ const HRDashboard = () => {
                                                         sx={{
                                                             width: 30,
                                                             height: 30,
-                                                            backgroundColor: 'white',
                                                             color: 'text.secondary',
-                                                            '&:hover': {
-                                                                backgroundColor: 'grey.100',
-                                                                color: 'text.secondary',
-                                                            },
                                                         }}
                                                     >
                                                         <DotsVertical />
@@ -668,7 +675,6 @@ const HRDashboard = () => {
                                                         PaperProps={{
                                                             style: {
                                                                 minWidth: '10rem',
-                                                                boxShadow: '0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1)'
                                                             },
                                                         }}
                                                     >
@@ -678,11 +684,6 @@ const HRDashboard = () => {
                                                                 onClick={handleMenuCloseInter}
                                                                 sx={{
                                                                     fontSize: '1rem',
-                                                                    color: 'text.secondary',
-                                                                    '&:hover': {
-                                                                        backgroundColor: 'grey.100',
-                                                                        color: 'text.primary',
-                                                                    },
                                                                 }}
                                                             >
                                                                 {option}
@@ -736,7 +737,7 @@ const HRDashboard = () => {
                         <Grid item xs={12}>
                             <Card sx={{
                                 position: "relative",
-                                background: "linear-gradient(to right, transparent, #dbeafe, #b39ddb20)",
+                                background: theme.palette.mode === 'light' ? "linear-gradient(to right, transparent, #dbeafe, #b39ddb20)" : 'linear-gradient(to right, transparent, #3b82f633, #3b82f633)',
                                 overflow: "hidden",
                                 p: 5,
                                 mt: 3
@@ -809,6 +810,7 @@ const HRDashboard = () => {
                             </Card>
                         </Grid>
 
+                        {/* Recent payroll */}
                         <Grid item xs={12}>
                             <Card sx={{ p: 5, mt: 5 }}>
                                 <Box display="flex" alignItems="baseline" gap={2} mb={3}>
@@ -824,12 +826,7 @@ const HRDashboard = () => {
                                             sx={{
                                                 width: 30,
                                                 height: 30,
-                                                backgroundColor: 'white',
                                                 color: 'text.secondary',
-                                                '&:hover': {
-                                                    backgroundColor: 'grey.100',
-                                                    color: 'text.secondary',
-                                                },
                                             }}
                                         >
                                             <DotsVertical />
@@ -842,7 +839,6 @@ const HRDashboard = () => {
                                             PaperProps={{
                                                 style: {
                                                     minWidth: '10rem',
-                                                    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
                                                 },
                                             }}
                                         >
@@ -852,11 +848,6 @@ const HRDashboard = () => {
                                                     onClick={handleMenuClose}
                                                     sx={{
                                                         fontSize: '1rem',
-                                                        color: 'text.secondary',
-                                                        '&:hover': {
-                                                            backgroundColor: 'grey.100',
-                                                            color: 'text.primary',
-                                                        },
                                                     }}
                                                 >
                                                     {option}
@@ -868,7 +859,7 @@ const HRDashboard = () => {
 
                                 <Box
                                     sx={{
-                                        height: "198px",
+                                        height: "193px",
                                         overflowY: "auto",
                                         display: "flex",
                                         flexDirection: "column",
@@ -916,10 +907,10 @@ const HRDashboard = () => {
                                                         marginRight: '15px',
                                                         bgcolor:
                                                             item.color === "error"
-                                                                ? "rgb(254, 226, 226)"
+                                                                ? theme.palette.buttons.statusError
                                                                 : item.color === "success"
-                                                                    ? "rgb(210, 244, 238)"
-                                                                    : "rgb(254, 249, 195)",
+                                                                    ? theme.palette.buttons.statusSuccess
+                                                                    : theme.palette.buttons.statusPending,
                                                         color:
                                                             item.color === "error"
                                                                 ? "rgb(239, 68, 68)"

@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
-import HRDashboard from 'src/views/dashboard/HRDashboard'
+import EmployeeDashboard from 'src/views/dashboard/Employee/EmployeeDashboard'
+import HRDashboard from 'src/views/dashboard/HR/HRDashboard'
 
 const Dashboard = () => {
   const authToken = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('login-details')) : null
@@ -19,9 +20,7 @@ const Dashboard = () => {
       )}
 
       {role === 'employee' && (
-        <Box>
-          <Typography>Employee dashboard</Typography>
-        </Box>
+        <EmployeeDashboard />
       )}
     </Box>
   )

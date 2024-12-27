@@ -1,14 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 import ApexCharts from 'apexcharts';
-import { Box } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import { getChartColorsArray } from './commonChartColor/chartUtils';
 
 const RejectedCandidatesChart = () => {
     const chartRef = useRef(null);
+    const theme = useTheme();
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const chartColors = getChartColorsArray("rejectedCandidates");
+
+            // Dynamically get the axis text colors based on theme mode
+            const strokeColor = theme.palette.mode === 'light' ? '#f1f5f9' : '#3a335a';
 
             if (chartColors && chartColors.length > 0) {
                 const options = {
@@ -27,6 +31,7 @@ const RejectedCandidatesChart = () => {
                                 size: '50%',
                             },
                             track: {
+                                background: strokeColor,
                                 margin: 2,
                             },
                             dataLabels: {
@@ -41,7 +46,9 @@ const RejectedCandidatesChart = () => {
                         }
                     },
                     stroke: {
-                        lineCap: 'round'
+                        lineCap: 'round',
+                        // Set the stroke (progress bar) color dynamically here
+                        colors: [strokeColor] // Apply dynamic stroke color
                     },
                     labels: ['Total Application'],
                     colors: chartColors
@@ -59,7 +66,7 @@ const RejectedCandidatesChart = () => {
                 console.warn("Chart colors are undefined or empty");
             }
         }
-    }, []);
+    }, [theme.palette.mode]);
 
     return <Box ref={chartRef} id="rejectedCandidates" data-chart-colors='["#ef5e5f"]' sx={{ width: '100%', height: '100%' }}></Box>;
 };

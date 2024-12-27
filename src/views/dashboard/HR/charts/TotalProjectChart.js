@@ -1,14 +1,22 @@
-import { Box } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import React, { useEffect, useRef } from 'react'
 import ApexCharts from 'apexcharts';
 import { getChartColorsArray } from './commonChartColor/chartUtils';
 
 const TotalProjectChart = () => {
     const chartRef = useRef(null);
+    const theme = useTheme();
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const chartColors = getChartColorsArray("totalProjectChart");
+
+            // Dynamically get the axis text colors based on theme mode
+            const axisTextColor = theme.palette.mode === 'light' ? '#64748b' : '#fff';
+            const legendTextColor = theme.palette.mode === 'light' ? '#3b3b3b' : '#e0e0e0';
+            const gridColor = theme.palette.mode === 'light' ? '#eaeaea' : 'rgb(35, 58, 87)';
+            const tooltipBgColor = theme.palette.mode === 'light' ? '#FFFFFF' : '#333333'; // Dynamic tooltip background
+            const tooltipTextColor = theme.palette.mode === 'light' ? '#333' : '#FFF'; // Dynamic tooltip text
 
             if (chartColors && chartColors.length > 0) {
                 const options = {
@@ -44,6 +52,7 @@ const TotalProjectChart = () => {
                         },
                     },
                     grid: {
+                        borderColor: gridColor, // Dynamic grid line color
                         padding: {
                             top: -15,
                             bottom: 5,
@@ -51,9 +60,19 @@ const TotalProjectChart = () => {
                         }
                     },
                     xaxis: {
-                        categories: ['01', '02', '03', '04',
-                            '05', '06', '07', '08', '09'
-                        ],
+                        categories: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
+                        labels: {
+                            style: {
+                                colors: axisTextColor, // Dynamic X-axis text color
+                            },
+                        },
+                    },
+                    yaxis: {
+                        labels: {
+                            style: {
+                                colors: axisTextColor, // Dynamic Y-axis text color
+                            },
+                        },
                     },
                     dataLabels: {
                         enabled: false
@@ -61,9 +80,19 @@ const TotalProjectChart = () => {
                     colors: getChartColorsArray("totalProjectChart"),
                     legend: {
                         position: 'bottom',
+                        labels: {
+                            colors: legendTextColor, // Dynamic legend text color
+                        },
                     },
                     fill: {
                         opacity: 1
+                    },
+                    tooltip: {
+                        theme: theme.palette.mode, // Automatically applies 'light' or 'dark'
+                        style: {
+                            color: tooltipTextColor, // Tooltip text color
+                        },
+                        background: tooltipBgColor, // Tooltip background color
                     },
                     labels: ['Total Projects'],
                     colors: chartColors
@@ -81,7 +110,7 @@ const TotalProjectChart = () => {
                 console.warn("Chart colors are undefined or empty");
             }
         }
-    }, []);
+    }, [theme.palette.mode]);
 
     return <Box ref={chartRef} id="totalProjectChart" data-chart-colors='["#3b82f6", "#eab308", "#2dbda3", "#f87171"]' sx={{ width: '100%', height: '100%' }}></Box>
 }
