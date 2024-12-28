@@ -3,11 +3,20 @@ import React from 'react'
 
 const UserInfo = () => {
     return (
-        <Card sx={{ height: '390px' }}>
+        <Card
+            sx={{
+                height: {
+                    xs: 'auto', // Small screens
+                    sm: 'auto', // Medium screens
+                    md: 'auto', // Large screens
+                    lg: '390px', // Large screens
+                },
+            }}
+        >
             {/* Card Header */}
             <CardHeader
                 sx={{
-                    backgroundColor: '#212529',
+                    backgroundColor: 'primary.main',
                     color: 'white',
                     padding: '1rem 1.25rem 1rem',
                 }}

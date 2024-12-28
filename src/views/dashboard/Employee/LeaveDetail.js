@@ -17,7 +17,16 @@ const LeaveDetail = () => {
     };
 
     return (
-        <Card sx={{ height: '390px' }}>
+        <Card
+            sx={{
+                height: {
+                    xs: 'auto', // Small screens
+                    sm: 'auto', // Medium screens
+                    md: 'auto', // Large screens
+                    lg: '390px', // Large screens
+                },
+            }}
+        >
             <CardHeader
                 title={<Typography fontSize={16} fontWeight={600}>Leave Details</Typography>}
                 action={

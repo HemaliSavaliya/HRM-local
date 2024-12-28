@@ -5,6 +5,14 @@ import UserInfo from './UserInfo';
 import LeaveDetail from './LeaveDetail';
 import LeaveInfo from './LeaveInfo';
 import AttendanceCard from './AttendanceCard';
+import TotalHoursCard from './TotalHoursCard';
+import TotalHoursWeek from './TotalHoursWeek';
+import TotalHoursMonth from './TotalHoursMonth';
+import OverTime from './OverTime';
+import TimeTracking from './TimeTracking';
+import TeamMembers from './TeamMembers';
+import Notifications from './Notifications';
+import MeetingSchedule from './MeetingSchedule';
 
 const EmployeeDashboard = () => {
     const [open, setOpen] = useState(true);
@@ -50,23 +58,29 @@ const EmployeeDashboard = () => {
 
             {/* cards */}
             <Grid container spacing={5}>
-                <Grid item xs={12} sm={6} md={6} lg={3}><UserInfo /></Grid>
-                <Grid item xs={12} sm={6} md={6} lg={6}><LeaveDetail /></Grid>
-                <Grid item xs={12} sm={6} md={6} lg={3}><LeaveInfo /></Grid>
+                <Grid item xs={12} sm={12} md={12} lg={3}><UserInfo /></Grid>
+                <Grid item xs={12} sm={12} md={12} lg={6}><LeaveDetail /></Grid>
+                <Grid item xs={12} sm={12} md={12} lg={3}><LeaveInfo /></Grid>
             </Grid>
 
-            <Grid container spacing={2} mt={5}>
+            <Grid container spacing={5} mt={1}>
                 {/* First Column */}
-                <Grid item xs={12} xl={4} lg={4} md={4}><AttendanceCard /></Grid>
+                <Grid item xs={12} sm={12} xl={4} lg={4} md={12}><AttendanceCard /></Grid>
 
                 {/* Second Column */}
-                <Grid item xs={12} xl={8} container spacing={2} display="flex">
-                    <Grid item xs={12} md={6} lg={6} xl={3}></Grid>
-                    <Grid item xs={12} md={6} lg={6} xl={3}></Grid>
-                    <Grid item xs={12} md={6} lg={6} xl={3}></Grid>
-                    <Grid item xs={12} md={6} lg={6} xl={3}></Grid>
-                    <Grid item xs={12}></Grid>
+                <Grid item xs={12} sm={12} xl={8} lg={8} md={12} container spacing={2} display="flex">
+                    <Grid item xs={12} sm={6} md={6} lg={3} xl={3}><TotalHoursCard /></Grid>
+                    <Grid item xs={12} sm={6} md={6} lg={3} xl={3}><TotalHoursWeek /></Grid>
+                    <Grid item xs={12} sm={6} md={6} lg={3} xl={3}><TotalHoursMonth /></Grid>
+                    <Grid item xs={12} sm={6} md={6} lg={3} xl={3}><OverTime /></Grid>
+                    <Grid item xs={12} sm={12} md={12} lg={12} xl={12}><TimeTracking /></Grid>
                 </Grid>
+            </Grid>
+
+            <Grid container spacing={5} mt={1}>
+                <Grid item xs={12} sm={12} md={6} lg={4}><TeamMembers /></Grid>
+                <Grid item xs={12} sm={12} md={6} lg={4}><Notifications /></Grid>
+                <Grid item xs={12} sm={12} md={12} lg={4}><MeetingSchedule /></Grid>
             </Grid>
         </Box>
     )

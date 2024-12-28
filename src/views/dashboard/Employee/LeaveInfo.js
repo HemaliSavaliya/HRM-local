@@ -1,9 +1,20 @@
-import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, Typography } from '@mui/material';
-import React, { useState } from 'react'
+import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, Typography, useTheme } from '@mui/material';
+import React from 'react'
 
 const LeaveInfo = () => {
+    const theme = useTheme();
+
     return (
-        <Card sx={{ height: '390px' }}>
+        <Card
+            sx={{
+                height: {
+                    xs: 'auto', // Small screens
+                    sm: 'auto', // Medium screens
+                    md: 'auto', // Large screens
+                    lg: '390px', // Large screens
+                },
+            }}
+        >
             <CardHeader
                 title={<Typography fontSize={16} fontWeight={600}>Leave Details</Typography>}
             />
@@ -49,12 +60,12 @@ const LeaveInfo = () => {
                     <Grid item xs={12}>
                         <Button
                             variant="contained"
-                            color="primary"
+                            // color="primary"
                             fullWidth
                             sx={{
-                                background: '#111827', '&:hover': {
-                                    backgroundColor: '#111827'
-                                },
+                                '&.MuiButton-root:hover': {
+                                    backgroundColor: theme.palette.primary.hover
+                                }
                             }}
                             onClick={() => console.log('Apply New Leave')}
                         >
