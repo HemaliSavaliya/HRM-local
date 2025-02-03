@@ -1,8 +1,10 @@
 import React from 'react';
-import { Box, Card, Typography, Avatar, Button, Divider } from '@mui/material';
+import { Box, Card, Typography, Avatar, Button, Divider, useTheme } from '@mui/material';
 import { ChatOutline, EmailOutline, PhoneOutline } from 'mdi-material-ui';
 
 const TeamMembers = () => {
+    const theme = useTheme();
+
     const teamMembers = [
         {
             name: 'Alexander Jermai',
@@ -49,9 +51,12 @@ const TeamMembers = () => {
                     variant="outlined"
                     size="small"
                     sx={{
-                        backgroundColor: '#F8F9FA',
-                        border: '1px solid #F8F9FA',
-                        color: '#111827'
+                        backgroundColor: theme.palette.mode === 'light' ? '#F8F9FA' : '#312d4b',
+                        border: theme.palette.mode === "light" ? '1px solid #F8F9FA' : "1px solid #ffffff36",
+                        color: theme.palette.mode === 'light' ? '#111827' : '#fff',
+                        '&:hover': {
+                            border: theme.palette.mode === 'light' ? '1px solid primary.main' : '1px solid #F8F9FA',
+                        }
                     }}
                 >
                     View All
@@ -103,14 +108,17 @@ const TeamMembers = () => {
                         <Box display="flex" alignItems="center">
                             <Button
                                 sx={{
+                                    backgroundColor: theme.palette.mode === 'light' ? '#F8F9FA' : '#312d4b',
+                                    border: theme.palette.mode === "light" ? '1px solid #F8F9FA' : "1px solid #ffffff36",
+                                    color: theme.palette.mode === 'light' ? '#111827' : '#fff',
                                     width: 28,
                                     height: 28,
-                                    backgroundColor: '#F8F9FA',
-                                    border: '1px solid #F8F9FA',
-                                    color: '#111827',
                                     padding: '4px 8px',
                                     minWidth: 28,
-                                    mr: 2
+                                    mr: 2,
+                                    '&:hover': {
+                                        border: theme.palette.mode === 'light' ? '1px solid primary.main' : '1px solid #F8F9FA',
+                                    },
                                 }}
                             >
                                 <PhoneOutline sx={{ fontSize: 12 }} />
@@ -119,9 +127,12 @@ const TeamMembers = () => {
                                 sx={{
                                     width: 28,
                                     height: 28,
-                                    backgroundColor: '#F8F9FA',
-                                    border: '1px solid #F8F9FA',
-                                    color: '#111827',
+                                    backgroundColor: theme.palette.mode === 'light' ? '#F8F9FA' : '#312d4b',
+                                    border: theme.palette.mode === "light" ? '1px solid #F8F9FA' : "1px solid #ffffff36",
+                                    color: theme.palette.mode === 'light' ? '#111827' : '#fff',
+                                    '&:hover': {
+                                        border: theme.palette.mode === 'light' ? '1px solid primary.main' : '1px solid #F8F9FA',
+                                    },
                                     padding: '4px 8px',
                                     minWidth: 28,
                                     mr: 2
@@ -133,9 +144,12 @@ const TeamMembers = () => {
                                 sx={{
                                     width: 28,
                                     height: 28,
-                                    backgroundColor: '#F8F9FA',
-                                    border: '1px solid #F8F9FA',
-                                    color: '#111827',
+                                    backgroundColor: theme.palette.mode === 'light' ? '#F8F9FA' : '#312d4b',
+                                    border: theme.palette.mode === "light" ? '1px solid #F8F9FA' : "1px solid #ffffff36",
+                                    color: theme.palette.mode === 'light' ? '#111827' : '#fff',
+                                    '&:hover': {
+                                        border: theme.palette.mode === 'light' ? '1px solid primary.main' : '1px solid #F8F9FA',
+                                    },
                                     padding: '4px 8px',
                                     minWidth: 28,
                                 }}
@@ -146,7 +160,7 @@ const TeamMembers = () => {
                     </Box>
                 ))}
             </Box>
-        </Card>
+        </Card >
     );
 };
 

@@ -1,5 +1,6 @@
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
+import AdminDashboard from 'src/views/dashboard/Admin/AdminDashboard'
 import EmployeeDashboard from 'src/views/dashboard/Employee/EmployeeDashboard'
 import HRDashboard from 'src/views/dashboard/HR/HRDashboard'
 
@@ -9,19 +10,9 @@ const Dashboard = () => {
 
   return (
     <Box>
-      {role === 'admin' && (
-        <Box>
-          <Typography>Admin dashboard</Typography>
-        </Box>
-      )}
-
-      {role === 'hr' && (
-        <HRDashboard />
-      )}
-
-      {role === 'employee' && (
-        <EmployeeDashboard />
-      )}
+      {role === 'admin' && <AdminDashboard />}
+      {role === 'hr' && <HRDashboard />}
+      {role === 'employee' && <EmployeeDashboard />}
     </Box>
   )
 }

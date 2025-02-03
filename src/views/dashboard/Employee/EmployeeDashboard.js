@@ -1,4 +1,4 @@
-import { Alert, Box, Grid, IconButton, List, ListItem, Typography } from '@mui/material'
+import { Alert, Box, Grid, IconButton, List, ListItem, Typography, useTheme } from '@mui/material'
 import { ChevronRight, Close } from 'mdi-material-ui'
 import React, { useState } from 'react'
 import UserInfo from './UserInfo';
@@ -13,8 +13,14 @@ import TimeTracking from './TimeTracking';
 import TeamMembers from './TeamMembers';
 import Notifications from './Notifications';
 import MeetingSchedule from './MeetingSchedule';
+import Performance from './Performance';
+import MySkills from './MySkills';
+import BasicCards from './BasicCards';
+import Projects from './Projects';
+import Tasks from './Tasks';
 
 const EmployeeDashboard = () => {
+    const theme = useTheme();
     const [open, setOpen] = useState(true);
 
     return (
@@ -35,8 +41,8 @@ const EmployeeDashboard = () => {
                 <Alert
                     severity="info"
                     style={{
-                        backgroundColor: '#EDF2F4',
-                        color: "#3B7080",
+                        backgroundColor: theme.palette.mode === "light" ? '#EDF2F4' : 'rgb(237 242 244 / 8%)',
+                        color: theme.palette.mode === "light" ? "#3B7080" : "#fff",
                         marginBottom: '24px',
                         boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
                     }}
@@ -46,7 +52,7 @@ const EmployeeDashboard = () => {
                             color="inherit"
                             size="small"
                             onClick={() => setOpen(false)}
-                            sx={{ color: '#3B7080' }}
+                            sx={{ color: theme.palette.mode === "light" ? '#3B7080' : "#fff" }}
                         >
                             <Close fontSize="inherit" />
                         </IconButton>
@@ -75,6 +81,17 @@ const EmployeeDashboard = () => {
                     <Grid item xs={12} sm={6} md={6} lg={3} xl={3}><OverTime /></Grid>
                     <Grid item xs={12} sm={12} md={12} lg={12} xl={12}><TimeTracking /></Grid>
                 </Grid>
+            </Grid>
+
+            <Grid container spacing={5} mt={1}>
+                <Grid item xs={12} sm={12} md={12} lg={12}><Projects /></Grid>
+                {/* <Grid item xs={12} sm={12} md={6} lg={6}><Tasks /></Grid> */}
+            </Grid>
+
+            <Grid container spacing={5} mt={1}>
+                <Grid item xs={12} sm={12} md={6} lg={5}><Performance /></Grid>
+                <Grid item xs={12} sm={12} md={6} lg={4}><MySkills /></Grid>
+                <Grid item xs={12} sm={12} md={12} lg={3}><BasicCards /></Grid>
             </Grid>
 
             <Grid container spacing={5} mt={1}>

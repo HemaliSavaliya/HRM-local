@@ -1,10 +1,11 @@
-import { Box, Card, CardContent, CardHeader, Checkbox, Divider, FormControlLabel, Grid, IconButton, Menu, MenuItem, Typography } from '@mui/material';
+import { Box, Card, CardContent, CardHeader, Checkbox, Divider, FormControlLabel, Grid, IconButton, Menu, MenuItem, Typography, useTheme } from '@mui/material';
 import { CalendarAccountOutline, Circle } from 'mdi-material-ui';
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 const LeaveDetailChart = dynamic(() => import('./charts/LeaveDetailChart'), { ssr: false });
 
 const LeaveDetail = () => {
+    const theme = useTheme();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
@@ -37,8 +38,9 @@ const LeaveDetail = () => {
                             aria-expanded={open ? 'true' : undefined}
                             onClick={handleMenuClick}
                             sx={{
-                                border: '1px solid #E5E7EB !important',
-                                borderRadius: 0
+                                border: theme.palette.mode === "light" ? '1px solid #E5E7EB !important' : "1px solid #ffffff36 !important",
+                                borderRadius: 0,
+                                height: 27,
                             }}
                         >
                             <CalendarAccountOutline fontSize="small" />
@@ -72,27 +74,27 @@ const LeaveDetail = () => {
                         <Box mb={3}>
                             <Typography fontSize={12} display="flex" alignItems="center" mb={3}>
                                 <Circle fontSize="small" sx={{ color: '#212529', mr: 1, fontSize: 8 }} />
-                                <Typography component="span" color={'#111827'} fontWeight={600} fontSize={14} mr={1}>1254</Typography>
+                                <Typography component="span" color={theme.palette.mode === "light" ? '#111827' : "#fff"} fontWeight={600} fontSize={14} mr={1}>1254</Typography>
                                 on time
                             </Typography>
                             <Typography fontSize={12} display="flex" alignItems="center" mb={3}>
                                 <Circle fontSize="small" sx={{ color: '#03C95A', mr: 1, fontSize: 8 }} />
-                                <Typography component="span" color={'#111827'} fontWeight={600} fontSize={14} mr={1}>32</Typography>
+                                <Typography component="span" color={theme.palette.mode === "light" ? '#111827' : "#fff"} fontWeight={600} fontSize={14} mr={1}>32</Typography>
                                 Late Attendance
                             </Typography>
                             <Typography fontSize={12} display="flex" alignItems="center" mb={3}>
                                 <Circle fontSize="small" sx={{ color: '#F26512', mr: 1, fontSize: 8 }} />
-                                <Typography component="span" color={'#111827'} fontWeight={600} fontSize={14} mr={1}>658</Typography>
+                                <Typography component="span" color={theme.palette.mode === "light" ? '#111827' : "#fff"} fontWeight={600} fontSize={14} mr={1}>658</Typography>
                                 Work From Home
                             </Typography>
                             <Typography fontSize={12} display="flex" alignItems="center" mb={3}>
                                 <Circle fontSize="small" sx={{ color: '#E70D0D', mr: 1, fontSize: 8 }} />
-                                <Typography component="span" color={'#111827'} fontWeight={600} fontSize={14} mr={1}>14</Typography>
+                                <Typography component="span" color={theme.palette.mode === "light" ? '#111827' : "#fff"} fontWeight={600} fontSize={14} mr={1}>14</Typography>
                                 Absent
                             </Typography>
                             <Typography fontSize={12} display="flex" alignItems="center">
                                 <Circle fontSize="small" sx={{ color: '#FFC107', mr: 1, fontSize: 8 }} />
-                                <Typography component="span" color={'#111827'} fontWeight={600} fontSize={14} mr={1}>68</Typography>
+                                <Typography component="span" color={theme.palette.mode === "light" ? '#111827' : "#fff"} fontWeight={600} fontSize={14} mr={1}>68</Typography>
                                 Sick Leave
                             </Typography>
                         </Box>

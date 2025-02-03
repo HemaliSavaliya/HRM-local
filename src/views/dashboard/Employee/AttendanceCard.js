@@ -14,12 +14,12 @@ const AttendanceCard = () => {
     const progressValue = 65; // Example value for progress
 
     return (
-        <Card sx={{ padding: 5, border: '1px solid', borderColor: 'primary.main', background: 'linear-gradient(180deg, #c7c3f738 0%, #ada7ea1f 100%)' }}>
+        <Card sx={{ padding: 5, border: '1px solid', borderColor: 'primary.main', background: theme.palette.mode === "light" ? 'linear-gradient(180deg, #c7c3f738 0%, #ada7ea1f 100%)' : "linear-gradient(180deg, #c7c3f705 0%, #ada7ea1f 100%)" }}>
             <Box mb={4} textAlign="center">
                 <Typography color="#6B7280" fontWeight={500} fontSize={14} gutterBottom>
                     Attendance
                 </Typography>
-                <Typography fontSize={18} fontWeight={600} color={'#202C4B'}>08:35 AM, 11 Mar 2025</Typography>
+                <Typography fontSize={18} fontWeight={600}>08:35 AM, 11 Mar 2025</Typography>
             </Box>
 
             <Box

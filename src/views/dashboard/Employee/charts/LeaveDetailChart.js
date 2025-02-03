@@ -6,6 +6,9 @@ const LeaveDetailChart = () => {
     const chartRef = useRef(null);
     const theme = useTheme();
 
+    // Dynamically get the axis text colors based on theme mode
+    const strokeColor = theme.palette.mode === 'light' ? '#f1f5f9' : '#312d4b';
+
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const options = {
@@ -30,24 +33,11 @@ const LeaveDetailChart = () => {
                 legend: {
                     show: false
                 },
-                // responsive: [{
-                //     breakpoint: 480,
-                //     options: {
-                //         chart: {
-                //             width: 200
-                //         },
-                //         legend: {
-                //             show: false
-                //         }
-                //     }
-                // }],
-                // tooltip: {
-                //     theme: theme.palette.mode, // Automatically applies 'light' or 'dark'
-                //     style: {
-                //         color: tooltipTextColor, // Tooltip text color
-                //     },
-                //     background: tooltipBgColor, // Tooltip background color
-                // },
+                stroke: {
+                    // lineCap: 'round',
+                    // Set the stroke (progress bar) color dynamically here
+                    colors: [strokeColor] // Apply dynamic stroke color
+                },
                 labels: ['Leave Detail'],
             };
 

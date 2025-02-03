@@ -1,7 +1,9 @@
-import { Avatar, Box, Card, CardContent, CardHeader, Typography } from '@mui/material'
+import { Avatar, Box, Card, CardContent, CardHeader, Typography, useTheme } from '@mui/material'
 import React from 'react'
 
 const UserInfo = () => {
+    const theme = useTheme();
+
     return (
         <Card
             sx={{
@@ -50,7 +52,7 @@ const UserInfo = () => {
                     <Typography variant="caption" mb={0.5} fontWeight={600}>
                         Phone Number
                     </Typography>
-                    <Typography variant="body2" color="black">
+                    <Typography variant="body2" color={theme.palette.mode === "light" ? "black" : "#cfcce5"}>
                         +1 324 3453 545
                     </Typography>
                 </Box>
@@ -58,7 +60,7 @@ const UserInfo = () => {
                     <Typography variant="caption" mb={0.5} fontWeight={600}>
                         Email Address
                     </Typography>
-                    <Typography variant="body2" color="black">
+                    <Typography variant="body2" color={theme.palette.mode === "light" ? "black" : "#cfcce5"}>
                         <a
                             href="mailto:stephan@example.com"
                             style={{ textDecoration: 'none', color: 'inherit' }}
@@ -71,7 +73,7 @@ const UserInfo = () => {
                     <Typography variant="caption" mb={0.5} fontWeight={600}>
                         Report Office
                     </Typography>
-                    <Typography variant="body2" color="black">
+                    <Typography variant="body2" color={theme.palette.mode === "light" ? "black" : "#cfcce5"}>
                         Doglas Martini
                     </Typography>
                 </Box>
@@ -79,7 +81,7 @@ const UserInfo = () => {
                     <Typography variant="caption" mb={0.5} fontWeight={600}>
                         Joined on
                     </Typography>
-                    <Typography variant="body2" color="black">
+                    <Typography variant="body2" color={theme.palette.mode === "light" ? "black" : "#cfcce5"}>
                         15 Jan 2024
                     </Typography>
                 </Box>

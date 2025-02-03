@@ -1,17 +1,14 @@
 import React from 'react';
-import { Box, Card, Typography, Avatar, Button, Divider } from '@mui/material';
+import { Box, Card, Typography, Avatar, Button, Divider, useTheme } from '@mui/material';
 
 const Notifications = () => {
+    const theme = useTheme();
     const notifications = [
         {
             user: 'Lex Murphy',
             message: 'requested access to UNIX',
             time: 'Today at 9:42 AM',
             img: '/images/avatars/1.png',
-            attachment: {
-                name: 'EY_review.pdf',
-                img: '/image/avatars/1.pngvg',
-            },
         },
         {
             user: 'Lex Murphy',
@@ -53,9 +50,12 @@ const Notifications = () => {
                     variant="outlined"
                     size="small"
                     sx={{
-                        backgroundColor: '#F8F9FA',
-                        border: '1px solid #F8F9FA',
-                        color: '#111827'
+                        backgroundColor: theme.palette.mode === 'light' ? '#F8F9FA' : '#312d4b',
+                        border: theme.palette.mode === "light" ? '1px solid #F8F9FA' : "1px solid #ffffff36",
+                        color: theme.palette.mode === 'light' ? '#111827' : '#fff',
+                        '&:hover': {
+                            border: theme.palette.mode === 'light' ? '1px solid primary.main' : '1px solid #F8F9FA',
+                        },
                     }}
                 >
                     View All
@@ -91,7 +91,7 @@ const Notifications = () => {
                             >
                                 {notification.user} {notification.message}
                             </Typography>
-                            <Typography variant="body2" color="textSecondary" mb={2}>
+                            <Typography color="textSecondary" fontSize={13} mb={2}>
                                 {notification.time}
                             </Typography>
 
@@ -101,10 +101,10 @@ const Notifications = () => {
                                     <Avatar
                                         src={notification.attachment.img}
                                         alt={notification.attachment.name}
-                                        sx={{ width: 32, height: 32, mr: 2 }}
+                                        sx={{ width: 24, height: 24, mr: 2, fontSize: 10 }}
                                     />
-                                    <Typography variant="body2">
-                                        <a href="#">{notification.attachment.name}</a>
+                                    <Typography variant="body2" fontWeight={400}>
+                                        {notification.attachment.name}
                                     </Typography>
                                 </Box>
                             )}
@@ -112,10 +112,35 @@ const Notifications = () => {
                             {/* Actions */}
                             {notification.actions && (
                                 <Box display="flex" alignItems="center">
-                                    <Button variant="contained" size="small" color="primary" sx={{ mr: 2 }}>
+                                    <Button
+                                        variant="contained"
+                                        size="small"
+                                        color="primary"
+                                        sx={{
+                                            padding: '0.25rem 0.5rem',
+                                            fontSize: '0.75rem',
+                                            textTransform: 'capitalize',
+                                            borderRadius: '5px',
+                                            transition: 'all 0.5s',
+                                            fontWeight: 500,
+                                            mr: 2
+                                        }}
+                                    >
                                         Approve
                                     </Button>
-                                    <Button variant="outlined" size="small" color="primary">
+                                    <Button
+                                        variant="outlined"
+                                        size="small"
+                                        color="primary"
+                                        sx={{
+                                            padding: '0.25rem 0.5rem',
+                                            fontSize: '0.75rem',
+                                            textTransform: 'capitalize',
+                                            borderRadius: '5px',
+                                            transition: 'all 0.5s',
+                                            fontWeight: 500
+                                        }}
+                                    >
                                         Decline
                                     </Button>
                                 </Box>

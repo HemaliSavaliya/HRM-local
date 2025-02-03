@@ -1,7 +1,9 @@
 import React from 'react';
-import { Box, Card, Typography, Grid } from '@mui/material';
+import { Box, Card, Typography, Grid, useTheme } from '@mui/material';
 
 const TimeTracking = () => {
+    const theme = useTheme();
+
     return (
         <Card sx={{ padding: 5, height: '100%' }}>
             <Grid container spacing={2}>
@@ -71,7 +73,7 @@ const TimeTracking = () => {
             </Grid>
 
             {/* Progress Bar */}
-            <Box sx={{ backgroundColor: 'rgba(0, 0, 0, 0.1)', height: '24px', borderRadius: 1, mb: 7 }}>
+            <Box sx={{ backgroundColor: theme.palette.mode === "light" ? 'rgba(0, 0, 0, 0.1)' : "rgb(255 255 255 / 13%)", height: '24px', borderRadius: 1, mb: 7 }}>
                 <Box
                     sx={{
                         display: 'flex',
@@ -80,7 +82,7 @@ const TimeTracking = () => {
                         overflow: 'hidden',
                     }}
                 >
-                    <Box sx={{ width: '18%', backgroundColor: 'white' }} />
+                    <Box sx={{ width: '18%', backgroundColor: theme.palette.mode === "light" ? 'white' : "#312d4b" }} />
                     <Box sx={{ width: '18%', backgroundColor: '#03C95A', borderRadius: '4px', mr: '8px' }} />
                     <Box sx={{ width: '5%', backgroundColor: '#FFC107', borderRadius: '4px', mr: '8px' }} />
                     <Box sx={{ width: '28%', backgroundColor: '#03C95A', borderRadius: '4px', mr: '8px' }} />
@@ -89,7 +91,7 @@ const TimeTracking = () => {
                     <Box sx={{ width: '5%', backgroundColor: '#FFC107', borderRadius: '4px', mr: '8px' }} />
                     <Box sx={{ width: '3%', backgroundColor: '#1B84FF', borderRadius: '4px', mr: '8px' }} />
                     <Box sx={{ width: '2%', backgroundColor: '#1B84FF', borderRadius: '4px' }} />
-                    <Box sx={{ width: '18%', backgroundColor: 'white' }} />
+                    <Box sx={{ width: '18%', backgroundColor: theme.palette.mode === "light" ? 'white' : "#312d4b" }} />
                 </Box>
             </Box>
 
