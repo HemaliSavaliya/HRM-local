@@ -22,42 +22,44 @@ const Permission = () => {
     }
 
     return (
-        <Grid container spacing={4}>
-            {roles?.map(role => (
-                <Grid item key={role.roleName}>
-                    <Typography
-                        fontSize={14}
-                        textTransform={'uppercase'}
-                        color={'#9155f2'}
-                        fontWeight={700}
-                        mb={3}
-                        sx={{ textDecoration: 'underline' }}
-                    >
-                        {role.roleName} Permissions
-                    </Typography>
-                    {navigation().map(menuItem => {
-                        if (menuItem.sectionTitle) return null // skip rendering if sectionTitle exists
+        <>
+            <Box display={"flex"} gap={10} overflow={"auto"}>
+                {roles?.map(role => (
+                    <Box key={role.roleName} width={300} minWidth={300}>
+                        <Typography
+                            fontSize={14}
+                            textTransform={'uppercase'}
+                            color={'#9155f2'}
+                            fontWeight={700}
+                            mb={3}
+                            sx={{ textDecoration: 'underline' }}
+                        >
+                            {role.roleName} Permissions
+                        </Typography>
+                        {navigation().map(menuItem => {
+                            if (menuItem.sectionTitle) return null // skip rendering if sectionTitle exists
 
-                        return (
-                            <div className='switch-holder' key={menuItem.title}>
-                                <div className='switch-label'>
-                                    <Box sx={{ textTransform: 'uppercase', fontWeight: 700, fontSize: '13px' }}>{menuItem.title}</Box>
+                            return (
+                                <div className='switch-holder' key={menuItem.title}>
+                                    <div className='switch-label'>
+                                        <Box sx={{ textTransform: 'uppercase', fontWeight: 700, fontSize: '13px' }}>{menuItem.title}</Box>
+                                    </div>
+                                    <div className='switch-toggle'>
+                                        <input
+                                            type='checkbox'
+                                            id={`${role.roleName}-${menuItem.title}`}
+                                            checked={rolePermissions[role.roleName]?.includes(menuItem.title)}
+                                            onChange={() => handleToggleChange(menuItem.title, role.roleName)}
+                                        />
+                                        <label htmlFor={`${role.roleName}-${menuItem.title}`}></label>
+                                    </div>
                                 </div>
-                                <div className='switch-toggle'>
-                                    <input
-                                        type='checkbox'
-                                        id={`${role.roleName}-${menuItem.title}`}
-                                        checked={rolePermissions[role.roleName]?.includes(menuItem.title)}
-                                        onChange={() => handleToggleChange(menuItem.title, role.roleName)}
-                                    />
-                                    <label htmlFor={`${role.roleName}-${menuItem.title}`}></label>
-                                </div>
-                            </div>
-                        )
-                    })}
-                </Grid>
-            ))}
-        </Grid>
+                            )
+                        })}
+                    </Box>
+                ))}
+            </Box>
+        </>
     )
 }
 

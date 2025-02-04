@@ -5,7 +5,7 @@ const BasicCards = () => {
   return (
     <Box>
       {/* Team Birthday Card */}
-      <Card sx={{ backgroundColor: "#212529", color: "white", marginBottom: 2 }}>
+      <Card sx={{ backgroundColor: "#212529", color: "white", marginBottom: 2, height: "231px" }}>
         <CardContent sx={{ textAlign: "center" }}>
           <Typography fontSize={16} fontWeight={600} color={"white"} mb={2}>
             Team Birthday
@@ -39,7 +39,8 @@ const BasicCards = () => {
             alignItems: "center",
             justifyContent: "space-between",
             padding: '20px 10px',
-            pb: '20px !important'
+            pb: '20px !important',
+            height: "111px"
           }}
         >
           <Box>
@@ -69,7 +70,8 @@ const BasicCards = () => {
             alignItems: "center",
             justifyContent: "space-between",
             padding: '20px 10px',
-            pb: '20px !important'
+            pb: '20px !important',
+            height: "111px"
           }}
         >
           <Box>

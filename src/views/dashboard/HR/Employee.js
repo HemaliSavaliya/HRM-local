@@ -52,6 +52,15 @@ const Employee = () => {
             performance: 'Low',
             status: 'Active',
         },
+        {
+            id: 'TW-1002',
+            img: 'images/avatars/2.png',
+            name: 'Denise Ledford',
+            email: 'ledford@tailwick.com',
+            designation: 'ASP.Net Developer',
+            performance: 'Low',
+            status: 'Active',
+        },
     ];
 
     return (
@@ -80,7 +89,7 @@ const Employee = () => {
                     </Grid>
                 </Grid>
 
-                <TableContainer sx={{ borderTop: "1px solid rgba(58, 53, 65, 0.12)" }}>
+                <TableContainer sx={{ borderTop: "1px solid rgba(58, 53, 65, 0.12)", height: "340px" }}>
                     <Table>
                         <TableHead>
                             <TableRow>

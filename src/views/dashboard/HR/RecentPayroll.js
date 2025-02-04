@@ -29,7 +29,7 @@ const RecentPayroll = () => {
     ];
 
     return (
-        <Card sx={{ p: 5, mt: 5 }}>
+        <Card sx={{ p: 5, mt: 5, height: "296px" }}>
             <Box display="flex" alignItems="baseline" gap={2} mb={3}>
                 <Typography variant="subtitle1" fontWeight={600} mb={3} flexGrow={1}>
                     Recent Payroll

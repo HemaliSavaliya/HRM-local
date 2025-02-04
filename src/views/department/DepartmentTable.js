@@ -157,8 +157,6 @@ const DepartmentTable = ({ searchQuery,
                                                             <Button
                                                                 onClick={() => handleEdit(row.id)}
                                                                 sx={{
-                                                                    background: theme.palette.background.paper,
-                                                                    boxShadow: 'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px',
                                                                     height: '32px',
                                                                     margin: '0 3px',
                                                                     minWidth: '32px',

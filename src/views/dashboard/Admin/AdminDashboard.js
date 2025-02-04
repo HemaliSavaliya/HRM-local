@@ -10,6 +10,12 @@ import TotalEarning from './TotalEarning'
 import TotalProfit from './ProfitWeek'
 import JobApplicants from './JobApplicants'
 import NewHire from './NewHire'
+import EmployeesByDepartment from './EmployeesByDepartment'
+import EmployeeStatus from './EmployeeStatus'
+import AttendanceOverview from './AttendanceOverview'
+import ClockInOutCard from './ClockInOutCard'
+import RecentActivities from './RecentActivities'
+import Birthdays from './Birthdays'
 
 const AdminDashboard = () => {
     return (
@@ -28,14 +34,27 @@ const AdminDashboard = () => {
             <WelcomeCard />
 
             <Grid container spacing={5} mt={3}>
-                <Grid item xs={12} md={6} lg={3}><Attendance /></Grid>
-                <Grid item xs={12} md={6} lg={3}><TotalProjects /></Grid>
-                <Grid item xs={12} md={6} lg={3}><TotalClient /></Grid>
-                <Grid item xs={12} md={6} lg={3}><TotalTask /></Grid>
-                <Grid item xs={12} md={6} lg={3}><TotalEarning /></Grid>
-                <Grid item xs={12} md={6} lg={3}><TotalProfit /></Grid>
-                <Grid item xs={12} md={6} lg={3}><JobApplicants /></Grid>
-                <Grid item xs={12} md={6} lg={3}><NewHire /></Grid>
+                <Grid item xs={12} sm={4} md={3} lg={3}><Attendance /></Grid>
+                <Grid item xs={12} sm={4} md={3} lg={3}><TotalProjects /></Grid>
+                <Grid item xs={12} sm={4} md={3} lg={3}><TotalClient /></Grid>
+                <Grid item xs={12} sm={4} md={3} lg={3}><TotalTask /></Grid>
+                <Grid item xs={12} sm={4} md={3} lg={3}><TotalEarning /></Grid>
+                <Grid item xs={12} sm={4} md={3} lg={3}><TotalProfit /></Grid>
+                <Grid item xs={12} sm={4} md={3} lg={3}><JobApplicants /></Grid>
+                <Grid item xs={12} sm={4} md={3} lg={3}><NewHire /></Grid>
+            </Grid>
+
+            <EmployeesByDepartment />
+            <EmployeeStatus />
+
+            <Grid container spacing={5} mt={3}>
+                <Grid item xs={12} md={6} lg={6}><AttendanceOverview /></Grid>
+                <Grid item xs={12} md={6} lg={6}><ClockInOutCard /></Grid>
+            </Grid>
+
+            <Grid container spacing={5} mt={3}>
+                <Grid item xs={12} md={6} lg={6}><RecentActivities /></Grid>
+                <Grid item xs={12} md={6} lg={6}><Birthdays /></Grid>
             </Grid>
         </Box>
     )

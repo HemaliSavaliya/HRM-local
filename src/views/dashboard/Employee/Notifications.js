@@ -38,7 +38,7 @@ const Notifications = () => {
     ];
 
     return (
-        <Card>
+        <Card sx={{ height: "461px" }}>
             <Box sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -62,7 +62,7 @@ const Notifications = () => {
                 </Button>
             </Box>
             <Divider sx={{ m: 0 }} />
-            <Box padding={'15px'}>
+            <Box padding={'15px'} height={400} overflow="auto">
                 {notifications.map((notification, index) => (
                     <Box
                         key={index}

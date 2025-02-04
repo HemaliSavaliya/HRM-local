@@ -95,7 +95,7 @@ const MySkills = () => {
                 <Typography fontSize={16} fontWeight={600}>My Skills</Typography>
             </Box>
             <Divider sx={{ m: 0 }} />
-            <Box padding={'15px'}>
+            <Box padding={'15px'} height={422} overflow="auto">
                 {skills.map((skill, index) => (
                     <SkillProgress
                         key={index}

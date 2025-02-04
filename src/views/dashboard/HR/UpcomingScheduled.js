@@ -4,15 +4,10 @@ import { Calendar } from 'vanilla-calendar-pro';
 import 'vanilla-calendar-pro/styles/index.css';
 
 const EventItem = ({ day, month, title, time, creator }) => {
-    const theme = useTheme();
-
-    // Conditionally set border color based on the theme mode
-    const borderColor = theme.palette.mode === 'light' ? 'rgb(226, 232, 240)' : 'rgb(35, 58, 87)';
-
     return (
         <Grid container spacing={2} alignItems="center">
             <Grid item>
-                <Paper sx={{ width: '3rem', height: '3rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border: 1, borderColor: borderColor, borderRadius: .125, boxShadow: 'none' }}>
+                <Paper sx={{ width: '3rem', height: '3rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', boxShadow: 'none' }}>
                     <Typography variant="subtitle1">{day}</Typography>
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>{month}</Typography>
                 </Paper>
@@ -53,7 +48,7 @@ const UpcomingScheduled = () => {
     }, [theme.palette.mode]);
 
     return (
-        <Card sx={{ p: 5 }}>
+        <Card sx={{ p: 5, height: "982px" }}>
             <Box>
                 <Typography variant="subtitle1" fontWeight={600} mb={3}>Upcoming Scheduled</Typography>
                 <Box id="calendar" sx={{ width: 'auto', padding: 1 }}>

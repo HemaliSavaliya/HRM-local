@@ -31,7 +31,7 @@ const MeetingSchedule = () => {
     ];
 
     return (
-        <Card>
+        <Card sx={{ height: "461px" }}>
             <Box sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -41,7 +41,7 @@ const MeetingSchedule = () => {
                 <Typography fontSize={16} fontWeight={600}>Meetings Schedule</Typography>
             </Box>
             <Divider sx={{ m: 0 }} />
-            <Box padding={'15px'}>
+            <Box padding={'15px'} height={405} overflow="auto">
                 {meetings.map((meeting, index) => (
                     <Box
                         key={index}
