@@ -1,38 +1,24 @@
 import React, { useState } from "react";
-import {
-    Card,
-    CardHeader,
-    CardContent,
-    Typography,
-    IconButton,
-    Menu,
-    MenuItem,
-    Box,
-    Divider,
-    useTheme,
-} from "@mui/material";
+import { Card, CardHeader, CardContent, Typography, Avatar, Menu, MenuItem, Button, IconButton, Divider, useTheme, Box, TableContainer, Table, TableBody, TableRow, TableCell, Badge } from "@mui/material";
 import { CalendarBlankOutline } from "mdi-material-ui";
-import dynamic from "next/dynamic";
-const EmployeeChart = dynamic(() => import('./charts/EmployeeChart'), { ssr: false });
+import PerfectScrollbar from "react-perfect-scrollbar";
 
-const EmployeesByDepartment = () => {
+const TasksStatistics = () => {
     const theme = useTheme();
     const [anchorEl, setAnchorEl] = useState(null);
-    const [selectedPeriod, setSelectedPeriod] = useState("This Week");
+    const [selectedFilter, setSelectedFilter] = useState("Today");
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = (period) => {
-        if (period) setSelectedPeriod(period);
+    const handleClick = (event) => setAnchorEl(event.currentTarget);
+    const handleClose = (filter) => {
+        if (filter) setSelectedFilter(filter);
         setAnchorEl(null);
     };
 
     return (
-        <Card sx={{ flexGrow: 1 }}>
+        <Card sx={{ height: "481px", display: "flex", flexDirection: "column" }}>
+            {/* Header (Fixed, Not Scrolling) */}
             <CardHeader
-                title={<Typography fontSize={16} fontWeight={600}>Employees By Department</Typography>}
+                title={<Typography fontSize={16} fontWeight={600}>Tasks Statistics</Typography>}
                 action={
                     <>
                         <IconButton
@@ -47,14 +33,14 @@ const EmployeesByDepartment = () => {
                             }}
                         >
                             <CalendarBlankOutline sx={{ fontSize: 18, marginRight: 1 }} />
-                            {selectedPeriod}
+                            {selectedFilter}
                         </IconButton>
                         <Menu
                             anchorEl={anchorEl}
                             open={Boolean(anchorEl)}
                             onClose={() => handleClose()}
                         >
-                            {["This Month", "This Week", "Last Week"].map((period) => (
+                            {["This Month", "This Week", "Today"].map((period) => (
                                 <MenuItem
                                     key={period}
                                     onClick={() => handleClose(period)}
@@ -68,30 +54,17 @@ const EmployeesByDepartment = () => {
                 }
             />
             <Divider sx={{ margin: 0 }} />
-            <CardContent>
-                <EmployeeChart />
-                <Typography variant="body2" sx={{ fontSize: 13, mt: 1 }}>
-                    <Box
-                        component="span"
-                        sx={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            color: "#FF6F28",
-                            fontSize: 15,
-                            marginRight: 1,
-                        }}
-                    >
-                        ●
-                    </Box>
-                    No of Employees increased by{" "}
-                    <Box component="span" sx={{ color: "success.main", fontWeight: "bold" }}>
-                        +20%
-                    </Box>{" "}
-                    from last Week
-                </Typography>
-            </CardContent>
+
+            {/* Scrollable Content */}
+            <Box sx={{ flex: 1, overflow: "hidden" }}>
+                <PerfectScrollbar style={{ maxHeight: "100%" }}>
+                    <CardContent sx={{ padding: 0 }}>
+
+                    </CardContent>
+                </PerfectScrollbar>
+            </Box>
         </Card>
     );
 };
 
-export default EmployeesByDepartment;
+export default TasksStatistics;

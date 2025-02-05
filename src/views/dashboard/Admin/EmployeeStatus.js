@@ -31,7 +31,7 @@ const EmployeeStatus = () => {
     };
 
     return (
-        <Box mt={6}>
+        <Box mt={2}>
             <Card sx={{ flexGrow: 1 }}>
                 <CardHeader
                     title={<Typography fontSize={16} fontWeight={600}>Employee Status</Typography>}
@@ -68,16 +68,9 @@ const EmployeeStatus = () => {
                             </Menu>
                         </>
                     }
-                    sx={{
-                        pb: 1,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        flexWrap: "wrap",
-                    }}
                 />
-                <Divider />
-                <CardContent sx={{ paddingTop: "0" }}>
+                <Divider sx={{ margin: 0 }} />
+                <CardContent>
                     {/* Total Employee Count */}
                     <Box
                         display="flex"
@@ -209,7 +202,7 @@ const EmployeeStatus = () => {
                     </Button>
                 </CardContent>
             </Card>
-        </Box >
+        </Box>
     );
 };
 

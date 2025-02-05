@@ -16,6 +16,14 @@ import AttendanceOverview from './AttendanceOverview'
 import ClockInOutCard from './ClockInOutCard'
 import RecentActivities from './RecentActivities'
 import Birthdays from './Birthdays'
+import Schedules from './Schedules'
+import JobApplicant from './JobsApplicants'
+import EmployeesCard from './EmployeesCard'
+import TodoList from './TodoList'
+import SalesOverviewCard from './SalesOverviewCard'
+import InvoicesCard from './InvoicesCard'
+import Projects from './Projects'
+import TasksStatistics from './TasksStatistics'
 
 const AdminDashboard = () => {
     return (
@@ -44,12 +52,37 @@ const AdminDashboard = () => {
                 <Grid item xs={12} sm={4} md={3} lg={3}><NewHire /></Grid>
             </Grid>
 
-            <EmployeesByDepartment />
-            <EmployeeStatus />
+            <Grid container spacing={5} mt={3}>
+                <Grid item xs={12}><EmployeesByDepartment /></Grid>
+                <Grid item xs={12}><EmployeeStatus /></Grid>
+            </Grid>
 
             <Grid container spacing={5} mt={3}>
                 <Grid item xs={12} md={6} lg={6}><AttendanceOverview /></Grid>
                 <Grid item xs={12} md={6} lg={6}><ClockInOutCard /></Grid>
+            </Grid>
+
+            <Grid container spacing={5} mt={3}>
+                <Grid item xs={12}><JobApplicant /></Grid>
+            </Grid>
+
+            <Grid container spacing={5} mt={3}>
+                <Grid item xs={12}><Schedules /></Grid>
+            </Grid>
+
+            <Grid container spacing={5} mt={3}>
+                <Grid item xs={12} md={6} lg={6}><EmployeesCard /></Grid>
+                <Grid item xs={12} md={6} lg={6}><TodoList /></Grid>
+            </Grid>
+
+            <Grid container spacing={5} mt={3}>
+                <Grid item xs={12} md={7} lg={7}><SalesOverviewCard /></Grid>
+                <Grid item xs={12} md={5} lg={5}><InvoicesCard /></Grid>
+            </Grid>
+
+            <Grid container spacing={5} mt={3}>
+                <Grid item xs={12} md={7} lg={7}><Projects /></Grid>
+                <Grid item xs={12} md={5} lg={5}><TasksStatistics /></Grid>
             </Grid>
 
             <Grid container spacing={5} mt={3}>

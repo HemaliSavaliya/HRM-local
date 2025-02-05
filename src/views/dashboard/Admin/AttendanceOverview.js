@@ -32,7 +32,7 @@ const AttendanceOverview = () => {
     };
 
     return (
-        <Card sx={{ flex: 1, height: "481px" }}>
+        <Card sx={{ height: "481px", display: "flex", flexDirection: "column" }}>
             {/* Card Header */}
             <CardHeader
                 title={<Typography fontSize={16} fontWeight={600}>Attendance Overview</Typography>}
@@ -69,18 +69,11 @@ const AttendanceOverview = () => {
                         </Menu>
                     </>
                 }
-                sx={{
-                    pb: 1,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    flexWrap: "wrap",
-                }}
             />
-            <Divider />
+            <Divider sx={{ margin: 0 }} />
 
             {/* Card Content */}
-            <CardContent>
+            <CardContent sx={{ paddingTop: 8 }}>
                 {/* Attendance Chart Placeholder */}
                 <Box sx={{ position: "relative", textAlign: "center", mb: 3 }}>
                     <AttendanceChart />
@@ -104,30 +97,32 @@ const AttendanceOverview = () => {
                         <Typography variant="body2">
                             <span style={{ color: item.color, marginRight: 5 }}>●</span> {item.label}
                         </Typography>
-                        <Typography variant="body2" fontSize={13} fontWeight={700} color={'#000'}>
+                        <Typography variant="body2" fontSize={13} fontWeight={700} color={theme.palette.mode === "light" ? '#000' : "#fff"}>
                             {item.value}
                         </Typography>
                     </Box>
                 ))}
-
-                {/* Absent Employees */}
-                <Box sx={{ backgroundColor: "background.default", p: 2, borderRadius: 2, display: "flex", justifyContent: "space-between", alignItems: "center", mt: 3 }}>
-                    <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <Typography variant="body2" sx={{ mr: 2 }}>
-                            Total Absentees
-                        </Typography>
-                        <AvatarGroup max={5} spacing="small">
-                            {["images/avatars/avatar-2.png", "images/avatars/avatar-3.png", "images/avatars/avatar-7.png", "images/avatars/avatar-10.png"].map((src, index) => (
-                                <StyledAvatar key={index} src={src} />
-                            ))}
-                            <StyledAvatar sx={{ bgcolor: "primary.main", color: "white", fontSize: "10px" }}>+1</StyledAvatar>
-                        </AvatarGroup>
-                    </Box>
-                    <Typography variant="body2" color="primary" sx={{ textDecoration: "underline", cursor: "pointer" }}>
-                        View Details
-                    </Typography>
-                </Box>
             </CardContent>
+
+            <Divider sx={{ margin: 0 }} />
+
+            {/* Absent Employees Section (Outside CardContent) */}
+            <Box sx={{ p: 2, display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "background.default", borderRadius: 2, m: 2 }}>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <Typography variant="body2" sx={{ mr: 2 }}>
+                        Total Absentees
+                    </Typography>
+                    <AvatarGroup max={5} spacing="small">
+                        {["images/avatars/avatar-2.png", "images/avatars/avatar-3.png", "images/avatars/avatar-7.png", "images/avatars/avatar-10.png"].map((src, index) => (
+                            <StyledAvatar key={index} src={src} />
+                        ))}
+                        <StyledAvatar sx={{ backgroundColor: "primary.main", color: "white", fontSize: "10px" }}>+1</StyledAvatar>
+                    </AvatarGroup>
+                </Box>
+                <Typography variant="body2" color="primary" sx={{ textDecoration: "underline", cursor: "pointer" }}>
+                    View Details
+                </Typography>
+            </Box>
         </Card>
     );
 };
