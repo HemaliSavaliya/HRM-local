@@ -2,6 +2,7 @@
 import { Dialog, DialogContent, DialogTitle, Typography, Button, Box, useTheme } from '@mui/material'
 import { motion } from 'framer-motion'
 import HolidayForm from './HolidayForm'
+import { saveButton } from 'src/Styles'
 
 const HolidayModal = ({
     editHolidayId,
@@ -31,8 +32,7 @@ const HolidayModal = ({
                 variant='contained'
                 onClick={handleClickOpen('body')}
                 sx={{
-                    lineHeight: 0,
-                    padding: '20px 25px',
+                    ...saveButton,
                     '&.MuiButton-root:hover': {
                         backgroundColor: theme.palette.primary.hover
                     }

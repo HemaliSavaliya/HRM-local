@@ -42,7 +42,7 @@ const TodoList = () => {
             <IconButton
               onClick={handleClick}
               sx={{
-                border: theme.palette.mode === "light" ? '1px solid #E5E7EB !important' : "1px solid #ffffff36 !important",
+                border: theme.palette.mode === "light" ? '1px solid #E5E7EB !important' : "1px solid #5d5971 !important",
                 padding: "6px 12px",
                 borderRadius: "4px",
                 fontSize: "14px",
@@ -78,7 +78,11 @@ const TodoList = () => {
         <PerfectScrollbar style={{ maxHeight: "400px" }}>
           <CardContent sx={{ paddingTop: 6 }}>
             {todos.map((todo) => (
-              <Box key={todo.id} display="flex" alignItems="center" p={1} border={1} borderRadius={1} mb={4} sx={{ borderColor: "divider", background: todo.completed ? "#f1ebfe" : "none", }}>
+              <Box key={todo.id} display="flex" alignItems="center" p={1} border={1} borderRadius={1} mb={4} sx={{
+                borderColor: "divider", backgroundColor: todo.completed
+                  ? (theme.palette.mode === "light" ? "#f1ebfe" : "#3e386f")
+                  : "none"
+              }}>
                 {/* <DragIndicatorIcon sx={{ mr: 1, cursor: "grab" }} /> */}
                 <Checkbox checked={todo.completed} onChange={() => handleCheckboxChange(todo.id)} />
                 <Typography

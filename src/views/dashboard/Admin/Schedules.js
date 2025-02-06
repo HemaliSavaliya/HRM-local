@@ -50,20 +50,20 @@ const SchedulesCard = () => {
     const theme = useTheme();
 
     return (
-        <Card sx={{ height: 480, display: "flex", flexDirection: "column" }}>
+        <Card sx={{ height: { xs: 480, xl: '529px' }, display: "flex", flexDirection: "column" }}>
             {/* Card Header */}
             <CardHeader title={<Typography fontSize={16} fontWeight={600}>Schedules</Typography>} action={
                 <Button
                     variant="outlined"
                     size="small"
                     sx={{
-                        backgroundColor: theme.palette.mode === "light" ? '#F8F9FA' : "#f8f9fa14",
-                        border: theme.palette.mode === "light" ? '1px solid #cbcbcb' : "1px solid #cbcbcb1f",
+                        backgroundColor: theme.palette.mode === "light" ? '#F8F9FA' : "#403d59",
+                        border: theme.palette.mode === "light" ? '1px solid #cbcbcb' : "1px solid #524f68",
                         color: theme.palette.mode === "light" ? '#111827' : "#e1e3e7",
                         textTransform: 'capitalize',
                         "&:hover": {
                             backgroundColor: 'rgba(115, 102, 255, 0%)',
-                            border: '1px solid #7366ff63',
+                            border: '1px solid #7366ff',
                             color: "primary.main"
                         }
                     }}
@@ -74,7 +74,7 @@ const SchedulesCard = () => {
             <Divider sx={{ margin: 0 }} />
 
             {/* Scrollable Card Body */}
-            <PerfectScrollbar style={{ maxHeight: "100%" }}>
+            <PerfectScrollbar style={{ maxHeight: "450px" }}>
                 <CardContent>
                     {schedules.map((schedule, index) => (
                         <Box key={index} sx={{ backgroundColor: "action.hover", p: 5, borderRadius: 2, mb: 5 }}>

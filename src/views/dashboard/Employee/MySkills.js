@@ -1,4 +1,5 @@
 import { Box, Card, Typography, Divider, CircularProgress } from '@mui/material';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 // A custom CircularProgress component with percentage overlay
 const SkillProgress = ({ value, label, updated, color }) => {
@@ -75,6 +76,7 @@ const MySkills = () => {
         { name: 'Wordpress', updated: '15 May 2025', progress: 61, color: '#1B84FF' },
         { name: 'Javascript', updated: '13 May 2025', progress: 58, color: '#212525' },
         { name: 'React js', updated: '20 May 2025', progress: 40, color: '#FFC107' },
+        { name: 'Next js', updated: '29 May 2025', progress: 70, color: '#3b7080' },
     ];
 
     return (
@@ -95,17 +97,19 @@ const MySkills = () => {
                 <Typography fontSize={16} fontWeight={600}>My Skills</Typography>
             </Box>
             <Divider sx={{ m: 0 }} />
-            <Box padding={'15px'} height={422} overflow="auto">
-                {skills.map((skill, index) => (
-                    <SkillProgress
-                        key={index}
-                        label={skill.name}
-                        value={skill.progress}
-                        color={skill.color}
-                        updated={skill.updated}
-                    />
-                ))}
-            </Box>
+            <PerfectScrollbar style={{ maxHeight: 422 }}>
+                <Box padding={'15px'}>
+                    {skills.map((skill, index) => (
+                        <SkillProgress
+                            key={index}
+                            label={skill.name}
+                            value={skill.progress}
+                            color={skill.color}
+                            updated={skill.updated}
+                        />
+                    ))}
+                </Box>
+            </PerfectScrollbar>
         </Card>
     )
 }

@@ -42,7 +42,7 @@ const ApplicationReceived = () => {
     const theme = useTheme();
 
     return (
-        <Card sx={{ p: 5, mt: 5 }}>
+        <Card sx={{ p: 5 }}>
             <Box sx={{ display: 'flex', justifyContent: "space-between", alignItems: 'center', gap: 2, mb: 3 }}>
                 <Typography variant="subtitle2" sx={{ mb: 0 }}>Application Received</Typography>
                 <Box display={'flex'} gap={'10px'}>

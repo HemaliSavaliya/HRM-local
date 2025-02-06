@@ -34,6 +34,12 @@ const useDesignationData = () => {
         setEditDesignationId(null)
     }
 
+    // For Edit Data
+    const handleEdit = id => {
+        setEditDesignationId(id)
+        setOpen(true)
+    }
+
     // for dialog box
     const handleClickOpen = scrollType => () => {
         setOpen(true)
@@ -95,6 +101,32 @@ const useDesignationData = () => {
         setOpen(false)
     }
 
+    // Function to update from data to localStorage
+    const editDesignation = async (updatedData) => {
+        const designation = getDesignationFromLocalStorage()
+
+        // Find the role and update it
+        const updatedDesignation = designation.map((des) =>
+            des.id === updatedData.id ? updatedData : des
+        )
+
+        setDesignationToLocalStorage(updatedDesignation)
+        setDesignationData(updatedDesignation)
+
+        toast.success('Designation Updated Successfully!', {
+            duration: 2000,
+            position: 'top-center',
+            style: {
+                background: theme.palette.background.paper,
+                color: theme.palette.text.primary,
+                fontSize: '15px'
+            }
+        })
+
+        setOpen(false)
+        setEditDesignationId(null)
+    }
+
     // Function for toggle status
     const updateDesignationStatus = async (id, newStatus) => {
         const designation = getDesignationFromLocalStorage()
@@ -129,7 +161,9 @@ const useDesignationData = () => {
         addDesignation,
         updateDesignationStatus,
         searchQuery,
-        handleSearchChange
+        handleSearchChange,
+        handleEdit,
+        editDesignation
     }
 }
 

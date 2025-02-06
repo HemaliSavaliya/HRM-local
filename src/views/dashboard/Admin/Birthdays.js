@@ -27,7 +27,7 @@ const Birthdays = () => {
     const groupedBirthdays = groupByDate(birthdays);
 
     return (
-        <Card sx={{ height: "509px", display: "flex", flexDirection: "column" }}>
+        <Card sx={{ height: { xs: "509px", xl: '529px' }, display: "flex", flexDirection: "column" }}>
             <CardHeader
                 title={<Typography fontSize={16} fontWeight={600}>Birthdays</Typography>}
                 action={
@@ -35,13 +35,13 @@ const Birthdays = () => {
                         variant="outlined"
                         size="small"
                         sx={{
-                            backgroundColor: theme.palette.mode === "light" ? '#F8F9FA' : "#f8f9fa14",
-                            border: theme.palette.mode === "light" ? '1px solid #cbcbcb' : "1px solid #cbcbcb1f",
+                            backgroundColor: theme.palette.mode === "light" ? '#F8F9FA' : "#403d59",
+                            border: theme.palette.mode === "light" ? '1px solid #cbcbcb' : "1px solid #524f68",
                             color: theme.palette.mode === "light" ? '#111827' : "#e1e3e7",
                             textTransform: 'capitalize',
                             "&:hover": {
                                 backgroundColor: 'rgba(115, 102, 255, 0%)',
-                                border: '1px solid #7366ff63',
+                                border: '1px solid #7366ff',
                                 color: "primary.main"
                             }
                         }}
@@ -54,7 +54,7 @@ const Birthdays = () => {
 
             {/* Ensure proper height and scrolling behavior */}
             <Box sx={{ flex: 1, overflow: "hidden" }}>
-                <PerfectScrollbar style={{ maxHeight: "100%" }}>
+                <PerfectScrollbar style={{ maxHeight: "450px" }}>
                     <CardContent>
                         {Object.entries(groupedBirthdays).map(([date, people]) => (
                             <Box key={date} sx={{ marginBottom: "15px" }}>
@@ -62,7 +62,7 @@ const Birthdays = () => {
                                     {date}
                                 </Typography>
                                 {people.map((person, index) => (
-                                    <Box key={index} sx={{ background: theme.palette.mode === "light" ? "#f8f9fa" : "#f8f9fa14", padding: "10px", borderRadius: "5px", marginBottom: "10px" }}>
+                                    <Box key={index} sx={{ background: theme.palette.mode === "light" ? "#f8f9fa" : "#403d59", padding: "10px", borderRadius: "5px", marginBottom: "10px" }}>
                                         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                                             <Box sx={{ display: "flex", alignItems: "center" }}>
                                                 <Avatar src={person.avatar} />

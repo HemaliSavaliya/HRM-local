@@ -1,6 +1,7 @@
 import { Avatar, Box, Card, Chip, IconButton, Menu, MenuItem, Typography, useTheme } from '@mui/material'
 import { ArrowBottomLeft, ArrowTopRight, DotsVertical } from 'mdi-material-ui'
 import React, { useState } from 'react'
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 const RecentPayroll = () => {
     const theme = useTheme();
@@ -74,72 +75,73 @@ const RecentPayroll = () => {
                 </Box>
             </Box>
 
-            <Box
-                sx={{
-                    height: "193px",
-                    overflowY: "auto",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: '18px'
-                }}
-            >
-                {payrollData.map((item, index) => (
-                    <Box key={index} display="flex" justifyContent={'space-between'} alignItems="center" gap={2}>
-                        <Box display={'flex'} gap={2}>
-                            {/* Icon */}
-                            <Avatar
-                                sx={{
-                                    width: 24,
-                                    height: 24,
-                                    bgcolor: 'transparent'
-                                }}
-                            >
-                                {item.status === "Paid" || item.status === "Pending" ? (
-                                    <ArrowBottomLeft fontSize="small" color='success' />
-                                ) : (
-                                    <ArrowTopRight fontSize="small" color='error' />
-                                )}
-                            </Avatar>
+            <PerfectScrollbar style={{ maxHeight: "193px" }}>
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: '18px',
+                        paddingRight: "10px" // Prevents content from hiding under scrollbar
+                    }}
+                >
+                    {payrollData.map((item, index) => (
+                        <Box key={index} display="flex" justifyContent={'space-between'} alignItems="center" gap={2}>
+                            <Box display={'flex'} gap={2}>
+                                {/* Icon */}
+                                <Avatar
+                                    sx={{
+                                        width: 24,
+                                        height: 24,
+                                        backgroundColor: 'transparent'
+                                    }}
+                                >
+                                    {item.status === "Paid" || item.status === "Pending" ? (
+                                        <ArrowBottomLeft fontSize="small" color='success' />
+                                    ) : (
+                                        <ArrowTopRight fontSize="small" color='error' />
+                                    )}
+                                </Avatar>
 
-                            {/* Name */}
-                            <Typography variant='subtitle1' fontSize={'14px'} fontWeight={600}>{item.name}</Typography>
+                                {/* Name */}
+                                <Typography variant='subtitle1' fontSize={'14px'} fontWeight={600}>{item.name}</Typography>
+                            </Box>
+
+                            <Box display={'flex'} gap={2}>
+                                {/* Amount */}
+                                <Typography variant='subtitle1' fontSize={'14px'} fontWeight={600}>{item.amount}</Typography>
+
+                                {/* Status */}
+                                <Chip
+                                    label={item.status}
+                                    size="small"
+                                    sx={{
+                                        fontWeight: 500,
+                                        fontSize: '11px',
+                                        paddingTop: '.125rem',
+                                        paddingBottom: '.125rem',
+                                        paddingLeft: '.625rem',
+                                        paddingRight: '.625rem',
+                                        borderRadius: '.25rem',
+                                        marginRight: '15px',
+                                        backgroundColor:
+                                            item.color === "error"
+                                                ? theme.palette.buttons.statusError
+                                                : item.color === "success"
+                                                    ? theme.palette.buttons.statusSuccess
+                                                    : theme.palette.buttons.statusPending,
+                                        color:
+                                            item.color === "error"
+                                                ? "rgb(239, 68, 68)"
+                                                : item.color === "success"
+                                                    ? "rgb(36, 151, 130)"
+                                                    : "rgb(234, 179, 8) ",
+                                    }}
+                                />
+                            </Box>
                         </Box>
-
-                        <Box display={'flex'} gap={2}>
-                            {/* Amount */}
-                            <Typography variant='subtitle1' fontSize={'14px'} fontWeight={600}>{item.amount}</Typography>
-
-                            {/* Status */}
-                            <Chip
-                                label={item.status}
-                                size="small"
-                                sx={{
-                                    fontWeight: 500,
-                                    fontSize: '11px',
-                                    paddingTop: '.125rem',
-                                    paddingBottom: '.125rem',
-                                    paddingLeft: '.625rem',
-                                    paddingRight: '.625rem',
-                                    borderRadius: '.25rem',
-                                    marginRight: '15px',
-                                    bgcolor:
-                                        item.color === "error"
-                                            ? theme.palette.buttons.statusError
-                                            : item.color === "success"
-                                                ? theme.palette.buttons.statusSuccess
-                                                : theme.palette.buttons.statusPending,
-                                    color:
-                                        item.color === "error"
-                                            ? "rgb(239, 68, 68)"
-                                            : item.color === "success"
-                                                ? "rgb(36, 151, 130)"
-                                                : "rgb(234, 179, 8) ",
-                                }}
-                            />
-                        </Box>
-                    </Box>
-                ))}
-            </Box>
+                    ))}
+                </Box>
+            </PerfectScrollbar>
         </Card>
     )
 }

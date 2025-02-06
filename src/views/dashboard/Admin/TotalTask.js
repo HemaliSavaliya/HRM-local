@@ -4,7 +4,7 @@ import React from 'react'
 
 const TotalTask = () => {
     return (
-        <Card sx={{ flex: 1 }}>
+        <Card sx={{ flex: 1, height: { xl: '190px' } }}>
             <CardContent>
                 <Box display="flex" flexDirection="column" mb={2}>
                     <Avatar sx={{ bgcolor: "#FD3995", width: 42, height: 42 }}>

@@ -8,6 +8,7 @@ import useLeaveReqData from 'src/hooks/useLeaveReqData'
 import LeaveRequestModal from 'src/components/LeaveRequest/LeaveRequestModal'
 import { Toaster } from 'react-hot-toast'
 import LeaveReqTable from './LeaveRequestTable'
+import { inputField, inputLabel } from 'src/Styles'
 
 const LeaveRequest = () => {
     const {
@@ -47,9 +48,9 @@ const LeaveRequest = () => {
                         addLeaveRequest={addLeaveRequest}
                     />
                     <TextField
-                        sx={{ mt: { xs: 3, sm: 0, lg: 0 } }}
+                        sx={{ mt: { xs: 3, sm: 0, lg: 0 }, ...inputField, ...inputLabel }}
                         label='Search Leave Request'
-                        variant='outlined'
+                        variant='filled'
                         size='small'
                         value={searchQuery}
                         onChange={handleSearchChange}

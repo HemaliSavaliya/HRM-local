@@ -10,6 +10,7 @@ import ConfirmationModal from 'src/common/ConfirmationModal'
 import ProjectsTable from 'src/views/projects/ProjectsTable'
 import ProjectModal from 'src/components/ProjectsModal/ProjectModal'
 import useProjectData from 'src/hooks/useProjectData'
+import { inputField, inputLabel } from 'src/Styles'
 
 const Project = () => {
   const {
@@ -125,9 +126,9 @@ const Project = () => {
             editProjects={editProjects}
           />
           <TextField
-            sx={{ mt: { xs: 3, sm: 0, lg: 0 } }}
+            sx={{ mt: { xs: 3, sm: 0, lg: 0 }, ...inputField, ...inputLabel }}
             label='Search Project'
-            variant='outlined'
+            variant='filled'
             size='small'
             value={searchQuery}
             onChange={handleSearchChange}

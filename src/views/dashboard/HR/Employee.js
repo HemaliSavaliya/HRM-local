@@ -2,6 +2,7 @@ import { Avatar, Box, Button, Card, Checkbox, Grid, Pagination, Table, TableBody
 import { PencilOutline, TrashCanOutline, TrayArrowDown } from 'mdi-material-ui'
 import React from 'react'
 import { styled } from '@mui/material/styles'
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 const CustomStyledCheckbox = styled(Checkbox)(({ theme }) => ({
     '&.MuiCheckbox-root': {
@@ -64,7 +65,7 @@ const Employee = () => {
     ];
 
     return (
-        <Card sx={{ p: 5, mt: 5 }}>
+        <Card sx={{ p: 5 }}>
             <Box sx={{ padding: 2 }}>
                 <Grid container spacing={2} mb={'20px'}>
                     <Grid item xs={12} md={8}>
@@ -89,125 +90,127 @@ const Employee = () => {
                     </Grid>
                 </Grid>
 
-                <TableContainer sx={{ borderTop: "1px solid rgba(58, 53, 65, 0.12)", height: "340px" }}>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell padding="checkbox">
-                                    <CustomStyledCheckbox />
-                                </TableCell>
-                                <TableCell>ID</TableCell>
-                                <TableCell>Name</TableCell>
-                                <TableCell>Designation</TableCell>
-                                <TableCell>Performance</TableCell>
-                                <TableCell>Status</TableCell>
-                                <TableCell>Action</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {employees.map((employee) => (
-                                <TableRow key={employee.id}>
+                <PerfectScrollbar style={{ maxHeight: "300px", overflowX: "hidden" }}>
+                    <TableContainer sx={{ borderTop: "1px solid rgba(58, 53, 65, 0.12)" }}>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
                                     <TableCell padding="checkbox">
                                         <CustomStyledCheckbox />
                                     </TableCell>
-                                    <TableCell>{employee.id}</TableCell>
-                                    <TableCell>
-                                        <Box display={'flex'} gap={'10px'} alignItems={'center'}>
-                                            <Box>
-                                                <Avatar width={'2.5rem'} height={'2.5rem'} src={employee.img} alt={employee.name} sx={{
-                                                    borderRadius: '9999px',
-                                                    background: theme.palette.mode === 'light' ? 'rgb(224, 242, 254)' : '#24978233'
-                                                }}
-                                                />
-                                            </Box>
-                                            <Box>
-                                                <Typography variant="body1" fontSize={'14px'} fontWeight={600}>{employee.name}</Typography>
-                                                <Typography variant="body2" color="textSecondary">
-                                                    {employee.email}
-                                                </Typography>
-                                            </Box>
-                                        </Box>
-                                    </TableCell>
-                                    <TableCell>{employee.designation}</TableCell>
-                                    <TableCell>
-                                        <Typography
-                                            variant="body2"
-                                            sx={{
-                                                color: employee.performance === 'Good' ? 'green' : 'red',
-                                            }}
-                                        >
-                                            {employee.performance}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Box
-                                            sx={{
-                                                color: employee.status === 'Active' ? 'rgb(36, 151, 130)' : 'rgb(100, 116, 139)',
-                                                fontWeight: 500,
-                                                fontSize: '.75rem',
-                                                paddingTop: '.125rem',
-                                                paddingBottom: '.125rem',
-                                                paddingLeft: '.625rem',
-                                                paddingRight: '.625rem',
-                                                background: employee.status === 'Active' ? theme.palette.buttons.statusSuccess : theme.palette.buttons.statusDisable,
-                                                border: employee.status === 'Active' ? `1px solid ${theme.palette.buttons.statusBorder}` : `1px solid ${theme.palette.buttons.statusDisableBorder}`,
-                                                borderRadius: '.25rem',
-                                                textAlign: 'center',
-                                                width: 'fit-content'
-                                            }}
-                                        >
-                                            {employee.status}
-                                        </Box>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Box display={'flex'} gap={'5px'}>
-                                            <Box
-                                                sx={{
-                                                    color: theme.palette.mode === 'light' ? 'rgba(100, 116, 139, 0.7)' : 'rgb(146, 175, 211)',
-                                                    borderRadius: '.375rem',
-                                                    display: 'flex',
-                                                    justifyContent: 'center',
-                                                    alignItems: 'center',
-                                                    width: '2rem',
-                                                    height: '2rem',
-                                                    cursor: 'pointer',
-                                                    background: theme.palette.mode === 'light' ? 'rgb(241, 245, 249)' : 'rgb(28, 46, 69)',
-                                                    transition: 'background 0.3s, color 0.3s', // Optional: smooth transition
-                                                    '&:hover': {
-                                                        background: theme.palette.mode === 'light' ? 'rgb(219, 234, 254)' : '#3b82f633',
-                                                        color: 'rgb(59, 130, 246)',
-                                                    },
-                                                }}
-                                            >
-                                                <PencilOutline />
-                                            </Box>
-                                            <Box
-                                                sx={{
-                                                    color: theme.palette.mode === 'light' ? 'rgba(100, 116, 139, 0.7)' : 'rgb(146, 175, 211)',
-                                                    borderRadius: '.375rem',
-                                                    display: 'flex',
-                                                    justifyContent: 'center',
-                                                    alignItems: 'center',
-                                                    width: '2rem',
-                                                    height: '2rem',
-                                                    cursor: 'pointer',
-                                                    background: theme.palette.mode === 'light' ? 'rgb(241, 245, 249)' : 'rgb(28, 46, 69)',
-                                                    transition: 'background 0.3s, color 0.3s', // Optional: smooth transition
-                                                    '&:hover': {
-                                                        background: theme.palette.mode === 'light' ? 'rgb(254, 226, 226)' : '#ef444433',
-                                                        color: 'rgb(239, 68, 68)',
-                                                    },
-                                                }}
-                                            >
-                                                <TrashCanOutline />
-                                            </Box>
-                                        </Box>
-                                    </TableCell>
+                                    <TableCell>ID</TableCell>
+                                    <TableCell>Name</TableCell>
+                                    <TableCell>Designation</TableCell>
+                                    <TableCell>Performance</TableCell>
+                                    <TableCell>Status</TableCell>
+                                    <TableCell>Action</TableCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                            </TableHead>
+                            <TableBody>
+                                {employees.map((employee) => (
+                                    <TableRow key={employee.id}>
+                                        <TableCell padding="checkbox">
+                                            <CustomStyledCheckbox />
+                                        </TableCell>
+                                        <TableCell>{employee.id}</TableCell>
+                                        <TableCell>
+                                            <Box display={'flex'} gap={'10px'} alignItems={'center'}>
+                                                <Box>
+                                                    <Avatar width={'2.5rem'} height={'2.5rem'} src={employee.img} alt={employee.name} sx={{
+                                                        borderRadius: '9999px',
+                                                        background: theme.palette.mode === 'light' ? 'rgb(224, 242, 254)' : '#24978233'
+                                                    }}
+                                                    />
+                                                </Box>
+                                                <Box>
+                                                    <Typography variant="body1" fontSize={'14px'} fontWeight={600}>{employee.name}</Typography>
+                                                    <Typography variant="body2" color="textSecondary">
+                                                        {employee.email}
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                        </TableCell>
+                                        <TableCell>{employee.designation}</TableCell>
+                                        <TableCell>
+                                            <Typography
+                                                variant="body2"
+                                                sx={{
+                                                    color: employee.performance === 'Good' ? 'green' : 'red',
+                                                }}
+                                            >
+                                                {employee.performance}
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Box
+                                                sx={{
+                                                    color: employee.status === 'Active' ? 'rgb(36, 151, 130)' : 'rgb(100, 116, 139)',
+                                                    fontWeight: 500,
+                                                    fontSize: '.75rem',
+                                                    paddingTop: '.125rem',
+                                                    paddingBottom: '.125rem',
+                                                    paddingLeft: '.625rem',
+                                                    paddingRight: '.625rem',
+                                                    background: employee.status === 'Active' ? theme.palette.buttons.statusSuccess : theme.palette.buttons.statusDisable,
+                                                    border: employee.status === 'Active' ? `1px solid ${theme.palette.buttons.statusBorder}` : `1px solid ${theme.palette.buttons.statusDisableBorder}`,
+                                                    borderRadius: '.25rem',
+                                                    textAlign: 'center',
+                                                    width: 'fit-content'
+                                                }}
+                                            >
+                                                {employee.status}
+                                            </Box>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Box display={'flex'} gap={'5px'}>
+                                                <Box
+                                                    sx={{
+                                                        color: theme.palette.mode === 'light' ? 'rgba(100, 116, 139, 0.7)' : 'rgb(146, 175, 211)',
+                                                        borderRadius: '.375rem',
+                                                        display: 'flex',
+                                                        justifyContent: 'center',
+                                                        alignItems: 'center',
+                                                        width: '2rem',
+                                                        height: '2rem',
+                                                        cursor: 'pointer',
+                                                        background: theme.palette.mode === 'light' ? 'rgb(241, 245, 249)' : 'rgb(28, 46, 69)',
+                                                        transition: 'background 0.3s, color 0.3s',
+                                                        '&:hover': {
+                                                            background: theme.palette.mode === 'light' ? 'rgb(219, 234, 254)' : '#3b82f633',
+                                                            color: 'rgb(59, 130, 246)',
+                                                        },
+                                                    }}
+                                                >
+                                                    <PencilOutline />
+                                                </Box>
+                                                <Box
+                                                    sx={{
+                                                        color: theme.palette.mode === 'light' ? 'rgba(100, 116, 139, 0.7)' : 'rgb(146, 175, 211)',
+                                                        borderRadius: '.375rem',
+                                                        display: 'flex',
+                                                        justifyContent: 'center',
+                                                        alignItems: 'center',
+                                                        width: '2rem',
+                                                        height: '2rem',
+                                                        cursor: 'pointer',
+                                                        background: theme.palette.mode === 'light' ? 'rgb(241, 245, 249)' : 'rgb(28, 46, 69)',
+                                                        transition: 'background 0.3s, color 0.3s',
+                                                        '&:hover': {
+                                                            background: theme.palette.mode === 'light' ? 'rgb(254, 226, 226)' : '#ef444433',
+                                                            color: 'rgb(239, 68, 68)',
+                                                        },
+                                                    }}
+                                                >
+                                                    <TrashCanOutline />
+                                                </Box>
+                                            </Box>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </PerfectScrollbar>
 
                 <Box display="flex" justifyContent="space-between" alignItems="center" mt={2}>
                     <Typography variant="body2">

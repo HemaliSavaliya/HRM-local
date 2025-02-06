@@ -8,6 +8,7 @@ import useRoleData from 'src/hooks/useRoleData'
 import { Toaster } from 'react-hot-toast'
 import RoleModal from 'src/components/RoleModal/RoleModal'
 import RoleTable from 'src/views/role/RoleTable'
+import { inputField, inputLabel } from 'src/Styles'
 
 const Role = () => {
   const {
@@ -50,12 +51,12 @@ const Role = () => {
             addRole={addRole}
           />
           <TextField
-            sx={{ mt: { xs: 3, sm: 0, lg: 0 } }}
             label='Search Role'
-            variant='outlined'
+            variant='filled'
             size='small'
             value={searchQuery}
             onChange={handleSearchChange}
+            sx={{ mt: { xs: 3, sm: 0, lg: 0 }, ...inputField, ...inputLabel }}
           />
         </Box>
 

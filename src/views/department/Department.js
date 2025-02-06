@@ -8,6 +8,7 @@ import useDepartmentData from 'src/hooks/useDepartmentData'
 import DepartmentModal from 'src/components/DepartmentModal/DepartmentModal'
 import DepartmentTable from './DepartmentTable'
 import { Toaster } from 'react-hot-toast'
+import { inputField, inputLabel } from 'src/Styles'
 
 const Department = () => {
     const {
@@ -53,9 +54,9 @@ const Department = () => {
                         editDepartments={editDepartments}
                     />
                     <TextField
-                        sx={{ mt: { xs: 3, sm: 0, lg: 0 } }}
+                        sx={{ mt: { xs: 3, sm: 0, lg: 0 }, ...inputField, ...inputLabel }}
                         label='Search Department'
-                        variant='outlined'
+                        variant='filled'
                         size='small'
                         value={searchQuery}
                         onChange={handleSearchChange}

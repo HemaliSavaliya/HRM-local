@@ -30,7 +30,7 @@ const EmployeesByDepartment = () => {
     };
 
     return (
-        <Card sx={{ flexGrow: 1 }}>
+        <Card sx={{ flexGrow: 1, height: { xl: '400px' } }}>
             <CardHeader
                 title={<Typography fontSize={16} fontWeight={600}>Employees By Department</Typography>}
                 action={
@@ -38,7 +38,7 @@ const EmployeesByDepartment = () => {
                         <IconButton
                             onClick={handleClick}
                             sx={{
-                                border: theme.palette.mode === "light" ? '1px solid #E5E7EB !important' : "1px solid #ffffff36 !important",
+                                border: theme.palette.mode === "light" ? '1px solid #E5E7EB !important' : "1px solid #5d5971 !important",
                                 padding: "6px 12px",
                                 borderRadius: "4px",
                                 fontSize: "14px",

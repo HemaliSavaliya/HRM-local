@@ -1,6 +1,7 @@
 import { Dialog, DialogContent, DialogTitle, Typography, Button, Box, useTheme } from '@mui/material'
 import DepartmentForm from './DepartmentForm'
 import { motion } from 'framer-motion'
+import { saveButton } from 'src/Styles'
 
 const DepartmentModal = ({
     editDepartId,
@@ -30,8 +31,7 @@ const DepartmentModal = ({
                 variant='contained'
                 onClick={handleClickOpen('body')}
                 sx={{
-                    lineHeight: 0,
-                    padding: '20px 25px',
+                    ...saveButton,
                     '&.MuiButton-root:hover': {
                         backgroundColor: theme.palette.primary.hover
                     }

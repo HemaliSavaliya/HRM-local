@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { Card, CardHeader, CardContent, Typography, Box, IconButton, Menu, MenuItem, Avatar, AvatarGroup, Divider, useTheme } from "@mui/material";
 import { CalendarBlankOutline } from "mdi-material-ui";
 import { styled } from "@mui/material/styles";
-import dynamic from "next/dynamic";
-const AttendanceChart = dynamic(() => import('./charts/AttendanceChart'), { ssr: false });
+import { Doughnut } from "react-chartjs-2";
+import Chart from "chart.js/auto";
+import { ArcElement } from "chart.js";
+
+// Register required elements
+Chart.register(ArcElement);
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
     background: 'rgb(224, 242, 254)',
@@ -31,8 +35,44 @@ const AttendanceOverview = () => {
         setAnchorEl(null);
     };
 
+    const borderColor = theme.palette.mode === "light" ? "#fff" : "#312d4b";
+
+    const data = {
+        labels: ['Late', 'Present', 'Permission', 'Absent'],
+        datasets: [
+            {
+                label: 'Attendance',
+                data: [40, 20, 30, 10],
+                backgroundColor: ['#0C4B5E', '#03C95A', '#FFC107', '#E70D0D'],
+                borderWidth: 5,
+                borderRadius: 10,
+                borderColor: borderColor, // Border between segments
+                hoverBorderWidth: 0, // Border radius for curved edges
+                cutout: '60%',
+            }
+        ]
+    };
+
+    const options = {
+        rotation: -100,
+        circumference: 200,
+        layout: {
+            padding: {
+                top: -20, // Set to 0 to remove top padding
+                bottom: -20, // Set to 0 to remove bottom padding
+            }
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false // Hide the legend
+            }
+        },
+    };
+
     return (
-        <Card sx={{ height: "481px", display: "flex", flexDirection: "column" }}>
+        <Card sx={{ height: { xs: "481px", xl: '511px' }, display: "flex", flexDirection: "column" }}>
             {/* Card Header */}
             <CardHeader
                 title={<Typography fontSize={16} fontWeight={600}>Attendance Overview</Typography>}
@@ -41,7 +81,7 @@ const AttendanceOverview = () => {
                         <IconButton
                             onClick={handleClick}
                             sx={{
-                                border: theme.palette.mode === "light" ? '1px solid #E5E7EB !important' : "1px solid #ffffff36 !important",
+                                border: theme.palette.mode === "light" ? '1px solid #E5E7EB !important' : "1px solid #5d5971 !important",
                                 padding: "6px 12px",
                                 borderRadius: "4px",
                                 fontSize: "14px",
@@ -73,13 +113,20 @@ const AttendanceOverview = () => {
             <Divider sx={{ margin: 0 }} />
 
             {/* Card Content */}
-            <CardContent sx={{ paddingTop: 8 }}>
+            <CardContent sx={{ paddingTop: '10px', paddingBottom: "10px" }}>
                 {/* Attendance Chart Placeholder */}
-                <Box sx={{ position: "relative", textAlign: "center", mb: 3 }}>
-                    <AttendanceChart />
-                    <Box sx={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
-                        <Typography variant="body2">Total Attendance</Typography>
-                        <Typography variant="h5">120</Typography>
+                <Box
+                    position="relative"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    mb={4}
+                    sx={{ height: "178px" }} // Adjust width and height as needed
+                >
+                    <Doughnut data={data} options={options} />
+                    <Box position="absolute" textAlign="center" top={'50%'}>
+                        <Typography variant="body2" color="textSecondary">Total Attendance</Typography>
+                        <Typography variant="h5" fontWeight="bold">120</Typography>
                     </Box>
                 </Box>
 

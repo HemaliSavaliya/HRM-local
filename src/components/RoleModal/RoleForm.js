@@ -13,6 +13,7 @@ import {
 } from '@mui/material'
 import React, { useState } from 'react'
 import RoleFormLogic from './RoleFormLogic'
+import { cancelButton, inputField, inputLabel, saveButton } from 'src/Styles'
 
 const RoleForm = ({ handleClose, editRoleId, roleData, setOpen, addRole }) => {
     const { handleInputChange, formData, errors, validateForm, setFormData, initialFormValue } = RoleFormLogic(
@@ -50,19 +51,22 @@ const RoleForm = ({ handleClose, editRoleId, roleData, setOpen, addRole }) => {
                     <Grid item xs={12} sm={12}>
                         <TextField
                             fullWidth
+                            size='small'
+                            variant='filled'
                             label='Role Name'
                             id='roleName'
                             name='roleName'
                             value={formData.roleName}
                             onChange={handleInputChange}
+                            sx={{ ...inputField, ...inputLabel }}
                         />
                         {errors.roleName && (
                             <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.roleName}</Typography>
                         )}
                     </Grid>
                     <Grid item xs={12} sm={12} sx={{ mb: 5 }}>
-                        <FormControl fullWidth>
-                            <InputLabel>Status</InputLabel>
+                        <FormControl fullWidth variant="filled" size='small'>
+                            <InputLabel sx={inputLabel}>Status</InputLabel>
                             <Select
                                 label='Status'
                                 defaultValue='Enable'
@@ -70,6 +74,7 @@ const RoleForm = ({ handleClose, editRoleId, roleData, setOpen, addRole }) => {
                                 name='status'
                                 value={formData.status}
                                 onChange={handleInputChange}
+                                sx={inputField}
                             >
                                 <MenuItem value='Enable'>Enable</MenuItem>
                                 <MenuItem value='Disable'>Disable</MenuItem>
@@ -83,7 +88,7 @@ const RoleForm = ({ handleClose, editRoleId, roleData, setOpen, addRole }) => {
                         size='large'
                         type='submit'
                         sx={{
-                            mr: 2,
+                            ...saveButton,
                             '&.MuiButton-root:hover': {
                                 backgroundColor: theme.palette.primary.hover
                             }
@@ -99,12 +104,13 @@ const RoleForm = ({ handleClose, editRoleId, roleData, setOpen, addRole }) => {
                         variant='outlined'
                         onClick={handleClose}
                         disabled={loading} // Disable button while loading
+                        sx={cancelButton}
                     >
                         Cancel
                     </Button>
                 </CardActions>
             </form>
-        </div>
+        </div >
     )
 }
 

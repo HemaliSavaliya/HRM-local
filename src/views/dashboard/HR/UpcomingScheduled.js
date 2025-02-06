@@ -2,6 +2,7 @@ import { Box, Card, Grid, Paper, Typography, useTheme } from '@mui/material'
 import React, { useEffect, useRef } from 'react'
 import { Calendar } from 'vanilla-calendar-pro';
 import 'vanilla-calendar-pro/styles/index.css';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 const EventItem = ({ day, month, title, time, creator }) => {
     return (
@@ -15,7 +16,7 @@ const EventItem = ({ day, month, title, time, creator }) => {
             <Grid item xs>
                 <Typography variant="body1" fontSize={'14px'} fontWeight={600}> {title}
                     {time &&
-                        <Typography component="span" sx={{ display: 'inline-block', marginLeft: 1, padding: '2px 8px', fontSize: 11, borderRadius: 1, bgcolor: 'background.default', color: 'text.secondary' }}>
+                        <Typography component="span" sx={{ display: 'inline-block', marginLeft: 1, padding: '2px 8px', fontSize: 11, borderRadius: 1, backgroundColor: 'background.default', color: 'text.secondary' }}>
                             {time}
                         </Typography>
                     }
@@ -54,23 +55,22 @@ const UpcomingScheduled = () => {
                 <Box id="calendar" sx={{ width: 'auto', padding: 1 }}>
                 </Box>
                 <Box ref={calendarRef} padding={0} />
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 3 }}> {/* Event Items */}
-                    <EventItem day="28" month="July" title="Meeting with Designer" time="09:57 AM" creator="Created by Admin" />
-                    <EventItem day="08" month="June" title="Developing Line Managers Conference" time="10:54 AM" creator="Created by HR" />
-                    <EventItem day="17" month="July" title="Airplane in Las Vegas" time="12:00 PM" creator="Created by HR" />
-                    <EventItem day="11" month="Nov" title="Hospitality Project Discuses" creator="Created by Admin" />
-                    <EventItem day="20" month="Nov" title="Gartner Digital Workplace" time="03:49 PM" creator="Created by HR" />
-                    <EventItem day="04" month="Dec" title="Nordic People Analytics" time="11:00 AM" creator="Created by Admin" />
-                    <EventItem day="17" month="Jan" title="CIPD Festival of Work" time="01:29 PM" creator="Created by HR" />
-                    <EventItem day="03" month="Feb" title="HRO Today Forum" time="02:15 PM" creator="Created by Admin" />
-                </Box>
-                {/* <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, padding: 2, marginTop: 3, borderRadius: 1, bgcolor: '#3b82f6' }}>
-                <Avatar src="/images/support.png" alt="Support Icon" sx={{ height: 96, width: 96 }} />
-                <Box>
-                    <Typography variant="h6" sx={{ marginBottom: 1, color: 'white' }}>Need Help ?</Typography>
-                    <Typography variant="body2" sx={{ color: 'white' }}> If you would like to learn more about transferring the license to a customer </Typography>
-                </Box>
-            </Box> */}
+                <PerfectScrollbar style={{ maxHeight: "650px", paddingRight: "10px" }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 3 }}> {/* Event Items */}
+                        <EventItem day="28" month="July" title="Meeting with Designer" time="09:57 AM" creator="Created by Admin" />
+                        <EventItem day="08" month="June" title="Developing Line Managers Conference" time="10:54 AM" creator="Created by HR" />
+                        <EventItem day="17" month="July" title="Airplane in Las Vegas" time="12:00 PM" creator="Created by HR" />
+                        <EventItem day="11" month="Nov" title="Hospitality Project Discuses" creator="Created by Admin" />
+                        <EventItem day="20" month="Nov" title="Gartner Digital Workplace" time="03:49 PM" creator="Created by HR" />
+                        <EventItem day="04" month="Dec" title="Nordic People Analytics" time="11:00 AM" creator="Created by Admin" />
+                        <EventItem day="17" month="Jan" title="CIPD Festival of Work" time="01:29 PM" creator="Created by HR" />
+                        <EventItem day="03" month="Feb" title="HRO Today Forum" time="02:15 PM" creator="Created by Admin" />
+                        <EventItem day="28" month="July" title="Meeting with Designer" time="09:57 AM" creator="Created by Admin" />
+                        <EventItem day="08" month="June" title="Developing Line Managers Conference" time="10:54 AM" creator="Created by HR" />
+                        <EventItem day="17" month="July" title="Airplane in Las Vegas" time="12:00 PM" creator="Created by HR" />
+                    </Box>
+                </PerfectScrollbar>
+
             </Box>
         </Card>
     )

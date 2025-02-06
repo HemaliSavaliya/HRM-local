@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Card, Typography, Divider } from '@mui/material';
 import { Circle } from 'mdi-material-ui';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 const MeetingSchedule = () => {
     const meetings = [
@@ -28,6 +29,12 @@ const MeetingSchedule = () => {
             category: 'Development',
             color: '#03C95A',
         },
+        {
+            time: '11:00 AM',
+            title: 'Birthday Celebration of Employee',
+            category: 'Celebration',
+            color: '#000',
+        },
     ];
 
     return (
@@ -41,44 +48,46 @@ const MeetingSchedule = () => {
                 <Typography fontSize={16} fontWeight={600}>Meetings Schedule</Typography>
             </Box>
             <Divider sx={{ m: 0 }} />
-            <Box padding={'15px'} height={405} overflow="auto">
-                {meetings.map((meeting, index) => (
-                    <Box
-                        key={index}
-                        display="flex"
-                        alignItems="start"
-                        mb={index !== meetings.length - 1 ? 4 : 0}
-                    >
-                        {/* Time and Icon */}
-                        <Box display="flex" alignItems="center">
-                            <Typography variant="body2" sx={{ minWidth: 70 }}>
-                                {meeting.time}
-                            </Typography>
-                            <Circle
-                                fontSize="small"
-                                // color={meeting.color}
-                                sx={{ ml: 1, fontSize: 15, width: 15, height: 15, color: meeting.color }}
-                            />
-                        </Box>
-                        {/* Meeting Details */}
-                        <Box flex="1" ml={3}>
-                            <Box
-                                bgcolor="lightgray"
-                                p={2}
-                                borderRadius={1}
-                                sx={{ backgroundColor: 'background.default' }}
-                            >
-                                <Typography variant="body1" fontSize={13} fontWeight="medium" gutterBottom>
-                                    {meeting.title}
+            <PerfectScrollbar style={{ maxHeight: 380 }}>
+                <Box padding={'15px'}>
+                    {meetings.map((meeting, index) => (
+                        <Box
+                            key={index}
+                            display="flex"
+                            alignItems="start"
+                            mb={index !== meetings.length - 1 ? 4 : 0}
+                        >
+                            {/* Time and Icon */}
+                            <Box display="flex" alignItems="center">
+                                <Typography variant="body2" sx={{ minWidth: 70 }}>
+                                    {meeting.time}
                                 </Typography>
-                                <Typography fontSize={12} color="text.secondary">
-                                    {meeting.category}
-                                </Typography>
+                                <Circle
+                                    fontSize="small"
+                                    // color={meeting.color}
+                                    sx={{ ml: 1, fontSize: 15, width: 15, height: 15, color: meeting.color }}
+                                />
+                            </Box>
+                            {/* Meeting Details */}
+                            <Box flex="1" ml={3}>
+                                <Box
+                                    bgcolor="lightgray"
+                                    p={2}
+                                    borderRadius={1}
+                                    sx={{ backgroundColor: 'background.default' }}
+                                >
+                                    <Typography variant="body1" fontSize={13} fontWeight="medium" gutterBottom>
+                                        {meeting.title}
+                                    </Typography>
+                                    <Typography fontSize={12} color="text.secondary">
+                                        {meeting.category}
+                                    </Typography>
+                                </Box>
                             </Box>
                         </Box>
-                    </Box>
-                ))}
-            </Box>
+                    ))}
+                </Box>
+            </PerfectScrollbar>
         </Card>
     )
 }

@@ -19,19 +19,19 @@ const RecentActivities = () => {
     const theme = useTheme()
 
     return (
-        <Card sx={{ height: "509px", display: "flex", flexDirection: "column" }}>
+        <Card sx={{ height: { xs: "509px", xl: '529px' }, display: "flex", flexDirection: "column" }}>
             <CardHeader title={<Typography fontSize={16} fontWeight={600}>Recent Activities</Typography>} action={
                 <Button
                     variant="outlined"
                     size="small"
                     sx={{
-                        backgroundColor: theme.palette.mode === "light" ? '#F8F9FA' : "#f8f9fa14",
-                        border: theme.palette.mode === "light" ? '1px solid #cbcbcb' : "1px solid #cbcbcb1f",
+                        backgroundColor: theme.palette.mode === "light" ? '#F8F9FA' : "#403d59",
+                        border: theme.palette.mode === "light" ? '1px solid #cbcbcb' : "1px solid #524f68",
                         color: theme.palette.mode === "light" ? '#111827' : "#e1e3e7",
                         textTransform: 'capitalize',
                         "&:hover": {
                             backgroundColor: 'rgba(115, 102, 255, 0%)',
-                            border: '1px solid #7366ff63',
+                            border: '1px solid #7366ff',
                             color: "primary.main"
                         }
                     }}
@@ -43,7 +43,7 @@ const RecentActivities = () => {
 
             {/* Ensure proper height and scrolling behavior */}
             <Box sx={{ flex: 1, overflow: "hidden" }}>
-                <PerfectScrollbar style={{ maxHeight: "100%" }}>
+                <PerfectScrollbar style={{ maxHeight: "450px" }}>
                     <CardContent>
                         {activities.map((activity, index) => (
                             <Box key={index} style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>

@@ -7,7 +7,8 @@ const employees = [
     { name: "Brian Villalobos", role: "Development", avatar: "images/avatars/avatar-7.png" },
     { name: "Stephan Peralt", role: "Marketing", avatar: "images/avatars/avatar-3.png" },
     { name: "Doglas Martini", role: "Manager", avatar: "images/avatars/avatar-10.png" },
-    { name: "Anthony Lewis", role: "UI/UX Design", avatar: "images/avatars/avatar-7.png" }
+    { name: "Anthony Lewis", role: "UI/UX Design", avatar: "images/avatars/avatar-7.png" },
+    { name: "Brian Villalobos", role: "Development", avatar: "images/avatars/avatar-7.png" },
 ];
 
 const badgeColors = { Finance: "#AB47BC", Development: "#FD3995", Marketing: "#1B84FF", Manager: "#3B7080", "UI/UX Design": "#FF4081" };
@@ -23,13 +24,13 @@ const EmployeesCard = () => {
                     variant="outlined"
                     size="small"
                     sx={{
-                        backgroundColor: theme.palette.mode === "light" ? '#F8F9FA' : "#f8f9fa14",
-                        border: theme.palette.mode === "light" ? '1px solid #cbcbcb' : "1px solid #cbcbcb1f",
+                        backgroundColor: theme.palette.mode === "light" ? '#F8F9FA' : "#403d59",
+                        border: theme.palette.mode === "light" ? '1px solid #cbcbcb' : "1px solid #524f68",
                         color: theme.palette.mode === "light" ? '#111827' : "#e1e3e7",
                         textTransform: 'capitalize',
                         "&:hover": {
                             backgroundColor: 'rgba(115, 102, 255, 0%)',
-                            border: '1px solid #7366ff63',
+                            border: '1px solid #7366ff',
                             color: "primary.main"
                         }
                     }}
@@ -47,7 +48,7 @@ const EmployeesCard = () => {
                             <TableHead sx={{
                                 fontWeight: 600,
                                 borderColor: '#E9EDF4',
-                                background: '#E5E7EB',
+                                background: theme.palette.mode === "light" ? '#E5E7EB' : "#44405b",
                                 fontSize: '14px',
                             }}>
                                 <TableRow>

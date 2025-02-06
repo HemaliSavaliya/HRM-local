@@ -20,6 +20,7 @@ import { Magnify } from 'mdi-material-ui'
 import { getComparator, stableSort } from 'src/common/CommonLogic'
 import { EnhancedTableHead } from 'src/common/EnhancedTableHead'
 import { roleWiseCells } from 'src/TableHeader/TableHeader'
+import { inputField, inputLabel } from 'src/Styles'
 
 const RoleWiseAttendance = () => {
     // for table
@@ -159,9 +160,9 @@ const RoleWiseAttendance = () => {
                 mb={4}
             >
                 <TextField
-                    sx={{ mt: { xs: 3, sm: 0, lg: 0 } }}
+                    sx={{ mt: { xs: 3, sm: 0, lg: 0 }, ...inputField, ...inputLabel }}
                     label='Search Attendance'
-                    variant='outlined'
+                    variant='filled'
                     size='small'
                     value={searchQuery}
                     onChange={handleSearchChange}

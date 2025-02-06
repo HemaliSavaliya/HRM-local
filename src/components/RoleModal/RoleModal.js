@@ -2,6 +2,7 @@ import { Button, Dialog, DialogContent, DialogTitle, Typography, useTheme } from
 import React from 'react'
 import { motion } from 'framer-motion'
 import RoleForm from './RoleForm'
+import { saveButton } from 'src/Styles'
 
 const RoleModal = ({ editRoleId, roleData, open, setOpen, scroll, handleClickOpen, handleClose, addRole }) => {
     const theme = useTheme()
@@ -21,8 +22,7 @@ const RoleModal = ({ editRoleId, roleData, open, setOpen, scroll, handleClickOpe
                 variant='contained'
                 onClick={handleClickOpen('body')}
                 sx={{
-                    lineHeight: 0,
-                    padding: '20px 25px',
+                    ...saveButton,
                     '&.MuiButton-root:hover': {
                         backgroundColor: theme.palette.primary.hover
                     }

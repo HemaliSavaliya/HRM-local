@@ -1,5 +1,6 @@
 import {
     Box,
+    Button,
     Chip,
     Skeleton,
     Table,
@@ -8,6 +9,7 @@ import {
     TableContainer,
     TablePagination,
     TableRow,
+    Tooltip,
     Typography,
     useTheme
 } from '@mui/material';
@@ -17,6 +19,7 @@ import { Toaster } from 'react-hot-toast';
 import { getComparator, stableSort } from 'src/common/CommonLogic';
 import { EnhancedTableHead } from 'src/common/EnhancedTableHead';
 import { designationCells } from 'src/TableHeader/TableHeader';
+import { PencilOutline } from 'mdi-material-ui';
 
 const statusObj = {
     Active: 'success',
@@ -28,6 +31,7 @@ const DesignationTable = ({
     designationData,
     updateDesignationStatus,
     loading,
+    handleEdit
 }) => {
     // for table
     const [order, setOrder] = useState('desc')
@@ -140,6 +144,29 @@ const DesignationTable = ({
                                         {visibleRows.map((row, index) => {
                                             return (
                                                 <TableRow key={row.id} sx={{ cursor: 'pointer' }}>
+                                                    <TableCell
+                                                        align='left'
+                                                        sx={{
+                                                            position: 'sticky',
+                                                            background: theme.palette.background.paper,
+                                                            left: 0,
+                                                            zIndex: 1
+                                                        }}
+                                                    >
+                                                        <Tooltip title='Edit Designation'>
+                                                            <Button
+                                                                onClick={() => handleEdit(row.id)}
+                                                                sx={{
+                                                                    height: '32px',
+                                                                    margin: '0 3px',
+                                                                    minWidth: '32px',
+                                                                    width: '32px'
+                                                                }}
+                                                            >
+                                                                <PencilOutline sx={{ fontSize: '20px', color: '#7366FF' }} />
+                                                            </Button>
+                                                        </Tooltip>
+                                                    </TableCell>
                                                     <TableCell align='left'>{index + 1 + page * rowsPerPage}</TableCell>
                                                     <TableCell align='left'>{row.designationName}</TableCell>
                                                     <TableCell align='left'>{row.startingDate}</TableCell>

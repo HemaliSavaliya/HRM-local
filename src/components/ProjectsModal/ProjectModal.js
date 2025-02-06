@@ -1,6 +1,7 @@
 import { Dialog, DialogContent, DialogTitle, Typography, Button, Box, useTheme } from '@mui/material'
 import ProjectForm from './ProjectForm'
 import { motion } from 'framer-motion'
+import { saveButton } from 'src/Styles'
 
 const ProjectModal = ({
     editProjectId,
@@ -33,8 +34,7 @@ const ProjectModal = ({
                     variant='contained'
                     onClick={handleClickOpen('body')}
                     sx={{
-                        lineHeight: 0,
-                        padding: '20px 25px',
+                        ...saveButton,
                         '&.MuiButton-root:hover': {
                             backgroundColor: theme.palette.primary.hover
                         }

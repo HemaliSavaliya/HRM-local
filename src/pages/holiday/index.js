@@ -10,6 +10,7 @@ import ConfirmationModal from 'src/common/ConfirmationModal'
 import useHolidayData from 'src/hooks/useHolidayData'
 import HolidayModal from 'src/components/Holidays/HolidayModal'
 import HolidayTable from 'src/views/holiday/HolidayTable'
+import { inputField, inputLabel } from 'src/Styles'
 
 const Holiday = () => {
     const {
@@ -66,9 +67,9 @@ const Holiday = () => {
                         editHoliday={editHoliday}
                     />
                     <TextField
-                        sx={{ mt: { xs: 3, sm: 0, lg: 0 } }}
+                        sx={{ mt: { xs: 3, sm: 0, lg: 0 }, ...inputField, ...inputLabel }}
                         label='Search Holiday'
-                        variant='outlined'
+                        variant='filled'
                         size='small'
                         value={searchQuery}
                         onChange={handleSearchChange}

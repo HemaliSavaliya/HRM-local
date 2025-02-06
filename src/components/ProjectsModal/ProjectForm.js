@@ -16,6 +16,7 @@ import {
 import { DropFiles } from 'src/@core/DropFile/DropFiles'
 import { useEffect, useState } from 'react'
 import ProjectFormLogic from './ProjectFormLogic'
+import { cancelButton, inputField, inputLabel, saveButton } from 'src/Styles'
 
 const ProjectForm = ({ handleClose, editProjectId, setOpen, projectData, addProjects, editProjects }) => {
     const {
@@ -117,11 +118,14 @@ const ProjectForm = ({ handleClose, editProjectId, setOpen, projectData, addProj
                                 <Grid item xs={12} sm={12}>
                                     <TextField
                                         fullWidth
+                                        variant="filled"
+                                        size='small'
                                         label='Project Name'
                                         id='projectName'
                                         name='projectName'
                                         value={formData.projectName}
                                         onChange={handleInputChange}
+                                        sx={{ ...inputField, ...inputLabel }}
                                     />
                                     {errors.projectName && (
                                         <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.projectName}</Typography>
@@ -130,11 +134,14 @@ const ProjectForm = ({ handleClose, editProjectId, setOpen, projectData, addProj
                                 <Grid item xs={12} sm={6}>
                                     <TextField
                                         fullWidth
+                                        variant="filled"
+                                        size='small'
                                         label='Client Name'
                                         id='clientName'
                                         name='clientName'
                                         value={formData.clientName}
                                         onChange={handleInputChange}
+                                        sx={{ ...inputField, ...inputLabel }}
                                     />
                                     {errors.clientName && (
                                         <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.clientName}</Typography>
@@ -145,18 +152,23 @@ const ProjectForm = ({ handleClose, editProjectId, setOpen, projectData, addProj
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 type='email'
                                 label='Client Email'
                                 id='clientEmail'
                                 name='clientEmail'
                                 value={formData.clientEmail}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                         </Grid>
                         {!isInEditMode && (
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     fullWidth
+                                    variant="filled"
+                                    size='small'
                                     type='date'
                                     label='Start Date'
                                     id='startDate'
@@ -169,6 +181,7 @@ const ProjectForm = ({ handleClose, editProjectId, setOpen, projectData, addProj
                                     inputProps={{
                                         placeholder: '' // Set an empty string as the placeholder
                                     }}
+                                    sx={{ ...inputField, ...inputLabel }}
                                 />
                                 {errors.startDate && (
                                     <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.startDate}</Typography>
@@ -178,6 +191,8 @@ const ProjectForm = ({ handleClose, editProjectId, setOpen, projectData, addProj
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 type='date'
                                 label='End Date'
                                 id='endDate'
@@ -190,11 +205,12 @@ const ProjectForm = ({ handleClose, editProjectId, setOpen, projectData, addProj
                                 inputProps={{
                                     placeholder: '' // Set an empty string as the placeholder
                                 }}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <FormControl fullWidth>
-                                <InputLabel id='form-layouts-separator-select-label'>Status</InputLabel>
+                            <FormControl fullWidth variant="filled" size='small'>
+                                <InputLabel id='form-layouts-separator-select-label' sx={inputLabel}>Status</InputLabel>
                                 <Select
                                     label='Status'
                                     defaultValue='Upcoming'
@@ -203,6 +219,7 @@ const ProjectForm = ({ handleClose, editProjectId, setOpen, projectData, addProj
                                     name='status'
                                     value={formData.status}
                                     onChange={handleInputChange}
+                                    sx={inputField}
                                 >
                                     <MenuItem value='Upcoming'>Upcoming</MenuItem>
                                     <MenuItem value='Inprogress'>Inprogress</MenuItem>
@@ -212,6 +229,7 @@ const ProjectForm = ({ handleClose, editProjectId, setOpen, projectData, addProj
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Autocomplete
+                                size='small'
                                 multiple
                                 options={teamMemberData.map((member, index) => ({
                                     name: member,
@@ -228,7 +246,7 @@ const ProjectForm = ({ handleClose, editProjectId, setOpen, projectData, addProj
                                     })
                                 }
                                 renderInput={params => (
-                                    <TextField {...params} label='Team Members' id='teamMembers' name='teamMembers' />
+                                    <TextField variant="filled" size='small' sx={{ ...inputField, ...inputLabel }} {...params} label='Team Members' id='teamMembers' name='teamMembers' />
                                 )}
                             />
                             {errors.teamMembers && (
@@ -262,9 +280,7 @@ const ProjectForm = ({ handleClose, editProjectId, setOpen, projectData, addProj
                             size='large'
                             type='submit'
                             sx={{
-                                mr: 2,
-                                lineHeight: 0,
-                                padding: '20px 25px !important',
+                                ...saveButton,
                                 '&.MuiButton-root:hover': {
                                     backgroundColor: theme.palette.primary.hover
                                 }
@@ -279,7 +295,7 @@ const ProjectForm = ({ handleClose, editProjectId, setOpen, projectData, addProj
                             color='secondary'
                             variant='outlined'
                             onClick={handleClose}
-                            sx={{ lineHeight: 0, padding: '20px 25px !important' }}
+                            sx={cancelButton}
                         >
                             Cancel
                         </Button>

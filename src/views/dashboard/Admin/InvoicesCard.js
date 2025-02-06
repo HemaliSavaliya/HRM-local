@@ -69,13 +69,13 @@ const InvoicesCard = () => {
         <Card sx={{ height: "481px", display: "flex", flexDirection: "column" }}>
             {/* Header (Fixed, Not Scrolling) */}
             <CardHeader
-                title={<Typography fontSize={16} fontWeight={600}>Invoices  </Typography>}
+                title={<Typography fontSize={16} fontWeight={600}>Invoices</Typography>}
                 action={
                     <>
                         <IconButton
                             onClick={handleClick}
                             sx={{
-                                border: theme.palette.mode === "light" ? '1px solid #E5E7EB !important' : "1px solid #ffffff36 !important",
+                                border: theme.palette.mode === "light" ? '1px solid #E5E7EB !important' : "1px solid #5d5971 !important",
                                 padding: "6px 12px",
                                 borderRadius: "4px",
                                 fontSize: "14px",
@@ -152,7 +152,11 @@ const InvoicesCard = () => {
                                                         flexDirection: 'row-reverse',
                                                         gap: '5px',
                                                         padding: '5px',
-                                                        background: invoice.status === "Paid" ? '#D2F5E1' : "#FAE7E7",
+                                                        borderRadius: "5px",
+                                                        // background: invoice.status === "Paid" ? (theme.palette.mode === "light" ? '#D2F5E1' : "#265a51") : (theme.palette.mode === "light" ? "#FAE7E7" : "#59263e"),
+                                                        backgroundColor: invoice.status !== "Paid" ? "#FAE7E7"
+                                                            : invoice.status === "Paid" ? "#D2F5E1"
+                                                                : "none",
                                                         "& .MuiBadge-badge": {
                                                             position: "relative !important",
                                                             transform: "none"
@@ -174,17 +178,19 @@ const InvoicesCard = () => {
             {/* Fixed Button (Not Scrolling) */}
             <Divider sx={{ margin: 0 }} />
             <Box sx={{ padding: 2 }}>
-                <Button variant="outlined" fullWidth sx={{
-                    backgroundColor: theme.palette.mode === "light" ? '#F8F9FA' : "#f8f9fa14",
-                    border: theme.palette.mode === "light" ? '1px solid #cbcbcb' : "1px solid #cbcbcb1f",
-                    color: theme.palette.mode === "light" ? '#111827' : "#e1e3e7",
-                    textTransform: 'capitalize',
-                    "&:hover": {
-                        backgroundColor: 'rgba(115, 102, 255, 0%)',
-                        border: '1px solid #7366ff63',
-                        color: "primary.main"
-                    }
-                }}>
+                <Button variant="outlined" fullWidth
+                    sx={{
+                        backgroundColor: theme.palette.mode === "light" ? '#F8F9FA' : "#403d59",
+                        border: theme.palette.mode === "light" ? '1px solid #cbcbcb' : "1px solid #524f68",
+                        color: theme.palette.mode === "light" ? '#111827' : "#e1e3e7",
+                        textTransform: 'capitalize',
+                        "&:hover": {
+                            backgroundColor: 'rgba(115, 102, 255, 0%)',
+                            border: '1px solid #7366ff',
+                            color: "primary.main"
+                        }
+                    }}
+                >
                     View All
                 </Button>
             </Box>

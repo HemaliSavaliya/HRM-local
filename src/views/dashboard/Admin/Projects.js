@@ -100,7 +100,7 @@ const Projects = () => {
                         <IconButton
                             onClick={handleClick}
                             sx={{
-                                border: theme.palette.mode === "light" ? '1px solid #E5E7EB !important' : "1px solid #ffffff36 !important",
+                                border: theme.palette.mode === "light" ? '1px solid #E5E7EB !important' : "1px solid #5d5971 !important",
                                 padding: "6px 12px",
                                 borderRadius: "4px",
                                 fontSize: "14px",
@@ -141,7 +141,7 @@ const Projects = () => {
                                     sx={{
                                         fontWeight: 600,
                                         borderColor: '#E9EDF4',
-                                        background: '#E5E7EB',
+                                        background: theme.palette.mode === "light" ? '#E5E7EB' : "#44405b",
                                         fontSize: '14px',
                                     }}
                                 >

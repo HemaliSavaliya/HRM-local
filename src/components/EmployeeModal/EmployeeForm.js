@@ -10,16 +10,17 @@ import {
     Typography,
     CardActions,
     FormControl,
-    OutlinedInput,
     InputAdornment,
     Select,
-    useTheme
+    useTheme,
+    FilledInput
 } from '@mui/material'
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
 import { DropFiles } from 'src/@core/DropFile/DropFiles'
 import { useEffect, useRef, useState } from 'react'
 import EmployeeModalLogic from './EmployeeFormLogic'
+import { cancelButton, inputField, inputLabel, saveButton } from 'src/Styles'
 
 const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addEmployee, editEmployee }) => {
     const {
@@ -97,26 +98,32 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                                 <Grid item xs={12} sm={12}>
                                     <TextField
                                         fullWidth
+                                        variant="filled"
+                                        size='small'
                                         label='Name'
                                         id='name'
                                         name='name'
                                         value={formData.name}
                                         onChange={handleInputChange}
+                                        sx={{ ...inputField, ...inputLabel }}
                                     />
                                     {errors.name && (
                                         <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.name}</Typography>
                                     )}
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <FormControl fullWidth>
-                                        <InputLabel htmlFor='form-layouts-separator-password'>Password</InputLabel>
-                                        <OutlinedInput
+                                    <FormControl fullWidth variant="filled" size='small'>
+                                        <InputLabel htmlFor='form-layouts-separator-password' sx={inputLabel}>Password</InputLabel>
+                                        <FilledInput
                                             label='Password'
+                                            variant="filled"
+                                            size='small'
                                             id='password'
                                             name='password'
                                             value={formData.password}
                                             onChange={handleInputChange}
                                             type={formData.showPassword ? 'text' : 'password'}
+                                            sx={inputField}
                                             endAdornment={
                                                 <InputAdornment position='end'>
                                                     <IconButton
@@ -144,26 +151,30 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                         <Grid item xs={12} sm={!isInEditMode ? 6 : 12}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 type='email'
                                 label='Email'
                                 id='email'
                                 name='email'
                                 value={formData.email}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.email && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.email}</Typography>
                             )}
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <FormControl fullWidth>
-                                <InputLabel>Designation</InputLabel>
+                            <FormControl fullWidth variant="filled" size='small'>
+                                <InputLabel sx={inputLabel}>Designation</InputLabel>
                                 <Select
                                     label='Designation'
                                     id='designation'
                                     name='designation'
                                     value={formData.designation}
                                     onChange={handleInputChange}
+                                    sx={inputField}
                                 >
                                     {designationData.length === 0 ? (
                                         <MenuItem disabled>No Designation</MenuItem>
@@ -181,14 +192,15 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                             )}
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <FormControl fullWidth>
-                                <InputLabel>Department</InputLabel>
+                            <FormControl fullWidth variant="filled" size='small'>
+                                <InputLabel sx={inputLabel}>Department</InputLabel>
                                 <Select
                                     label='Department'
                                     id='department'
                                     name='department'
                                     value={formData.department}
                                     onChange={handleInputChange}
+                                    sx={inputField}
                                 >
                                     {departmentData.length === 0 ? (
                                         <MenuItem disabled>No Department</MenuItem>
@@ -208,6 +220,8 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                         <Grid item xs={12} sm={12}>
                             <TextField
                                 multiline
+                                variant="filled"
+                                size='small'
                                 rows={2}
                                 fullWidth
                                 label='Address'
@@ -215,17 +229,21 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                                 name='address'
                                 value={formData.address}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 label='Mobile No.'
                                 id='mobileNo'
                                 name='mobileNo'
                                 maxLength={10}
                                 value={formData.mobileNo}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.mobileNo && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.mobileNo}</Typography>
@@ -234,12 +252,15 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 label='Alternative No.'
                                 id='alternateNumber'
                                 name='alternateNumber'
                                 maxLength={10}
                                 value={formData.alternateNumber}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                         </Grid>
                         {!isInEditMode && (
@@ -247,6 +268,8 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                                 <Grid item xs={12} sm={6}>
                                     <TextField
                                         fullWidth
+                                        variant="filled"
+                                        size='small'
                                         type='date'
                                         label='Birth Date'
                                         id='birthDate'
@@ -259,6 +282,7 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                                         inputProps={{
                                             placeholder: '' // Set an empty string as the placeholder
                                         }}
+                                        sx={{ ...inputField, ...inputLabel }}
                                     />
                                     {errors.birthDate && (
                                         <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.birthDate}</Typography>
@@ -267,6 +291,8 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                                 <Grid item xs={12} sm={6}>
                                     <TextField
                                         fullWidth
+                                        variant="filled"
+                                        size='small'
                                         type='date'
                                         label='Joining Date'
                                         id='joiningDate'
@@ -279,14 +305,15 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                                         inputProps={{
                                             placeholder: '' // Set an empty string as the placeholder
                                         }}
+                                        sx={{ ...inputField, ...inputLabel }}
                                     />
                                     {errors.joiningDate && (
                                         <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.joiningDate}</Typography>
                                     )}
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <FormControl fullWidth>
-                                        <InputLabel>Gender</InputLabel>
+                                    <FormControl fullWidth variant="filled" size='small'>
+                                        <InputLabel sx={inputLabel}>Gender</InputLabel>
                                         <Select
                                             label='Gender'
                                             defaultValue=''
@@ -295,6 +322,7 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                                             name='gender'
                                             value={formData.gender}
                                             onChange={handleInputChange}
+                                            sx={inputField}
                                         >
                                             <MenuItem value='Male'>Male</MenuItem>
                                             <MenuItem value='Female'>Female</MenuItem>
@@ -305,8 +333,8 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                                     )}
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <FormControl fullWidth>
-                                        <InputLabel id='form-layouts-separator-select-label'>Blood Group</InputLabel>
+                                    <FormControl fullWidth variant="filled" size='small'>
+                                        <InputLabel id='form-layouts-separator-select-label' sx={inputLabel}>Blood Group</InputLabel>
                                         <Select
                                             label='Blood Group'
                                             defaultValue=''
@@ -315,6 +343,7 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                                             name='bloodGroup'
                                             value={formData.bloodGroup}
                                             onChange={handleInputChange}
+                                            sx={inputField}
                                         >
                                             <MenuItem value='A+'>A+</MenuItem>
                                             <MenuItem value='A-'>A-</MenuItem>
@@ -331,9 +360,9 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                         )}
 
                         <Grid item xs={12} sm={6}>
-                            <FormControl fullWidth>
-                                <InputLabel>Role</InputLabel>
-                                <Select label='Role' id='role' name='role' value={formData.role} onChange={handleInputChange}>
+                            <FormControl fullWidth variant="filled" size='small'>
+                                <InputLabel sx={inputLabel}>Role</InputLabel>
+                                <Select label='Role' id='role' name='role' value={formData.role} onChange={handleInputChange} sx={inputField}>
                                     {roleData.length === 0 ? (
                                         <MenuItem disabled>No Role</MenuItem>
                                     ) : (
@@ -348,8 +377,8 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                             {errors.role && <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.role}</Typography>}
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <FormControl fullWidth>
-                                <InputLabel id='form-layouts-separator-select-label'>Status</InputLabel>
+                            <FormControl fullWidth variant="filled" size='small'>
+                                <InputLabel id='form-layouts-separator-select-label' sx={inputLabel}>Status</InputLabel>
                                 <Select
                                     label='Status'
                                     defaultValue=''
@@ -358,6 +387,7 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                                     name='status'
                                     value={formData.status}
                                     onChange={handleInputChange}
+                                    sx={inputField}
                                 >
                                     <MenuItem value='Active'>Active</MenuItem>
                                     <MenuItem value='Inactive'>Inactive</MenuItem>
@@ -370,11 +400,14 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 label='Salary'
                                 id='salary'
                                 name='salary'
                                 value={formData.salary}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.salary && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.salary}</Typography>
@@ -383,11 +416,14 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 label='Bank Account Holder Name'
                                 id='bankAccountHolderName'
                                 name='bankAccountHolderName'
                                 value={formData.bankAccountHolderName}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.bankAccountHolderName && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>
@@ -398,11 +434,14 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 label='Bank Account Number'
                                 id='bankAccountNumber'
                                 name='bankAccountNumber'
                                 value={formData.bankAccountNumber}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.bankAccountNumber && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.bankAccountNumber}</Typography>
@@ -411,11 +450,14 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 label='Bank Name'
                                 id='bankName'
                                 name='bankName'
                                 value={formData.bankName}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.bankName && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.bankName}</Typography>
@@ -424,11 +466,14 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 label='Bank IFSC Code'
                                 id='bankIFSCCode'
                                 name='bankIFSCCode'
                                 value={formData.bankIFSCCode}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.bankIFSCCode && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.bankIFSCCode}</Typography>
@@ -437,11 +482,14 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 label='Bank Branch Location'
                                 id='bankBranchLocation'
                                 name='bankBranchLocation'
                                 value={formData.bankBranchLocation}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.bankBranchLocation && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.bankBranchLocation}</Typography>
@@ -474,9 +522,7 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                             size='large'
                             type='submit'
                             sx={{
-                                mr: 2,
-                                lineHeight: 0,
-                                padding: '20px 25px !important',
+                                ...saveButton,
                                 '&.MuiButton-root:hover': {
                                     backgroundColor: theme.palette.primary.hover
                                 }
@@ -491,7 +537,7 @@ const EmployeeForm = ({ handleClose, editEmployeeId, setOpen, employeeData, addE
                             color='secondary'
                             variant='outlined'
                             onClick={handleClose}
-                            sx={{ lineHeight: 0, padding: '20px 25px !important' }}
+                            sx={cancelButton}
                         >
                             Cancel
                         </Button>

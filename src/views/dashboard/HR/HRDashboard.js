@@ -39,8 +39,10 @@ const HRDashboard = () => {
                 <Grid item xs={12} sm={6} md={6}><RejectedCandidates /></Grid>
             </Grid>
 
-            <ApplicationReceived />
-            <Employee />
+            <Grid container spacing={5} mt={3}>
+                <Grid item xs={12}><ApplicationReceived /></Grid>
+                <Grid item xs={12}><Employee /></Grid>
+            </Grid>
 
             <Grid container spacing={3} mt={3}>
                 {/* Left Sidebar */}
@@ -49,16 +51,9 @@ const HRDashboard = () => {
                 {/* Center and Right Section */}
                 <Grid item xs={12} md={8}>
                     <Grid container spacing={2}>
-                        {/* Total Projects */}
                         <Grid item xs={12} md={6}><TotalProjects /></Grid>
-
-                        {/* Upcoming Interviews */}
                         <Grid item xs={12} md={6}><UpcomingInterview /></Grid>
-
-                        {/* Today's Card */}
                         <Grid item xs={12}><TodayCard /></Grid>
-
-                        {/* Recent payroll */}
                         <Grid item xs={12}><RecentPayroll /></Grid>
                     </Grid>
                 </Grid>

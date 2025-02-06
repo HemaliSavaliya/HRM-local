@@ -27,7 +27,7 @@ const ClockInOutCard = () => {
   };
 
   return (
-    <Card sx={{ height: "481px", display: "flex", flexDirection: "column" }}>
+    <Card sx={{ height: { xs: "481px", xl: '511px' }, display: "flex", flexDirection: "column" }}>
       {/* Header (Fixed, Not Scrolling) */}
       <CardHeader
         title={<Typography fontSize={16} fontWeight={600}>Clock-In/Out</Typography>}
@@ -36,7 +36,7 @@ const ClockInOutCard = () => {
             <IconButton
               onClick={handleClick}
               sx={{
-                border: theme.palette.mode === "light" ? '1px solid #E5E7EB !important' : "1px solid #ffffff36 !important",
+                border: theme.palette.mode === "light" ? '1px solid #E5E7EB !important' : "1px solid #5d5971 !important",
                 padding: "6px 12px",
                 borderRadius: "4px",
                 fontSize: "14px",
@@ -72,7 +72,7 @@ const ClockInOutCard = () => {
         <PerfectScrollbar style={{ maxHeight: "100%" }}>
           <CardContent sx={{ paddingTop: 6 }}>
             {employees.map((employee, index) => (
-              <Box key={index} sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px", border: `1px dashed ${theme.palette.mode === "light" ? "#ddd" : "#dddddd3d"}`, mb: 2, borderRadius: 2 }}>
+              <Box key={index} sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px", border: `1px dashed ${theme.palette.mode === "light" ? "#ddd" : "#5a576e"}`, mb: 2, borderRadius: 2 }}>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                   <Avatar src={employee.avatar} />
                   <Box sx={{ marginLeft: "10px" }}>
@@ -90,7 +90,7 @@ const ClockInOutCard = () => {
             ))}
             <Typography fontSize={14} fontWeight={600} mb={1}>Late</Typography>
             {lateEmployees.map((employee, index) => (
-              <Box key={index} sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px", border: `1px dashed ${theme.palette.mode === "light" ? "#ddd" : "#dddddd3d"}`, mb: 2, borderRadius: 2 }}>
+              <Box key={index} sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px", border: `1px dashed ${theme.palette.mode === "light" ? "#ddd" : "#5a576e"}`, mb: 2, borderRadius: 2 }}>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                   <Avatar src={employee.avatar} />
                   <Box sx={{ marginLeft: "10px" }}>
@@ -116,17 +116,19 @@ const ClockInOutCard = () => {
       {/* Fixed Button (Not Scrolling) */}
       <Divider sx={{ margin: 0 }} />
       <Box sx={{ padding: 2 }}>
-        <Button variant="outlined" fullWidth sx={{
-          backgroundColor: theme.palette.mode === "light" ? '#F8F9FA' : "#f8f9fa14",
-          border: theme.palette.mode === "light" ? '1px solid #cbcbcb' : "1px solid #cbcbcb1f",
-          color: theme.palette.mode === "light" ? '#111827' : "#e1e3e7",
-          textTransform: 'capitalize',
-          "&:hover": {
-            backgroundColor: 'rgba(115, 102, 255, 0%)',
-            border: '1px solid #7366ff63',
-            color: "primary.main"
-          }
-        }}>
+        <Button variant="outlined" fullWidth
+          sx={{
+            backgroundColor: theme.palette.mode === "light" ? '#F8F9FA' : "#403d59",
+            border: theme.palette.mode === "light" ? '1px solid #cbcbcb' : "1px solid #524f68",
+            color: theme.palette.mode === "light" ? '#111827' : "#e1e3e7",
+            textTransform: 'capitalize',
+            "&:hover": {
+              backgroundColor: 'rgba(115, 102, 255, 0%)',
+              border: '1px solid #7366ff',
+              color: "primary.main"
+            }
+          }}
+        >
           View All Attendance
         </Button>
       </Box>

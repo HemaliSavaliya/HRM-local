@@ -1,4 +1,4 @@
-import { Box, Grid, List, ListItem, Typography } from '@mui/material'
+import { Box, Grid, List, ListItem, Typography, useMediaQuery } from '@mui/material'
 import { ChevronRight } from 'mdi-material-ui'
 import React from 'react'
 import WelcomeCard from './WelcomeCard'
@@ -26,6 +26,8 @@ import Projects from './Projects'
 import TasksStatistics from './TasksStatistics'
 
 const AdminDashboard = () => {
+    // const isXXL = useMediaQuery(theme.breakpoints.up('xxl')) // Detect XXL screens
+
     return (
         <Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 2 }}>
@@ -42,52 +44,39 @@ const AdminDashboard = () => {
             <WelcomeCard />
 
             <Grid container spacing={5} mt={3}>
-                <Grid item xs={12} sm={4} md={3} lg={3}><Attendance /></Grid>
-                <Grid item xs={12} sm={4} md={3} lg={3}><TotalProjects /></Grid>
-                <Grid item xs={12} sm={4} md={3} lg={3}><TotalClient /></Grid>
-                <Grid item xs={12} sm={4} md={3} lg={3}><TotalTask /></Grid>
-                <Grid item xs={12} sm={4} md={3} lg={3}><TotalEarning /></Grid>
-                <Grid item xs={12} sm={4} md={3} lg={3}><TotalProfit /></Grid>
-                <Grid item xs={12} sm={4} md={3} lg={3}><JobApplicants /></Grid>
-                <Grid item xs={12} sm={4} md={3} lg={3}><NewHire /></Grid>
-            </Grid>
+                {/* First Grid (8 columns in xl) */}
+                <Grid item xs={12} xl={8} sx={{ order: { xs: 1, xl: 1 } }}>
+                    <Grid container spacing={5}>
+                        <Grid item xs={12} sm={4} md={3} lg={3} xl={3}><Attendance /></Grid>
+                        <Grid item xs={12} sm={4} md={3} lg={3} xl={3}><TotalProjects /></Grid>
+                        <Grid item xs={12} sm={4} md={3} lg={3} xl={3}><TotalClient /></Grid>
+                        <Grid item xs={12} sm={4} md={3} lg={3} xl={3}><TotalTask /></Grid>
+                        <Grid item xs={12} sm={4} md={3} lg={3} xl={3}><TotalEarning /></Grid>
+                        <Grid item xs={12} sm={4} md={3} lg={3} xl={3}><TotalProfit /></Grid>
+                        <Grid item xs={12} sm={4} md={3} lg={3} xl={3}><JobApplicants /></Grid>
+                        <Grid item xs={12} sm={4} md={3} lg={3} xl={3}><NewHire /></Grid>
+                    </Grid>
+                </Grid>
 
-            <Grid container spacing={5} mt={3}>
-                <Grid item xs={12}><EmployeesByDepartment /></Grid>
-                <Grid item xs={12}><EmployeeStatus /></Grid>
-            </Grid>
+                {/* Second Grid (4 columns in xl) */}
+                <Grid item xs={12} xl={4} sx={{ order: { xs: 2, xl: 2 } }}>
+                    <EmployeesByDepartment />
+                </Grid>
 
-            <Grid container spacing={5} mt={3}>
-                <Grid item xs={12} md={6} lg={6}><AttendanceOverview /></Grid>
-                <Grid item xs={12} md={6} lg={6}><ClockInOutCard /></Grid>
-            </Grid>
-
-            <Grid container spacing={5} mt={3}>
-                <Grid item xs={12}><JobApplicant /></Grid>
-            </Grid>
-
-            <Grid container spacing={5} mt={3}>
-                <Grid item xs={12}><Schedules /></Grid>
-            </Grid>
-
-            <Grid container spacing={5} mt={3}>
-                <Grid item xs={12} md={6} lg={6}><EmployeesCard /></Grid>
-                <Grid item xs={12} md={6} lg={6}><TodoList /></Grid>
-            </Grid>
-
-            <Grid container spacing={5} mt={3}>
-                <Grid item xs={12} md={7} lg={7}><SalesOverviewCard /></Grid>
-                <Grid item xs={12} md={5} lg={5}><InvoicesCard /></Grid>
-            </Grid>
-
-            <Grid container spacing={5} mt={3}>
-                <Grid item xs={12} md={7} lg={7}><Projects /></Grid>
-                <Grid item xs={12} md={5} lg={5}><TasksStatistics /></Grid>
-            </Grid>
-
-            <Grid container spacing={5} mt={3}>
-                <Grid item xs={12} md={6} lg={6}><RecentActivities /></Grid>
-                <Grid item xs={12} md={6} lg={6}><Birthdays /></Grid>
+                {/* Other sections with controlled order */}
+                <Grid item xs={12} xl={4} sx={{ order: { xs: 3, xl: 4 } }}><EmployeeStatus /></Grid>
+                <Grid item xs={12} md={6} lg={6} xl={4} sx={{ order: { xs: 4, xl: 5 } }}><AttendanceOverview /></Grid>
+                <Grid item xs={12} md={6} lg={6} xl={4} sx={{ order: { xs: 5, xl: 6 } }}><ClockInOutCard /></Grid>
+                <Grid item xs={12} xl={4} sx={{ order: { xs: 6, xl: 7 } }}><JobApplicant /></Grid>
+                <Grid item xs={12} md={6} lg={6} xl={4} sx={{ order: { xs: 7, xl: 8 } }}><EmployeesCard /></Grid>
+                <Grid item xs={12} xl={4} sx={{ order: { xs: 13, xl: 14 } }}><Schedules /></Grid>
+                <Grid item xs={12} md={6} lg={6} xl={4} sx={{ order: { xs: 8, xl: 9 } }}><TodoList /></Grid>
+                <Grid item xs={12} md={6} lg={6} xl={4} sx={{ order: { xs: 14, xl: 15 } }}><RecentActivities /></Grid>
+                <Grid item xs={12} md={6} lg={6} xl={4} sx={{ order: { xs: 15, xl: 16 } }}><Birthdays /></Grid>
+                <Grid item xs={12} md={7} lg={7} xl={7} sx={{ order: { xs: 9, xl: 10 } }}><SalesOverviewCard /></Grid>
+                <Grid item xs={12} md={5} lg={5} xl={5} sx={{ order: { xs: 10, xl: 11 } }}><InvoicesCard /></Grid>
+                <Grid item xs={12} md={7} lg={7} xl={8} sx={{ order: { xs: 11, xl: 12 } }}><Projects /></Grid>
+                <Grid item xs={12} md={5} lg={5} xl={4} sx={{ order: { xs: 12, xl: 13 } }}><TasksStatistics /></Grid>
             </Grid>
         </Box>
     )

@@ -13,8 +13,9 @@ import {
 } from '@mui/material'
 import React, { useState } from 'react'
 import DesignationFormLogic from './DesignationFormLogic'
+import { cancelButton, inputField, inputLabel, saveButton } from 'src/Styles'
 
-const DesignationForm = ({ handleClose, editDesignationId, designationData, setOpen, addDesignation }) => {
+const DesignationForm = ({ handleClose, editDesignationId, designationData, setOpen, addDesignation, editDesignation }) => {
     const { handleInputChange, formData, errors, validateForm, setFormData, initialFormValue } = DesignationFormLogic(
         designationData,
         editDesignationId
@@ -32,25 +33,23 @@ const DesignationForm = ({ handleClose, editDesignationId, designationData, setO
         setLoading(true) // Set loading to true when starting submission
 
         try {
-            addDesignation(formData)
+            if (editDesignationId) {
+                editDesignation(formData, editDesignationId)
+            } else {
+                addDesignation(formData)
+            }
 
             setFormData(initialFormValue)
             setOpen(false)
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error submitting the form:', error)
         } finally {
             setLoading(false) // Set loading to false once submission is done
         }
     }
 
-    // const descriptionElementRef = useRef(null);
-
-    // useEffect(() => {
-    //   const { current: descriptionElement } = descriptionElementRef;
-    //   if (descriptionElement !== null) {
-    //     descriptionElement.focus();
-    //   }
-    // }, []);
+    const isInEditMode = !!editDesignationId
 
     return (
         <div>
@@ -59,19 +58,22 @@ const DesignationForm = ({ handleClose, editDesignationId, designationData, setO
                     <Grid item xs={12} sm={12}>
                         <TextField
                             fullWidth
+                            variant="filled"
+                            size='small'
                             label='Designation Name'
                             id='designationName'
                             name='designationName'
                             value={formData.designationName}
                             onChange={handleInputChange}
+                            sx={{ ...inputField, ...inputLabel }}
                         />
                         {errors.designationName && (
                             <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.designationName}</Typography>
                         )}
                     </Grid>
                     <Grid item xs={12} sm={12} sx={{ mb: 5 }}>
-                        <FormControl fullWidth>
-                            <InputLabel>Status</InputLabel>
+                        <FormControl fullWidth variant="filled" size='small'>
+                            <InputLabel sx={inputLabel}>Status</InputLabel>
                             <Select
                                 label='Status'
                                 defaultValue='Active'
@@ -80,6 +82,7 @@ const DesignationForm = ({ handleClose, editDesignationId, designationData, setO
                                 name='status'
                                 value={formData.status}
                                 onChange={handleInputChange}
+                                sx={inputField}
                             >
                                 <MenuItem value='Active'>Active</MenuItem>
                                 <MenuItem value='Inactive'>Inactive</MenuItem>
@@ -93,7 +96,7 @@ const DesignationForm = ({ handleClose, editDesignationId, designationData, setO
                         size='large'
                         type='submit'
                         sx={{
-                            mr: 2,
+                            ...saveButton,
                             '&.MuiButton-root:hover': {
                                 backgroundColor: theme.palette.primary.hover
                             }
@@ -101,7 +104,7 @@ const DesignationForm = ({ handleClose, editDesignationId, designationData, setO
                         variant='contained'
                         disabled={loading} // Disable button while loading
                     >
-                        {loading ? 'Saving...' : 'Save'}
+                        {loading ? <>Saving...</> : !isInEditMode ? 'Save' : 'Update'}
                     </Button>
                     <Button
                         size='large'
@@ -109,6 +112,7 @@ const DesignationForm = ({ handleClose, editDesignationId, designationData, setO
                         variant='outlined'
                         onClick={handleClose}
                         disabled={loading} // Disable button while loading
+                        sx={cancelButton}
                     >
                         Cancel
                     </Button>

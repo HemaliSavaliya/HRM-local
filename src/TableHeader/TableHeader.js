@@ -126,10 +126,11 @@ export const departmentCells = [
 ]
 
 export const designationCells = [
-    { id: 'no', label: 'No' },
-    { id: 'designationName', label: 'Designation Name' },
-    { id: 'startingDate', label: 'Starting Date' },
-    { id: 'status', label: 'Status' }
+  { id: 'action', label: 'Action' },
+  { id: 'no', label: 'No' },
+  { id: 'designationName', label: 'Designation Name' },
+  { id: 'startingDate', label: 'Starting Date' },
+  { id: 'status', label: 'Status' }
 ]
 
 export const jobCells = [

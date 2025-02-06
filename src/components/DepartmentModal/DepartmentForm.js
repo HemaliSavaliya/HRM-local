@@ -16,6 +16,7 @@ import {
 } from '@mui/material'
 import DepartmentFormLogic from './DepartmentFormLogic'
 import { useState } from 'react'
+import { cancelButton, inputField, inputLabel, saveButton } from 'src/Styles'
 
 const DepartmentForm = ({ handleClose, editDepartId, setOpen, departmentData, addDepartments, editDepartments }) => {
     const { formData, handleInputChange, errors, validateForm, setFormData, handleTeamMembersChange, initialFormValue } =
@@ -69,11 +70,14 @@ const DepartmentForm = ({ handleClose, editDepartId, setOpen, departmentData, ad
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     fullWidth
+                                    size='small'
+                                    variant='filled'
                                     label='Department Name'
                                     id='departmentName'
                                     name='departmentName'
                                     value={formData.departmentName}
                                     onChange={handleInputChange}
+                                    sx={{ ...inputField, ...inputLabel }}
                                 />
                                 {errors.departmentName && (
                                     <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.departmentName}</Typography>
@@ -83,11 +87,14 @@ const DepartmentForm = ({ handleClose, editDepartId, setOpen, departmentData, ad
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
+                                size='small'
+                                variant='filled'
                                 label='Department Head'
                                 id='departmentHead'
                                 name='departmentHead'
                                 value={formData.departmentHead}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.departmentHead && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.departmentHead}</Typography>
@@ -96,19 +103,22 @@ const DepartmentForm = ({ handleClose, editDepartId, setOpen, departmentData, ad
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
+                                size='small'
+                                variant='filled'
                                 label='Department Email'
                                 id='departmentEmail'
                                 name='departmentEmail'
                                 value={formData.departmentEmail}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.departmentEmail && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.departmentEmail}</Typography>
                             )}
                         </Grid>
                         <Grid item xs={12} sm={6} sx={{ mb: 5 }}>
-                            <FormControl fullWidth>
-                                <InputLabel>Status</InputLabel>
+                            <FormControl fullWidth variant="filled" size='small'>
+                                <InputLabel sx={inputLabel}>Status</InputLabel>
                                 <Select
                                     label='Status'
                                     defaultValue='Active'
@@ -117,6 +127,7 @@ const DepartmentForm = ({ handleClose, editDepartId, setOpen, departmentData, ad
                                     name='status'
                                     value={formData.status}
                                     onChange={handleInputChange}
+                                    sx={inputField}
                                 >
                                     <MenuItem value='Active'>Active</MenuItem>
                                     <MenuItem value='Inactive'>Inactive</MenuItem>
@@ -152,7 +163,7 @@ const DepartmentForm = ({ handleClose, editDepartId, setOpen, departmentData, ad
                             size='large'
                             type='submit'
                             sx={{
-                                mr: 2,
+                                ...saveButton,
                                 '&.MuiButton-root:hover': {
                                     backgroundColor: theme.palette.primary.hover
                                 }
@@ -168,6 +179,7 @@ const DepartmentForm = ({ handleClose, editDepartId, setOpen, departmentData, ad
                             variant='outlined'
                             onClick={handleClose}
                             disabled={loading} // Disable button while loading
+                            sx={cancelButton}
                         >
                             Cancel
                         </Button>

@@ -4,7 +4,7 @@ import React from 'react'
 
 const JobApplicants = () => {
     return (
-        <Card sx={{ flex: 1 }}>
+        <Card sx={{ flex: 1, height: { xl: '190px' } }}>
             <CardContent>
                 <Box display="flex" flexDirection="column" mb={2}>
                     <Avatar sx={{ bgcolor: "#03C95A", width: 42, height: 42 }}>

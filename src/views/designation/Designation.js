@@ -8,6 +8,7 @@ import useDesignationData from 'src/hooks/useDesignationData'
 import DesignationModal from 'src/components/DesignationModal/DesignationModal'
 import { Toaster } from 'react-hot-toast'
 import DesignationTable from './DesignationTable'
+import { inputField, inputLabel } from 'src/Styles'
 
 const Designation = () => {
     const {
@@ -22,7 +23,9 @@ const Designation = () => {
         addDesignation,
         updateDesignationStatus,
         searchQuery,
-        handleSearchChange
+        handleSearchChange,
+        handleEdit,
+        editDesignation
     } = useDesignationData()
 
     return (
@@ -48,18 +51,19 @@ const Designation = () => {
                         handleClickOpen={handleClickOpen}
                         handleClose={handleClose}
                         addDesignation={addDesignation}
+                        editDesignation={editDesignation}
                     />
                     <TextField
-                        sx={{ mt: { xs: 3, sm: 0, lg: 0 } }}
+                        sx={{ mt: { xs: 3, sm: 0, lg: 0 }, ...inputField, ...inputLabel }}
                         label='Search Designation'
-                        variant='outlined'
+                        variant="filled"
                         size='small'
                         value={searchQuery}
                         onChange={handleSearchChange}
                     />
                 </Box>
 
-                <DesignationTable searchQuery={searchQuery} designationData={designationData} loading={loading} updateDesignationStatus={updateDesignationStatus} />
+                <DesignationTable searchQuery={searchQuery} designationData={designationData} loading={loading} updateDesignationStatus={updateDesignationStatus} handleEdit={handleEdit} />
             </Card>
         </>
     )

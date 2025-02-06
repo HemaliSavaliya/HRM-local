@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const DesignationFormLogic = (designationData, editDesignationId) => {
     const initialFormValue = {
@@ -51,6 +51,18 @@ const DesignationFormLogic = (designationData, editDesignationId) => {
             [name]: error
         })
     }
+
+    useEffect(() => {
+        const selectedDesignation = designationData.find(designation => designation.id === editDesignationId)
+
+        if (selectedDesignation) {
+            setFormData(selectedDesignation)
+        } else {
+            setFormData({
+                ...initialFormValue
+            })
+        }
+    }, [editDesignationId, designationData])
 
     return {
         handleInputChange,

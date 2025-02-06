@@ -1,6 +1,7 @@
 import { Box, Dialog, DialogContent, DialogTitle, Typography, Button, useTheme } from '@mui/material'
 import LeaveRequestForm from './LeaveRequestForm'
 import { motion } from 'framer-motion'
+import { saveButton } from 'src/Styles'
 
 const LeaveRequestModal = ({ leaveReqData, open, setOpen, scroll, handleClickOpen, handleClose, addLeaveRequest }) => {
     const theme = useTheme()
@@ -20,8 +21,7 @@ const LeaveRequestModal = ({ leaveReqData, open, setOpen, scroll, handleClickOpe
                 variant='contained'
                 onClick={handleClickOpen('body')}
                 sx={{
-                    lineHeight: 0,
-                    padding: '20px 25px',
+                    ...saveButton,
                     '&.MuiButton-root:hover': {
                         backgroundColor: theme.palette.primary.hover
                     }

@@ -9,6 +9,7 @@ import ConfirmationModal from 'src/common/ConfirmationModal'
 import DocumentModal from 'src/common/DocumentModal'
 import EmployeeModal from 'src/components/EmployeeModal/EmployeeModal'
 import useEmployeeData from 'src/hooks/useEmployeeData'
+import { inputField, inputLabel } from 'src/Styles'
 import EmployeeTable from 'src/views/employee/EmployeeTable'
 
 const Employee = () => {
@@ -108,9 +109,9 @@ const Employee = () => {
             editEmployee={editEmployee}
           />
           <TextField
-            sx={{ mt: { xs: 3, sm: 0, lg: 0 } }}
+            sx={{ mt: { xs: 3, sm: 0, lg: 0 }, ...inputField, ...inputLabel }}
             label='Search Employee'
-            variant='outlined'
+            variant='filled'
             size='small'
             value={searchQuery}
             onChange={handleSearchChange}

@@ -14,6 +14,7 @@ import {
 } from '@mui/material'
 import axios from 'axios'
 import { forwardRef, useEffect, useState } from 'react'
+import { inputField, inputLabel } from 'src/Styles'
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction='up' ref={ref} {...props} />
@@ -75,10 +76,10 @@ const ConfirmationModal = ({
                             <Typography fontWeight={600}>Project Details</Typography>
                         </DialogTitle>
                         {authToken?.role === 'hr' ? null : (
-                            <FormControl fullWidth>
-                                <InputLabel>Project Name</InputLabel>
+                            <FormControl fullWidth variant="filled" size='small'>
+                                <InputLabel sx={inputLabel}>Project Name</InputLabel>
                                 <Select
-                                    sx={{ mb: 5 }}
+                                    sx={{ ...inputField, mb: 5 }}
                                     label='Project Name'
                                     labelId='form-layouts-separator-select-label'
                                     id='name'
@@ -101,6 +102,8 @@ const ConfirmationModal = ({
 
                         <TextField
                             fullWidth
+                            variant="filled"
+                            size='small'
                             multiline
                             rows={4}
                             label='Description'
@@ -109,6 +112,7 @@ const ConfirmationModal = ({
                             value={description}
                             onChange={e => setDescription(e.target.value)}
                             onKeyPress={handleChange}
+                            sx={{ ...inputField, ...inputLabel }}
                         />
                     </>
                 )}

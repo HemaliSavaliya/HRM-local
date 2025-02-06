@@ -60,26 +60,8 @@ const useDepartmentData = () => {
         { id: Date.now() + Math.random(), departmentName: 'Procurement', departmentHead: 'Jackie Nelson', departmentEmail: 'jackie.nelson@company.com', teamMembers: [], status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') }
     ];
 
-    // const initializeDepartments = () => {
-    //     const departments = [
-    //         { id: Date.now() + Math.random(), departmentName: 'Human Resources', departmentHead: 'Alice Johnson', departmentEmail: 'alice.johnson@company.com', teamMembers: ['Priya', 'Minal'], status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
-    //         { id: Date.now() + Math.random(), departmentName: 'Finance', departmentHead: 'Bob Brown', departmentEmail: 'bob.brown@company.com', teamMembers: ['Rahul'], status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
-    //         { id: Date.now() + Math.random(), departmentName: 'Marketing', departmentHead: 'Carol White', departmentEmail: 'carol.white@company.com', teamMembers: ['Vikas', 'Anjali'], status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
-    //         { id: Date.now() + Math.random(), departmentName: 'IT', departmentHead: 'Dave Clark', departmentEmail: 'dave.clark@company.com', teamMembers: [], status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
-    //         { id: Date.now() + Math.random(), departmentName: 'Sales', departmentHead: 'Eve Martinez', departmentEmail: 'eve.martinez@company.com', teamMembers: ['Suresh', 'Preeti'], status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
-    //         { id: Date.now() + Math.random(), departmentName: 'Operations', departmentHead: 'Frank Lewis', departmentEmail: 'frank.lewis@company.com', teamMembers: ['Naveen', 'Arpita'], status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
-    //         { id: Date.now() + Math.random(), departmentName: 'Customer Service', departmentHead: 'Grace Davis', departmentEmail: 'grace.davis@company.com', teamMembers: ['Deepak', 'Aisha'], status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
-    //         { id: Date.now() + Math.random(), departmentName: 'Legal', departmentHead: 'Hannah Wilson', departmentEmail: 'hannah.wilson@company.com', teamMembers: ['Alok', 'Simran'], status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
-    //         { id: Date.now() + Math.random(), departmentName: 'Research and Development', departmentHead: 'Isaac Taylor', departmentEmail: 'isaac.taylor@company.com', teamMembers: ['Pankaj'], status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') },
-    //         { id: Date.now() + Math.random(), departmentName: 'Procurement', departmentHead: 'Jackie Nelson', departmentEmail: 'jackie.nelson@company.com', teamMembers: [], status: 'Active', startingDate: new Date().toLocaleDateString('en-GB') }
-    //     ];
-
-    //     setDepartmentsToLocalStorage(departments);
-    //     setDepartmentData(departments);
-    // };
 
     // Function for toggle status
-
     const updateDepartmentStatus = async (id, newStatus) => {
         const department = getDepartmentsFromLocalStorage()
 
@@ -114,14 +96,6 @@ const useDepartmentData = () => {
 
         setLoading(false)
     }
-
-    // useEffect(() => {
-    //     if (!getDepartmentsFromLocalStorage().length) {
-    //         initializeDepartments(); // Initialize departments if none exist in localStorage
-    //     } else {
-    //         fetchDepartment(); // Fetch departments from localStorage
-    //     }
-    // }, []);
 
     useEffect(() => {
         fetchDepartment(); // Fetch departments from localStorage

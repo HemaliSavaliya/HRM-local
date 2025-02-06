@@ -1,6 +1,7 @@
 import { Dialog, DialogContent, DialogTitle, Typography, Button, Box, useTheme } from '@mui/material'
 import { motion } from 'framer-motion'
 import DesignationForm from './DesignationForm'
+import { saveButton } from 'src/Styles'
 
 const DesignationModal = ({
     editDesignationId,
@@ -10,7 +11,8 @@ const DesignationModal = ({
     scroll,
     handleClickOpen,
     handleClose,
-    addDesignation
+    addDesignation,
+    editDesignation
 }) => {
     const theme = useTheme()
 
@@ -29,8 +31,7 @@ const DesignationModal = ({
                 variant='contained'
                 onClick={handleClickOpen('body')}
                 sx={{
-                    lineHeight: 0,
-                    padding: '20px 25px',
+                    ...saveButton,
                     '&.MuiButton-root:hover': {
                         backgroundColor: theme.palette.primary.hover
                     }
@@ -56,6 +57,7 @@ const DesignationModal = ({
                         designationData={designationData}
                         setOpen={setOpen}
                         addDesignation={addDesignation}
+                        editDesignation={editDesignation}
                     />
                 </DialogContent>
             </Dialog>

@@ -31,13 +31,13 @@ const JobApplicant = () => {
                     variant="outlined"
                     size="small"
                     sx={{
-                        backgroundColor: theme.palette.mode === "light" ? '#F8F9FA' : "#f8f9fa14",
-                        border: theme.palette.mode === "light" ? '1px solid #cbcbcb' : "1px solid #cbcbcb1f",
+                        backgroundColor: theme.palette.mode === "light" ? '#F8F9FA' : "#403d59",
+                        border: theme.palette.mode === "light" ? '1px solid #cbcbcb' : "1px solid #524f68",
                         color: theme.palette.mode === "light" ? '#111827' : "#e1e3e7",
                         textTransform: 'capitalize',
                         "&:hover": {
                             backgroundColor: 'rgba(115, 102, 255, 0%)',
-                            border: '1px solid #7366ff63',
+                            border: '1px solid #7366ff',
                             color: "primary.main"
                         }
                     }}
@@ -59,7 +59,7 @@ const JobApplicant = () => {
                         },
                         "& .MuiTabs-scroller": {
                             borderBlockEnd: 0,
-                            backgroundColor: '#E5E7EB',
+                            backgroundColor: theme.palette.mode === "light" ? '#E5E7EB' : "#48445f",
                             borderRadius: '7px',
                             marginBlockEnd: '1rem',
                             marginBottom: "25px !important"
@@ -97,7 +97,7 @@ const JobApplicant = () => {
                         {jobs.map((job, index) => (
                             <Box key={index} display="flex" alignItems="center" justifyContent="space-between" mb={6}>
                                 <Box display="flex" alignItems="center">
-                                    <Avatar sx={{ backgroundColor: "grey.200", borderRadius: "5px" }}>{job.icon}</Avatar>
+                                    <Avatar sx={{ backgroundColor: theme.palette.mode === "light" ? "grey.200" : "#44405b", borderRadius: "5px" }}>{job.icon}</Avatar>
                                     <Box ml={3}>
                                         <Typography variant="body1" fontWeight="medium" fontSize={15}>{job.title}</Typography>
                                         <Typography variant="body2" fontSize={13}>No of Openings: {job.openings}</Typography>
