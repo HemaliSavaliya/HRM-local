@@ -11,13 +11,15 @@ import {
   InputAdornment,
   Select,
   MenuItem,
-  useTheme
+  useTheme,
+  FilledInput
 } from '@mui/material'
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
 import { motion } from 'framer-motion'
 import { Toaster } from 'react-hot-toast'
 import useForgotPasswordData from 'src/hooks/useForgotPasswordData'
+import { cancelButton, inputField, inputLabel, saveButton } from 'src/Styles'
 
 const TabForgotPassword = () => {
   const {
@@ -48,8 +50,8 @@ const TabForgotPassword = () => {
           <Grid item xs={12} sm={6}>
             <Grid container spacing={5}>
               <Grid item xs={12}>
-                <FormControl fullWidth>
-                  <InputLabel id='form-layouts-separator-select-label'>Employee</InputLabel>
+                <FormControl fullWidth variant="filled" size='small'>
+                  <InputLabel id='form-layouts-separator-select-label' sx={inputLabel}>Employee</InputLabel>
                   <Select
                     label='Employee'
                     defaultValue=''
@@ -58,6 +60,7 @@ const TabForgotPassword = () => {
                     name='name'
                     value={values.name}
                     onChange={handleEmployeeName('name')}
+                    sx={inputField}
                   >
                     {userPassword.length === 0 ? (
                       <MenuItem disabled>No Employee</MenuItem>
@@ -73,14 +76,15 @@ const TabForgotPassword = () => {
               </Grid>
 
               <Grid item xs={12}>
-                <FormControl fullWidth>
-                  <InputLabel htmlFor='account-settings-new-password'>New Password</InputLabel>
-                  <OutlinedInput
+                <FormControl fullWidth variant="filled" size='small'>
+                  <InputLabel htmlFor='account-settings-new-password' sx={inputLabel}>New Password</InputLabel>
+                  <FilledInput
                     label='New Password'
                     value={values.newPassword}
                     id='account-settings-new-password'
                     onChange={handleNewPasswordChange('newPassword')}
                     type={values.showNewPassword ? 'text' : 'password'}
+                    sx={inputField}
                     endAdornment={
                       <InputAdornment position='end'>
                         <IconButton
@@ -98,14 +102,15 @@ const TabForgotPassword = () => {
               </Grid>
 
               <Grid item xs={12}>
-                <FormControl fullWidth>
-                  <InputLabel htmlFor='account-settings-confirm-new-password'>Confirm New Password</InputLabel>
-                  <OutlinedInput
+                <FormControl fullWidth variant="filled" size='small'>
+                  <InputLabel htmlFor='account-settings-confirm-new-password' sx={inputLabel}>Confirm New Password</InputLabel>
+                  <FilledInput
                     label='Confirm New Password'
                     value={values.confirmPassword}
                     id='account-settings-confirm-new-password'
                     type={values.showConfirmPassword ? 'text' : 'password'}
                     onChange={handleConfirmNewPasswordChange('confirmPassword')}
+                    sx={inputField}
                     endAdornment={
                       <InputAdornment position='end'>
                         <IconButton
@@ -141,7 +146,7 @@ const TabForgotPassword = () => {
         <Button
           variant='contained'
           sx={{
-            mr: 3.5,
+            ...saveButton,
             '&.MuiButton-root:hover': {
               backgroundColor: theme.palette.primary.hover
             }
@@ -155,6 +160,7 @@ const TabForgotPassword = () => {
           variant='outlined'
           color='secondary'
           onClick={() => setValues({ ...values, employeeId: '', newPassword: '', confirmPassword: '' })}
+          sx={cancelButton}
         >
           Reset
         </Button>

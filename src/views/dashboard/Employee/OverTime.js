@@ -5,7 +5,7 @@ import {
     Avatar,
     Box,
 } from '@mui/material';
-import { ArrowDown, CalendarStar } from 'mdi-material-ui';
+import { CalendarFavorite01Icon } from 'hugeicons-react';
 
 const OverTime = () => {
     return (
@@ -32,7 +32,7 @@ const OverTime = () => {
                         height: 30
                     }}
                 >
-                    <CalendarStar fontSize='small' />
+                    <CalendarFavorite01Icon size={20} />
                 </Avatar>
                 <Typography fontSize={20} fontWeight={700} textAlign={"justify"} gutterBottom>
                     16 / <Typography component="span" fontSize={20} color="textSecondary">28</Typography>

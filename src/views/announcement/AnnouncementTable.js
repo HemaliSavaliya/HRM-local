@@ -19,6 +19,7 @@ import { DeleteOutline, PencilOutline } from 'mdi-material-ui';
 import { getComparator, stableSort } from 'src/common/CommonLogic';
 import { EnhancedTableHead } from 'src/common/EnhancedTableHead';
 import { announcementCells } from 'src/TableHeader/TableHeader';
+import { Delete03Icon } from 'hugeicons-react';
 
 const AnnouncementTable = ({ searchQuery, announcementData, loading, handleEdit, handleDeleteAnnouncement, handleButtonClick }) => {
     // for table sorting and pagination
@@ -153,14 +154,9 @@ const AnnouncementTable = ({ searchQuery, announcementData, loading, handleEdit,
                                                             <Tooltip title='Delete Announcement'>
                                                                 <Button
                                                                     onClick={() => handleDeleteAnnouncement(row.id)}
-                                                                    sx={{
-                                                                        height: '32px',
-                                                                        margin: '0 3px',
-                                                                        minWidth: '32px',
-                                                                        width: '32px'
-                                                                    }}
+                                                                    sx={{ minWidth: '32px' }}
                                                                 >
-                                                                    <DeleteOutline sx={{ fontSize: '20px', color: 'rgb(211, 47, 47)' }} />
+                                                                    <Delete03Icon size={20} color='rgb(211, 47, 47)' />
                                                                 </Button>
                                                             </Tooltip>
                                                         </>

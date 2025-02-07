@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Card, Typography, Avatar, Button, Divider, useTheme } from '@mui/material';
-import { ChatOutline, EmailOutline, PhoneOutline } from 'mdi-material-ui';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import { Call02Icon, Comment01Icon, Mail01Icon } from 'hugeicons-react';
 
 const TeamMembers = () => {
     const theme = useTheme();
@@ -153,7 +153,7 @@ const TeamMembers = () => {
                                         },
                                     }}
                                 >
-                                    <PhoneOutline sx={{ fontSize: 12 }} />
+                                    <Call02Icon size={12} />
                                 </Button>
                                 <Button
                                     sx={{
@@ -170,7 +170,7 @@ const TeamMembers = () => {
                                         mr: 2
                                     }}
                                 >
-                                    <EmailOutline sx={{ fontSize: 12 }} />
+                                    <Mail01Icon size={12} />
                                 </Button>
                                 <Button
                                     sx={{
@@ -186,7 +186,7 @@ const TeamMembers = () => {
                                         minWidth: 28,
                                     }}
                                 >
-                                    <ChatOutline sx={{ fontSize: 12 }} />
+                                    <Comment01Icon size={12} />
                                 </Button>
                             </Box>
                         </Box>

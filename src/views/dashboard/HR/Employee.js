@@ -1,8 +1,8 @@
 import { Avatar, Box, Button, Card, Checkbox, Grid, Pagination, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, useTheme } from '@mui/material'
-import { PencilOutline, TrashCanOutline, TrayArrowDown } from 'mdi-material-ui'
 import React from 'react'
 import { styled } from '@mui/material/styles'
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import { Delete02Icon, Download03Icon, PencilEdit01Icon } from 'hugeicons-react';
 
 const CustomStyledCheckbox = styled(Checkbox)(({ theme }) => ({
     '&.MuiCheckbox-root': {
@@ -82,8 +82,8 @@ const Employee = () => {
                                 />
                             </Grid>
                             <Grid item xs={4}>
-                                <Button variant="outlined" color="primary" sx={{ borderStyle: "dashed", textTransform: "capitalize", gap: '2px' }}>
-                                    <TrayArrowDown sx={{ width: "20px" }} />  Export
+                                <Button variant="outlined" color="primary" sx={{ borderStyle: "dashed", textTransform: "capitalize", gap: 2 }}>
+                                    <Download03Icon size={20} />  Export
                                 </Button>
                             </Grid>
                         </Grid>
@@ -181,7 +181,7 @@ const Employee = () => {
                                                         },
                                                     }}
                                                 >
-                                                    <PencilOutline />
+                                                    <PencilEdit01Icon />
                                                 </Box>
                                                 <Box
                                                     sx={{
@@ -201,7 +201,7 @@ const Employee = () => {
                                                         },
                                                     }}
                                                 >
-                                                    <TrashCanOutline />
+                                                    <Delete02Icon />
                                                 </Box>
                                             </Box>
                                         </TableCell>

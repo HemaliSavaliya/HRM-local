@@ -5,7 +5,7 @@ import {
     Avatar,
     Box,
 } from '@mui/material';
-import { ClockCheckOutline } from 'mdi-material-ui';
+import { Calendar01Icon } from 'hugeicons-react';
 
 const TotalHoursCard = () => {
     return (
@@ -32,7 +32,7 @@ const TotalHoursCard = () => {
                         height: 30
                     }}
                 >
-                    <ClockCheckOutline fontSize='small' />
+                    <Calendar01Icon size={20} />
                 </Avatar>
                 <Typography fontSize={20} fontWeight={700} textAlign={"justify"} gutterBottom>
                     8.36 / <Typography component="span" fontSize={20} color="textSecondary">9</Typography>

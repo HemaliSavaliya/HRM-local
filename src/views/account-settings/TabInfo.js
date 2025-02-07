@@ -8,13 +8,14 @@ import { motion } from 'framer-motion'
 import PencilOutline from 'mdi-material-ui/PencilOutline'
 import { Toaster } from 'react-hot-toast'
 import useTabInfoData from 'src/hooks/useTabInfoData'
+import { cancelButton, inputField, inputLabel, saveButton } from 'src/Styles'
 
 const CustomInput = forwardRef((props, ref) => {
-    return <TextField inputRef={ref} label='Birth Date' fullWidth {...props} />
+    return <TextField inputRef={ref} label='Birth Date' fullWidth {...props} variant="filled" size='small' sx={{ ...inputField, ...inputLabel }} />
 })
 
 const CustomInputJoin = forwardRef((props, ref) => {
-    return <TextField inputRef={ref} label='Joining Date' fullWidth {...props} />
+    return <TextField inputRef={ref} label='Joining Date' fullWidth {...props} variant="filled" size='small' sx={{ ...inputField, ...inputLabel }} />
 })
 
 const ImgStyled = styled('img')(({ theme }) => ({
@@ -125,7 +126,7 @@ const TabInfo = () => {
                                         save
                                     </ResetButtonStyled>
                                 )}
-                                <ResetButtonStyled color='error' variant='outlined' onClick={resetProfileImage}>
+                                <ResetButtonStyled color='error' variant='outlined' onClick={resetProfileImage} sx={cancelButton}>
                                     Reset
                                 </ResetButtonStyled>
                                 <Typography variant='body2' sx={{ marginTop: 5 }}>
@@ -162,16 +163,29 @@ const TabInfo = () => {
                             <Grid item xs={12} sm={3}>
                                 <TextField
                                     fullWidth
+                                    variant="filled"
+                                    size='small'
                                     type='text'
                                     label='Employee ID'
                                     name='id'
                                     value={userData.id}
                                     onChange={handleChange}
                                     disabled
+                                    sx={{ ...inputField, ...inputLabel }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={3}>
-                                <TextField fullWidth label='Name' name='name' value={userData.name} onChange={handleChange} disabled />
+                                <TextField
+                                    fullWidth
+                                    variant="filled"
+                                    size='small'
+                                    label='Name'
+                                    name='name'
+                                    value={userData.name}
+                                    onChange={handleChange}
+                                    disabled
+                                    sx={{ ...inputField, ...inputLabel }}
+                                />
                             </Grid>
                             <Grid item xs={12} sm={3}>
                                 <DatePicker
@@ -188,54 +202,78 @@ const TabInfo = () => {
                             <Grid item xs={12} sm={3}>
                                 <TextField
                                     fullWidth
+                                    variant="filled"
+                                    size='small'
                                     type='email'
                                     label='Email'
                                     name='email'
                                     value={userData.email}
                                     onChange={handleChange}
+                                    sx={{ ...inputField, ...inputLabel }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={3}>
                                 <TextField
                                     fullWidth
+                                    variant="filled"
+                                    size='small'
                                     label='Phone No'
                                     name='mobileNo'
                                     value={userData.mobileNo}
                                     onChange={handleChange}
                                     disabled
+                                    sx={{ ...inputField, ...inputLabel }}
                                 />
-                            </Grid>
-                            <Grid item xs={12} sm={3}>
-                                <TextField fullWidth label='Address' name='address' value={userData.address} onChange={handleChange} />
                             </Grid>
                             <Grid item xs={12} sm={3}>
                                 <TextField
                                     fullWidth
+                                    variant="filled"
+                                    size='small'
+                                    label='Address'
+                                    name='address'
+                                    value={userData.address}
+                                    onChange={handleChange}
+                                    sx={{ ...inputField, ...inputLabel }}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={3}>
+                                <TextField
+                                    fullWidth
+                                    variant="filled"
+                                    size='small'
                                     label='Department'
                                     name='department'
                                     value={userData.department}
                                     onChange={handleChange}
                                     disabled
+                                    sx={{ ...inputField, ...inputLabel }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={3}>
                                 <TextField
                                     fullWidth
+                                    variant="filled"
+                                    size='small'
                                     label='Designation'
                                     name='designation'
                                     value={userData.designation}
                                     onChange={handleChange}
                                     disabled
+                                    sx={{ ...inputField, ...inputLabel }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={3}>
                                 <TextField
                                     fullWidth
+                                    variant="filled"
+                                    size='small'
                                     label='Salary'
                                     name='salary'
                                     value={userData.salary}
                                     onChange={handleChange}
                                     disabled
+                                    sx={{ ...inputField, ...inputLabel }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={3}>
@@ -265,59 +303,73 @@ const TabInfo = () => {
                             <Grid item xs={12} sm={4}>
                                 <TextField
                                     fullWidth
+                                    variant="filled"
+                                    size='small'
                                     label='Account Holder Name'
                                     name='bankAccountHolderName'
                                     value={userData.bankAccountHolderName}
                                     onChange={handleChange}
                                     disabled
+                                    sx={{ ...inputField, ...inputLabel }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={4}>
                                 <TextField
                                     fullWidth
+                                    variant="filled"
+                                    size='small'
                                     label='Account Number'
                                     name='bankAccountNumber'
                                     value={userData.bankAccountNumber}
                                     onChange={handleChange}
                                     disabled
+                                    sx={{ ...inputField, ...inputLabel }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={4}>
                                 <TextField
                                     fullWidth
+                                    variant="filled"
+                                    size='small'
                                     label='Bank Name'
                                     name='bankName'
                                     value={userData.bankName}
                                     onChange={handleChange}
                                     disabled
+                                    sx={{ ...inputField, ...inputLabel }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={4}>
                                 <TextField
                                     fullWidth
+                                    variant="filled"
+                                    size='small'
                                     label='Bank Identifier Code (IFSC Code)'
                                     name='bankIFSCCode'
                                     value={userData.bankIFSCCode}
                                     onChange={handleChange}
                                     disabled
+                                    sx={{ ...inputField, ...inputLabel }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={4}>
                                 <TextField
                                     fullWidth
+                                    variant="filled"
+                                    size='small'
                                     label='Branch Location'
                                     name='bankBranchLocation'
                                     value={userData.bankBranchLocation}
                                     onChange={handleChange}
                                     disabled
+                                    sx={{ ...inputField, ...inputLabel }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <Button
                                     variant='contained'
                                     sx={{
-                                        lineHeight: 0,
-                                        padding: '20px 25px !important',
+                                        ...saveButton,
                                         '&.MuiButton-root:hover': {
                                             backgroundColor: theme.palette.primary.hover
                                         }

@@ -2,6 +2,8 @@
 import { Dialog, DialogContent, DialogTitle, Typography, Button, Box, useTheme } from '@mui/material'
 import AnnouncementForm from './AnnouncementForm'
 import { motion } from 'framer-motion'
+import { saveButton } from 'src/Styles'
+import { PlusSignIcon } from 'hugeicons-react'
 
 const AnnouncementModal = ({
     editAnnoId,
@@ -22,26 +24,17 @@ const AnnouncementModal = ({
         <>
             {(role === 'admin' || role === "hr") && (
                 <Button
-                    component={motion.div}
-                    whileHover={{
-                        scale: 0.9,
-                        transition: { duration: 0.4 }
-                    }}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exist={{ opacity: 0, y: 15 }}
-                    transition={{ delay: 0.25 }}
                     variant='contained'
                     onClick={handleClickOpen('body')}
                     sx={{
-                        lineHeight: 0,
-                        padding: '20px 25px',
+                        ...saveButton,
+                        gap: 1,
                         '&.MuiButton-root:hover': {
                             backgroundColor: theme.palette.primary.hover
                         }
                     }}
                 >
-                    Add Announcements
+                    Add Announcements <PlusSignIcon size={15} />
                 </Button>
             )}
 

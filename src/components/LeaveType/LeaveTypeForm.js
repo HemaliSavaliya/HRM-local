@@ -13,6 +13,7 @@ import {
 } from '@mui/material'
 import LeaveTypeFormLogic from './LeaveTypeFormLogic'
 import { useState } from 'react'
+import { cancelButton, inputField, inputLabel, saveButton } from 'src/Styles'
 
 const LeaveTypeForm = ({ handleClose, leaveTypeData, editLeaveTypeId, setOpen, addLeaveType, editLeaveType }) => {
     const { formData, handleInputChange, errors, validateForm, setFormData, initialFormValue } = LeaveTypeFormLogic(
@@ -55,11 +56,14 @@ const LeaveTypeForm = ({ handleClose, leaveTypeData, editLeaveTypeId, setOpen, a
                         <Grid item xs={12} sm={12}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 label='Leave Type Name'
                                 id='leaveName'
                                 name='leaveName'
                                 value={formData.leaveName}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.leaveName && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.leaveName}</Typography>
@@ -68,19 +72,22 @@ const LeaveTypeForm = ({ handleClose, leaveTypeData, editLeaveTypeId, setOpen, a
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 label='Leave Type Balance'
                                 id='leaveBalance'
                                 name='leaveBalance'
                                 value={formData.leaveBalance}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.leaveBalance && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.leaveBalance}</Typography>
                             )}
                         </Grid>
                         <Grid item xs={12} sm={6} sx={{ mb: 5 }}>
-                            <FormControl fullWidth>
-                                <InputLabel id='form-layouts-separator-select-label'>Leave Status</InputLabel>
+                            <FormControl fullWidth variant="filled" size='small'>
+                                <InputLabel id='form-layouts-separator-select-label' sx={inputLabel}>Leave Status</InputLabel>
                                 <Select
                                     label='Leave Status'
                                     defaultValue=''
@@ -89,6 +96,7 @@ const LeaveTypeForm = ({ handleClose, leaveTypeData, editLeaveTypeId, setOpen, a
                                     name='leaveStatus'
                                     value={formData.leaveStatus}
                                     onChange={handleInputChange}
+                                    sx={inputField}
                                 >
                                     <MenuItem value='Active'>Active</MenuItem>
                                     <MenuItem value='Inactive'>Inactive</MenuItem>
@@ -102,7 +110,7 @@ const LeaveTypeForm = ({ handleClose, leaveTypeData, editLeaveTypeId, setOpen, a
                             size='large'
                             type='submit'
                             sx={{
-                                mr: 2,
+                                ...saveButton,
                                 '&.MuiButton-root:hover': {
                                     backgroundColor: theme.palette.primary.hover
                                 }
@@ -118,6 +126,7 @@ const LeaveTypeForm = ({ handleClose, leaveTypeData, editLeaveTypeId, setOpen, a
                             variant='outlined'
                             onClick={handleClose}
                             disabled={loading} // Disable button while loading
+                            sx={cancelButton}
                         >
                             Cancel
                         </Button>

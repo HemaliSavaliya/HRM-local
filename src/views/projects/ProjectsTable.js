@@ -20,6 +20,7 @@ import { getComparator, stableSort } from 'src/common/CommonLogic';
 import { EnhancedTableHead } from 'src/common/EnhancedTableHead';
 import { projectCells } from 'src/TableHeader/TableHeader';
 import { Toaster } from 'react-hot-toast';
+import { Delete03Icon } from 'hugeicons-react';
 
 const statusObj = {
   Completed: 'success',
@@ -183,14 +184,9 @@ const ProjectsTable = ({
                                   <Tooltip title='Delete Project'>
                                     <Button
                                       onClick={() => handleDeleteProject(row.id)}
-                                      sx={{
-                                        height: '32px',
-                                        margin: '0 3px',
-                                        minWidth: '32px',
-                                        width: '32px'
-                                      }}
+                                      sx={{ minWidth: '32px' }}
                                     >
-                                      <DeleteOutline sx={{ fontSize: '20px', color: 'rgb(211, 47, 47)' }} />
+                                      <Delete03Icon size={20} color='rgb(211, 47, 47)' />
                                     </Button>
                                   </Tooltip>
                                 </>

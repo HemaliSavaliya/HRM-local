@@ -1,5 +1,6 @@
 import { Avatar, Box, Card, CardContent, Link, Typography } from '@mui/material'
-import { MenuDown, AccountGroupOutline } from 'mdi-material-ui'
+import { UserGroupIcon } from 'hugeicons-react'
+import { MenuDown } from 'mdi-material-ui'
 import React from 'react'
 
 const TotalClient = () => {
@@ -7,8 +8,8 @@ const TotalClient = () => {
         <Card sx={{ flex: 1, height: { xl: '190px' } }}>
             <CardContent>
                 <Box display="flex" flexDirection="column" mb={2}>
-                    <Avatar sx={{ bgcolor: "#1B84FF", width: 42, height: 42 }}>
-                        <AccountGroupOutline fontSize="medium" sx={{ fill: "#fff" }} />
+                    <Avatar sx={{ backgroundColor: "#1B84FF", width: 42, height: 42 }}>
+                        <UserGroupIcon color="#fff" />
                     </Avatar>
                 </Box>
                 <Typography variant="subtitle2" fontWeight="medium" color="text.secondary" mb={1}>

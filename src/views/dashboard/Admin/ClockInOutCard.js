@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Card, CardHeader, CardContent, Typography, Avatar, Menu, MenuItem, Button, IconButton, Divider, useTheme, Box } from "@mui/material";
-import { CalendarBlankOutline, ClockOutline } from "mdi-material-ui";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import "react-perfect-scrollbar/dist/css/styles.css"; // Import scrollbar styles
+import { AlarmClockIcon, Calendar04Icon } from "hugeicons-react";
 
 const employees = [
   { name: "Daniel Esbella", role: "UI/UX Designer", avatar: "images/avatars/avatar-2.png", time: "09:15" },
@@ -42,9 +41,10 @@ const ClockInOutCard = () => {
                 fontSize: "14px",
                 display: "flex",
                 alignItems: "center",
+                gap: 1
               }}
             >
-              <CalendarBlankOutline sx={{ fontSize: 18, marginRight: 1 }} />
+              <Calendar04Icon size={18} />
               {selectedFilter}
             </IconButton>
             <Menu
@@ -83,15 +83,15 @@ const ClockInOutCard = () => {
                   </Box>
                 </Box>
                 <Box sx={{ background: '#03C95A', color: '#fff', padding: '0.25rem 0.45rem', fontWeight: 600, borderRadius: '4px', fontSize: '10px', display: "flex", alignItems: "center", gap: 1, width: 75 }}>
-                  <ClockOutline sx={{ width: 15, height: 15 }} />
+                  <AlarmClockIcon size={15} />
                   <Typography variant="body2" color="#fff">{employee.time}</Typography>
                 </Box>
               </Box>
             ))}
             <Typography fontSize={14} fontWeight={600} mb={1}>Late</Typography>
             {lateEmployees.map((employee, index) => (
-              <Box key={index} sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px", border: `1px dashed ${theme.palette.mode === "light" ? "#ddd" : "#5a576e"}`, mb: 2, borderRadius: 2 }}>
-                <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Box key={index} sx={{ display: { xs: "block", lg: "flex" }, alignItems: "center", justifyContent: "space-between", padding: "10px", border: `1px dashed ${theme.palette.mode === "light" ? "#ddd" : "#5a576e"}`, mb: 2, borderRadius: 2 }}>
+                <Box sx={{ display: "flex", alignItems: "center", mb: { xs: 2 } }}>
                   <Avatar src={employee.avatar} />
                   <Box sx={{ marginLeft: "10px" }}>
                     <Typography variant="body1" sx={{ fontSize: '14px', fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
@@ -104,7 +104,7 @@ const ClockInOutCard = () => {
                   </Box>
                 </Box>
                 <Box sx={{ background: '#E70D0D', color: '#fff', padding: '0.25rem 0.45rem', fontWeight: 600, borderRadius: '4px', fontSize: '10px', display: "flex", alignItems: "center", gap: 1, width: 75 }}>
-                  <ClockOutline sx={{ width: 15, height: 15 }} />
+                  <AlarmClockIcon size={15} />
                   <Typography variant="body2" color="#fff">{employee.time}</Typography>
                 </Box>
               </Box>

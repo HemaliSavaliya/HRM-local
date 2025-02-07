@@ -9,6 +9,7 @@ import LeaveTypeModal from 'src/components/LeaveType/LeaveTypeModal'
 import { Toaster } from 'react-hot-toast'
 import ConfirmationModal from 'src/common/ConfirmationModal'
 import LeaveTypeTable from './LeaveTypeTable'
+import { inputField, inputLabel } from 'src/Styles'
 
 const LeaveType = () => {
     const {
@@ -66,9 +67,9 @@ const LeaveType = () => {
                         editLeaveType={editLeaveType}
                     />
                     <TextField
-                        sx={{ mt: { xs: 3, sm: 0, lg: 0 } }}
+                        sx={{ mt: { xs: 3, sm: 0, lg: 0 }, ...inputField, ...inputLabel }}
                         label='Search Leave Type'
-                        variant='outlined'
+                        variant='filled'
                         size='small'
                         value={searchQuery}
                         onChange={handleSearchChange}

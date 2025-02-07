@@ -9,6 +9,7 @@ import useAwardsData from 'src/hooks/useAwardsData'
 import { Toaster } from 'react-hot-toast'
 import ConfirmationModal from 'src/common/ConfirmationModal'
 import AwardsTable from 'src/views/awards/AwardsTable'
+import { inputField, inputLabel } from 'src/Styles'
 
 const Awards = () => {
     const {
@@ -80,9 +81,9 @@ const Awards = () => {
                         editAwards={editAwards}
                     />
                     <TextField
-                        sx={{ mt: { xs: 3, sm: 0, lg: 0 } }}
+                        sx={{ mt: { xs: 3, sm: 0, lg: 0 }, ...inputField, ...inputLabel }}
                         label='Search Awards'
-                        variant='outlined'
+                        variant='filled'
                         size='small'
                         value={searchQuery}
                         onChange={handleSearchChange}

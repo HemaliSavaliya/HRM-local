@@ -13,6 +13,8 @@ import { motion } from 'framer-motion'
 import useCalendarData from 'src/hooks/useCalendarData'
 import { Toaster } from 'react-hot-toast'
 import { useEffect, useState } from 'react'
+import { saveButton } from 'src/Styles'
+import { PlusSignIcon } from 'hugeicons-react'
 
 const locales = {
     'en-IN': enIN
@@ -103,9 +105,8 @@ const EventCalendar = () => {
                                     exit={{ opacity: 0, y: 15 }}
                                     transition={{ delay: 0.25 }}
                                     sx={{
-                                        mr: 3,
-                                        lineHeight: 0,
-                                        padding: '20px 25px',
+                                        ...saveButton,
+                                        gap: 1,
                                         '&.MuiButton-root:hover': {
                                             backgroundColor: theme.palette.primary.hover
                                         }
@@ -113,7 +114,7 @@ const EventCalendar = () => {
                                     variant='contained'
                                     onClick={() => setOpenDatepickerModal(true)}
                                 >
-                                    Add Event
+                                    Add Event <PlusSignIcon size={15} />
                                 </Button>
                                 <Button
                                     component={motion.div}
@@ -125,14 +126,14 @@ const EventCalendar = () => {
                                     variant='contained'
                                     onClick={() => setOpenTodoModal(true)}
                                     sx={{
-                                        lineHeight: 0,
-                                        padding: '20px 25px',
+                                        ...saveButton,
+                                        gap: 1,
                                         '&.MuiButton-root:hover': {
                                             backgroundColor: theme.palette.primary.hover
                                         }
                                     }}
                                 >
-                                    Create todo
+                                    Create todo <PlusSignIcon size={15} />
                                 </Button>
                             </Box>
                             <Divider style={{ margin: 10 }} />

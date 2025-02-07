@@ -81,7 +81,7 @@ const VerticalLayout = props => {
           <ContentWrapper className='layout-page-content'>{children}</ContentWrapper>
           <Footer>
             <Typography variant='subtitle2'>
-              Copyright <strong>2024</strong> © HRM by stackholic
+              Copyright <strong>{new Date().getFullYear()}</strong> © HRM by stackholic
             </Typography>
           </Footer>
         </MainContentWrapper>

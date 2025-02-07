@@ -85,7 +85,6 @@ const EmployeeDashboard = () => {
 
             <Grid container spacing={5} mt={1}>
                 <Grid item xs={12} sm={12} md={12} lg={12}><Projects /></Grid>
-                {/* <Grid item xs={12} sm={12} md={6} lg={6}><Tasks /></Grid> */}
             </Grid>
 
             <Grid container spacing={5} mt={1}>

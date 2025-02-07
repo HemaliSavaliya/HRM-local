@@ -11,8 +11,8 @@ import {
     Divider,
     useTheme,
 } from "@mui/material";
-import { CalendarBlankOutline } from "mdi-material-ui";
 import dynamic from "next/dynamic";
+import { Calendar04Icon } from "hugeicons-react";
 const EmployeeChart = dynamic(() => import('./charts/EmployeeChart'), { ssr: false });
 
 const EmployeesByDepartment = () => {
@@ -44,9 +44,10 @@ const EmployeesByDepartment = () => {
                                 fontSize: "14px",
                                 display: "flex",
                                 alignItems: "center",
+                                gap: 1
                             }}
                         >
-                            <CalendarBlankOutline sx={{ fontSize: 18, marginRight: 1 }} />
+                            <Calendar04Icon size={18} />
                             {selectedPeriod}
                         </IconButton>
                         <Menu

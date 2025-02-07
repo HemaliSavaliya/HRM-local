@@ -1,12 +1,11 @@
 import React from 'react';
 import {
     Card,
-    CardContent,
     Typography,
     Avatar,
     Box,
 } from '@mui/material';
-import { CalendarImport } from 'mdi-material-ui';
+import { Calendar03Icon } from 'hugeicons-react';
 
 const TotalHoursMonth = () => {
     return (
@@ -33,7 +32,7 @@ const TotalHoursMonth = () => {
                         height: 30
                     }}
                 >
-                    <CalendarImport fontSize='small' />
+                    <Calendar03Icon size={20} />
                 </Avatar>
                 <Typography fontSize={20} fontWeight={700} textAlign={"justify"} gutterBottom>
                     75 / <Typography component="span" fontSize={20} color="textSecondary">98</Typography>

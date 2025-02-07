@@ -19,6 +19,7 @@ import { DeleteOutline, PencilOutline } from 'mdi-material-ui';
 import { getComparator, stableSort } from 'src/common/CommonLogic';
 import { EnhancedTableHead } from 'src/common/EnhancedTableHead';
 import { awardCells } from 'src/TableHeader/TableHeader';
+import { Delete03Icon } from 'hugeicons-react';
 
 const AwardsTable = ({ searchQuery, awardsData, loading, handleEdit, handleDeleteAward }) => {
     // for table sorting and pagination
@@ -152,14 +153,9 @@ const AwardsTable = ({ searchQuery, awardsData, loading, handleEdit, handleDelet
                                                             <Tooltip title='Delete Award'>
                                                                 <Button
                                                                     onClick={() => handleDeleteAward(row.id)}
-                                                                    sx={{
-                                                                        height: '32px',
-                                                                        margin: '0 3px',
-                                                                        minWidth: '32px',
-                                                                        width: '32px'
-                                                                    }}
+                                                                    sx={{ minWidth: '32px' }}
                                                                 >
-                                                                    <DeleteOutline sx={{ fontSize: '20px', color: 'rgb(211, 47, 47)' }} />
+                                                                    <Delete03Icon size={20} color='rgb(211, 47, 47)' />
                                                                 </Button>
                                                             </Tooltip>
                                                         </>

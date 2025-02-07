@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Card, CardHeader, CardContent, Typography, Avatar, Menu, MenuItem, IconButton, Divider, useTheme, Box, TableContainer, Table, TableBody, TableRow, TableCell, TableHead, AvatarGroup, LinearProgress, Badge } from "@mui/material";
-import { CalendarBlankOutline } from "mdi-material-ui";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { styled } from "@mui/material/styles";
+import { Calendar04Icon } from "hugeicons-react";
 
 const projectData = [
     {
@@ -26,7 +26,7 @@ const projectData = [
         priorityColor: "success",
     },
     {
-        id: "PRO-001",
+        id: "PRO-003",
         name: "Office Management App",
         team: ["images/avatars/avatar-2.png", "images/avatars/avatar-3.png", "images/avatars/avatar-7.png"],
         hours: "15/255",
@@ -36,7 +36,7 @@ const projectData = [
         priorityColor: "warning",
     },
     {
-        id: "PRO-002",
+        id: "PRO-004",
         name: "Clinic Management",
         team: ["images/avatars/avatar-2.png", "images/avatars/avatar-7.png", "images/avatars/avatar-10.png"],
         hours: "15/255",
@@ -46,7 +46,7 @@ const projectData = [
         priorityColor: "success",
     },
     {
-        id: "PRO-001",
+        id: "PRO-005",
         name: "Office Management App",
         team: ["images/avatars/avatar-2.png", "images/avatars/avatar-3.png", "images/avatars/avatar-7.png"],
         hours: "15/255",
@@ -56,7 +56,7 @@ const projectData = [
         priorityColor: "error",
     },
     {
-        id: "PRO-002",
+        id: "PRO-006",
         name: "Clinic Management",
         team: ["images/avatars/avatar-2.png", "images/avatars/avatar-7.png", "images/avatars/avatar-10.png"],
         hours: "15/255",
@@ -106,9 +106,10 @@ const Projects = () => {
                                 fontSize: "14px",
                                 display: "flex",
                                 alignItems: "center",
+                                gap: 1
                             }}
                         >
-                            <CalendarBlankOutline sx={{ fontSize: 18, marginRight: 1 }} />
+                            <Calendar04Icon size={18} />
                             {selectedFilter}
                         </IconButton>
                         <Menu

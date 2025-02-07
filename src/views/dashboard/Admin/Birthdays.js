@@ -67,7 +67,18 @@ const Birthdays = () => {
                                             <Box sx={{ display: "flex", alignItems: "center" }}>
                                                 <Avatar src={person.avatar} />
                                                 <Box sx={{ marginLeft: "10px" }}>
-                                                    <Typography variant="body1" fontSize={14} fontWeight={600}>{person.name}</Typography>
+                                                    <Typography variant="body1"
+                                                        sx={{
+                                                            whiteSpace: 'normal',
+                                                            WebkitLineClamp: 1,
+                                                            WebkitBoxOrient: 'vertical',
+                                                            display: '-webkit-box',
+                                                            overflow: 'hidden',
+                                                            textOverflow: 'ellipsis',
+                                                            fontSize: '14px',
+                                                            fontWeight: 600,
+                                                        }}
+                                                    >{person.name}</Typography>
                                                     <Typography variant="body2" color="textSecondary">{person.role}</Typography>
                                                 </Box>
                                             </Box>

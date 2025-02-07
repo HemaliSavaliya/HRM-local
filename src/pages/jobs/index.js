@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Box, Card, Tooltip, useTheme } from '@mui/material'
+import { Box, Tooltip, useTheme } from '@mui/material'
 import { TabList, TabPanel, TabContext } from '@mui/lab'
 import { styled } from '@mui/material/styles'
 import MuiTab from '@mui/material/Tab'
-import FormatListBulletedTriangle from 'mdi-material-ui/FormatListBulletedTriangle'
-import ApplicationEditOutline from 'mdi-material-ui/ApplicationEditOutline'
 import JobRequirement from 'src/views/jobs/JobRequirement'
 import ApplicantList from 'src/views/jobs/ApplicantList'
 import { motion } from 'framer-motion'
+import { LicenseDraftIcon, UserAccountIcon } from 'hugeicons-react'
 
 const Tab = styled(MuiTab)(({ theme }) => ({
     lineHeight: 1,
@@ -88,7 +87,7 @@ const Jobs = () => {
                                 label={
                                     <Tooltip title='Requirement'>
                                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                            <ApplicationEditOutline />
+                                            <UserAccountIcon />
                                             <TabName>Requirement</TabName>
                                         </Box>
                                     </Tooltip>
@@ -99,7 +98,7 @@ const Jobs = () => {
                                 label={
                                     <Tooltip title='Applicant List'>
                                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                            <FormatListBulletedTriangle />
+                                            <LicenseDraftIcon />
                                             <TabName>Applicant List</TabName>
                                         </Box>
                                     </Tooltip>

@@ -1,5 +1,6 @@
 import { Avatar, Box, Card, CardContent, Link, Typography } from '@mui/material'
-import { MenuUp, Finance } from 'mdi-material-ui'
+import { PermanentJobIcon } from 'hugeicons-react'
+import { MenuUp } from 'mdi-material-ui'
 import React from 'react'
 
 const JobApplicants = () => {
@@ -7,8 +8,8 @@ const JobApplicants = () => {
         <Card sx={{ flex: 1, height: { xl: '190px' } }}>
             <CardContent>
                 <Box display="flex" flexDirection="column" mb={2}>
-                    <Avatar sx={{ bgcolor: "#03C95A", width: 42, height: 42 }}>
-                        <Finance fontSize="medium" sx={{ fill: "#fff" }} />
+                    <Avatar sx={{ backgroundColor: "#03C95A", width: 42, height: 42 }}>
+                        <PermanentJobIcon color="#fff" />
                     </Avatar>
                 </Box>
                 <Typography variant="subtitle2" fontWeight="medium" color="text.secondary" mb={1}>

@@ -3,12 +3,11 @@ import { TabList, TabPanel, TabContext } from '@mui/lab'
 import { styled } from '@mui/material/styles'
 import MuiTab from '@mui/material/Tab'
 import { Box, Tooltip, useTheme } from '@mui/material'
-import Clock from 'mdi-material-ui/Clock'
-import WalletOutline from 'mdi-material-ui/WalletOutline'
 import { motion } from 'framer-motion'
 import Tracker from '../tracker'
 import AttendanceTable from 'src/components/Attendance/AttendanceTable'
 import RoleWiseAttendance from 'src/views/attendance/RoleWiseAttendance'
+import { CoPresentIcon, TimeQuarterIcon } from 'hugeicons-react'
 
 const Tab = styled(MuiTab)(({ theme }) => ({
     lineHeight: 1,
@@ -106,7 +105,7 @@ const Attendance = () => {
                                 label={
                                     <Tooltip title='Tracker'>
                                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                            <Clock />
+                                            <TimeQuarterIcon />
                                             <TabName>Tracker</TabName>
                                         </Box>
                                     </Tooltip>
@@ -119,7 +118,7 @@ const Attendance = () => {
                                 label={
                                     <Tooltip title='Role Wise Attendance'>
                                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                            <WalletOutline />
+                                            <CoPresentIcon />
                                             <TabName>Role Wise Attendance</TabName>
                                         </Box>
                                     </Tooltip>

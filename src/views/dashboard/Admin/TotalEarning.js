@@ -1,5 +1,6 @@
 import { Avatar, Box, Card, CardContent, Link, Typography } from '@mui/material'
-import { MenuUp, AccountCashOutline } from 'mdi-material-ui'
+import { MoneySavingJarIcon } from 'hugeicons-react'
+import { MenuUp } from 'mdi-material-ui'
 import React from 'react'
 
 const TotalEarning = () => {
@@ -7,8 +8,8 @@ const TotalEarning = () => {
         <Card sx={{ flex: 1, height: { xl: '190px' } }}>
             <CardContent>
                 <Box display="flex" flexDirection="column" mb={2}>
-                    <Avatar sx={{ bgcolor: "#AB47BC", width: 42, height: 42 }}>
-                        <AccountCashOutline fontSize="medium" sx={{ fill: "#fff" }} />
+                    <Avatar sx={{ backgroundColor: "#AB47BC", width: 42, height: 42 }}>
+                        <MoneySavingJarIcon color="#fff" />
                     </Avatar>
                 </Box>
                 <Typography variant="subtitle2" fontWeight="medium" color="text.secondary" mb={1}>

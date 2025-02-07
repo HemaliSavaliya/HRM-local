@@ -2,6 +2,7 @@ import { Dialog, DialogContent, DialogTitle, Typography, Button, useTheme } from
 import EmployeeForm from './EmployeeForm'
 import { motion } from 'framer-motion'
 import { saveButton } from 'src/Styles'
+import { PlusSignIcon } from 'hugeicons-react'
 
 const EmployeeModal = ({
     editEmployeeId,
@@ -19,25 +20,17 @@ const EmployeeModal = ({
     return (
         <>
             <Button
-                component={motion.div}
-                whileHover={{
-                    scale: 0.9,
-                    transition: { duration: 0.4 }
-                }}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exist={{ opacity: 0, y: 15 }}
-                transition={{ delay: 0.25 }}
                 variant='contained'
                 onClick={handleClickOpen('body')}
                 sx={{
                     ...saveButton,
+                    gap: 1,
                     '&.MuiButton-root:hover': {
                         backgroundColor: theme.palette.primary.hover
                     }
                 }}
             >
-                Add Employees
+                Add Employees <PlusSignIcon size={15} />
             </Button>
 
             <Dialog

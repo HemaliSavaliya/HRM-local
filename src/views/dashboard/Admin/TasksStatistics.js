@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Card, CardHeader, CardContent, Typography, Menu, MenuItem, Button, IconButton, Divider, useTheme, Box } from "@mui/material";
-import { CalendarBlankOutline } from "mdi-material-ui";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { Doughnut } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { ArcElement } from "chart.js";
+import { Calendar04Icon } from "hugeicons-react";
 
 // Register required elements
 Chart.register(ArcElement);
@@ -76,9 +76,10 @@ const TasksStatistics = () => {
                                 fontSize: "14px",
                                 display: "flex",
                                 alignItems: "center",
+                                gap: 1
                             }}
                         >
-                            <CalendarBlankOutline sx={{ fontSize: 18, marginRight: 1 }} />
+                            <Calendar04Icon size={18} />
                             {selectedFilter}
                         </IconButton>
                         <Menu

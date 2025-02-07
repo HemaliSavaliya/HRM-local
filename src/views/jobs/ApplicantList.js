@@ -17,6 +17,7 @@ import { motion } from 'framer-motion'
 import { getComparator, stableSort } from 'src/common/CommonLogic'
 import { EnhancedTableHead } from 'src/common/EnhancedTableHead'
 import { applicantCells } from 'src/TableHeader/TableHeader'
+import { inputField, inputLabel } from 'src/Styles'
 
 const ApplicantList = () => {
   // for table
@@ -95,9 +96,9 @@ const ApplicantList = () => {
         mb={4}
       >
         <TextField
-          sx={{ mt: { xs: 3, sm: 0, lg: 0 } }}
+          sx={{ mt: { xs: 3, sm: 0, lg: 0 }, ...inputField, ...inputLabel }}
           label='Search Applicant'
-          variant='outlined'
+          variant='filled'
           size='small'
           value={searchQuery}
           onChange={handleSearchChange}

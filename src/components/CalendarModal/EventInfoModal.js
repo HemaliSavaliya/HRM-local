@@ -10,6 +10,7 @@ import {
     Divider,
     useTheme
 } from '@mui/material'
+import { cancelButton, saveButton } from 'src/Styles'
 
 const EventInfoModal = ({ open, handleClose, onDeleteEvent, currentEvent, onEditEvent }) => {
     const theme = useTheme()
@@ -39,19 +40,20 @@ const EventInfoModal = ({ open, handleClose, onDeleteEvent, currentEvent, onEdit
             </DialogContent>
             <Divider sx={{ margin: 0 }} />
             <DialogActions>
-                <Button size='large' color='error' variant='contained' onClick={onDeleteEvent}>
+                <Button color='error' variant='contained' onClick={onDeleteEvent} sx={{ ...saveButton, mr: 0 }}>
                     Delete
                 </Button>
-                <Button size='large' color='secondary' variant='outlined' onClick={onClose}>
+                <Button color='secondary' variant='outlined' onClick={onClose} sx={cancelButton}>
                     Cancel
                 </Button>
                 <Button
                     sx={{
+                        ...saveButton,
+                        mr: 0,
                         '&.MuiButton-root:hover': {
                             backgroundColor: theme.palette.primary.hover
                         }
                     }}
-                    size='large'
                     variant='contained'
                     onClick={() => onEditEvent(currentEvent.id)}
                 >

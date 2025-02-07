@@ -111,8 +111,8 @@ const SchedulesCard = () => {
 
                             <Divider />
 
-                            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                                <Box sx={{ display: "flex" }}>
+                            <Box sx={{ display: { xs: "block", lg: "flex" }, alignItems: "center", justifyContent: "space-between" }}>
+                                <Box sx={{ display: "flex", mb: { xs: 2 } }}>
                                     <AvatarGroup max={5}>
                                         {schedule.avatars.slice(0, 4).map((src, idx) => (
                                             <StyledAvatar key={idx} src={src} />

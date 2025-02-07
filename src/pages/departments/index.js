@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Box, useTheme, Tooltip } from '@mui/material'
+import { Box, useTheme, Tooltip } from '@mui/material'
 import { motion } from 'framer-motion'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { styled } from '@mui/material/styles'
 import MuiTab from '@mui/material/Tab'
 import Department from 'src/views/department/Department'
-import { BadgeAccountOutline, CheckboxMultipleBlankOutline } from 'mdi-material-ui'
 import Designation from 'src/views/designation/Designation'
+import { IdVerifiedIcon, PackageSearchIcon } from 'hugeicons-react'
 
 const Tab = styled(MuiTab)(({ theme }) => ({
     lineHeight: 1,
@@ -85,7 +85,7 @@ const Departments = () => {
                             label={
                                 <Tooltip title='Department'>
                                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                        <CheckboxMultipleBlankOutline />
+                                        <PackageSearchIcon />
                                         <TabName>Department</TabName>
                                     </Box>
                                 </Tooltip>
@@ -96,7 +96,7 @@ const Departments = () => {
                             label={
                                 <Tooltip title='Designation'>
                                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                        <BadgeAccountOutline />
+                                        <IdVerifiedIcon />
                                         <TabName>Designation</TabName>
                                     </Box>
                                 </Tooltip>

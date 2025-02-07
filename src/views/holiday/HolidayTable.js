@@ -21,6 +21,7 @@ import { DeleteOutline, PencilOutline } from 'mdi-material-ui';
 import { getComparator, stableSort } from 'src/common/CommonLogic';
 import { holidayCells } from 'src/TableHeader/TableHeader';
 import { EnhancedTableHead } from 'src/common/EnhancedTableHead';
+import { Delete03Icon } from 'hugeicons-react';
 
 const HolidayTable = ({ searchQuery, holidayData, loading, handleEdit, handleDeleteHoliday }) => {
     // for table sorting and pagination
@@ -149,14 +150,9 @@ const HolidayTable = ({ searchQuery, holidayData, loading, handleEdit, handleDel
                                                     <Tooltip title='Delete Holiday'>
                                                         <Button
                                                             onClick={() => handleDeleteHoliday(row.id)}
-                                                            sx={{
-                                                                height: '32px',
-                                                                margin: '0 3px',
-                                                                minWidth: '32px',
-                                                                width: '32px'
-                                                            }}
+                                                            sx={{ minWidth: '32px' }}
                                                         >
-                                                            <DeleteOutline sx={{ fontSize: '20px', color: 'rgb(211, 47, 47)' }} />
+                                                            <Delete03Icon size={20} color='rgb(211, 47, 47)' />
                                                         </Button>
                                                     </Tooltip>
                                                 </TableCell>

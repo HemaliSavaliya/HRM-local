@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Card, CardHeader, CardContent, Typography, Button, useTheme, Divider, Tab, Tabs, Avatar, Box, IconButton, Badge } from "@mui/material";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import { Apple, CodeBraces, LanguageJavascript, LanguagePhp, Pencil } from "mdi-material-ui";
+import { AppleIcon, JavaScriptIcon, PencilEdit02Icon, PhpIcon, ReactIcon } from "hugeicons-react";
 
 const jobs = [
-    { title: "Senior IOS Developer", openings: 25, icon: <Apple /> },
-    { title: "Junior PHP Developer", openings: 20, icon: <LanguagePhp /> },
-    { title: "Junior React Developer", openings: 30, icon: <LanguageJavascript /> },
-    { title: "Senior Laravel Developer", openings: 40, icon: <CodeBraces /> },
+    { title: "Senior IOS Developer", openings: 25, icon: <AppleIcon /> },
+    { title: "Junior PHP Developer", openings: 20, icon: <PhpIcon /> },
+    { title: "Junior React Developer", openings: 30, icon: <ReactIcon /> },
+    { title: "Senior Javascript Developer", openings: 40, icon: <JavaScriptIcon /> },
 ];
 
 const applicants = [
@@ -99,11 +99,31 @@ const JobApplicant = () => {
                                 <Box display="flex" alignItems="center">
                                     <Avatar sx={{ backgroundColor: theme.palette.mode === "light" ? "grey.200" : "#44405b", borderRadius: "5px" }}>{job.icon}</Avatar>
                                     <Box ml={3}>
-                                        <Typography variant="body1" fontWeight="medium" fontSize={15}>{job.title}</Typography>
-                                        <Typography variant="body2" fontSize={13}>No of Openings: {job.openings}</Typography>
+                                        <Typography variant="body1" fontWeight="medium"
+                                            sx={{
+                                                whiteSpace: 'normal',
+                                                WebkitLineClamp: 1,
+                                                WebkitBoxOrient: 'vertical',
+                                                display: '-webkit-box',
+                                                overflow: 'hidden',
+                                                textOverflow: 'ellipsis',
+                                                fontSize: 15,
+                                            }}
+
+                                        >{job.title}</Typography>
+                                        <Typography variant="body2"
+                                            sx={{
+                                                whiteSpace: 'normal',
+                                                WebkitLineClamp: 1,
+                                                WebkitBoxOrient: 'vertical',
+                                                display: '-webkit-box',
+                                                overflow: 'hidden',
+                                                textOverflow: 'ellipsis',
+                                                fontSize: 13,
+                                            }}>No of Openings: {job.openings}</Typography>
                                     </Box>
                                 </Box>
-                                <IconButton size="small"><Pencil /></IconButton>
+                                <IconButton size="small"><PencilEdit02Icon /></IconButton>
                             </Box>
                         ))}
                     </Box>
@@ -114,8 +134,28 @@ const JobApplicant = () => {
                                 <Box display="flex" alignItems="center">
                                     <Avatar src={applicant.avatar} />
                                     <Box ml={3}>
-                                        <Typography variant="body1" fontWeight="medium" fontSize={15}>{applicant.name}</Typography>
-                                        <Typography variant="body2" fontSize={13}>Exp: {applicant.experience}</Typography>
+                                        <Typography variant="body1" fontWeight="medium"
+                                            sx={{
+                                                whiteSpace: 'normal',
+                                                WebkitLineClamp: 1,
+                                                WebkitBoxOrient: 'vertical',
+                                                display: '-webkit-box',
+                                                overflow: 'hidden',
+                                                textOverflow: 'ellipsis',
+                                                fontSize: 15
+                                            }}
+                                        >{applicant.name}</Typography>
+                                        <Typography variant="body2"
+                                            sx={{
+                                                whiteSpace: 'normal',
+                                                WebkitLineClamp: 1,
+                                                WebkitBoxOrient: 'vertical',
+                                                display: '-webkit-box',
+                                                overflow: 'hidden',
+                                                textOverflow: 'ellipsis',
+                                                fontSize: 13,
+                                            }}
+                                        >Exp: {applicant.experience}</Typography>
                                     </Box>
                                 </Box>
                                 <Badge

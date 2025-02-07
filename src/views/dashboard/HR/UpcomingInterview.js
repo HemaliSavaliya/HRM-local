@@ -1,7 +1,7 @@
 import { Avatar, Box, Button, Card, Divider, IconButton, Menu, MenuItem, Stack, Typography } from '@mui/material'
 import { useState } from 'react';
-import { CalendarBlankOutline, ClockOutline, DotsVertical } from 'mdi-material-ui'
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import { Calendar04Icon, Clock01Icon, MoreVerticalSquare01Icon } from 'hugeicons-react';
 
 const UpcomingInterview = () => {
     const [anchorElInter, setAnchorElInter] = useState(null);
@@ -94,12 +94,10 @@ const UpcomingInterview = () => {
                                         aria-expanded={openInter ? 'true' : undefined}
                                         onClick={handleMenuOpen}
                                         sx={{
-                                            width: 30,
-                                            height: 30,
                                             color: 'text.secondary',
                                         }}
                                     >
-                                        <DotsVertical />
+                                        <MoreVerticalSquare01Icon size={20} />
                                     </IconButton>
 
                                     <Menu
@@ -134,8 +132,9 @@ const UpcomingInterview = () => {
                                         display="flex"
                                         alignItems="center"
                                         fontSize={'12px'}
+                                        gap={1}
                                     >
-                                        <CalendarBlankOutline fontSize="small" sx={{ mr: 0.5 }} /> {interview.date}
+                                        <Calendar04Icon size={13} /> {interview.date}
                                     </Typography>
                                     <Typography
                                         variant="body2"
@@ -144,8 +143,9 @@ const UpcomingInterview = () => {
                                         alignItems="center"
                                         flexGrow={1}
                                         fontSize={'12px'}
+                                        gap={1}
                                     >
-                                        <ClockOutline fontSize="small" sx={{ mr: 0.5 }} /> {interview.time}
+                                        <Clock01Icon size={13} /> {interview.time}
                                     </Typography>
                                     <Button
                                         size="small"

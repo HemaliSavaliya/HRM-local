@@ -1,5 +1,6 @@
 import { Avatar, Box, Card, CardContent, Link, Typography } from '@mui/material'
-import { CalendarImport, MenuUp } from 'mdi-material-ui'
+import { Calendar01Icon } from 'hugeicons-react'
+import { MenuUp } from 'mdi-material-ui'
 import React from 'react'
 
 const Attendance = () => {
@@ -7,8 +8,8 @@ const Attendance = () => {
         <Card sx={{ flex: 1, height: { xl: '190px' } }}>
             <CardContent>
                 <Box display="flex" flexDirection="column" mb={2}>
-                    <Avatar sx={{ bgcolor: "#F26522", width: 42, height: 42 }}>
-                        <CalendarImport fontSize="medium" sx={{ fill: "#fff" }} />
+                    <Avatar sx={{ backgroundColor: "#F26522", width: 42, height: 42 }}>
+                        <Calendar01Icon color="#fff" />
                     </Avatar>
                 </Box>
                 <Typography variant="subtitle2" fontWeight="medium" color="text.secondary" mb={1}>

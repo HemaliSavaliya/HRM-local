@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, CardHeader, CardContent, Typography, Menu, MenuItem, IconButton, Divider, useTheme, Box, Checkbox } from "@mui/material";
-import { CalendarBlankOutline } from "mdi-material-ui";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import { Calendar04Icon } from "hugeicons-react";
 
 const initialTodos = [
   { id: 1, text: "Add Holidays", completed: false },
@@ -48,9 +48,10 @@ const TodoList = () => {
                 fontSize: "14px",
                 display: "flex",
                 alignItems: "center",
+                gap: 1
               }}
             >
-              <CalendarBlankOutline sx={{ fontSize: 18, marginRight: 1 }} />
+              <Calendar04Icon size={18} />
               {selectedFilter}
             </IconButton>
             <Menu

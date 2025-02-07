@@ -1,4 +1,5 @@
 import { Avatar, Box, Card, Chip, IconButton, Menu, MenuItem, Typography, useTheme } from '@mui/material'
+import { MoreVerticalSquare01Icon } from 'hugeicons-react';
 import { ArrowBottomLeft, ArrowTopRight, DotsVertical } from 'mdi-material-ui'
 import React, { useState } from 'react'
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -42,12 +43,10 @@ const RecentPayroll = () => {
                         aria-expanded={openRecent ? 'true' : undefined}
                         onClick={handleMenuRecent}
                         sx={{
-                            width: 30,
-                            height: 30,
                             color: 'text.secondary',
                         }}
                     >
-                        <DotsVertical />
+                        <MoreVerticalSquare01Icon size={20} />
                     </IconButton>
                     <Menu
                         id="recent-menu"

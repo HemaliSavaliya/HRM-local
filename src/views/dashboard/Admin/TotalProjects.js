@@ -1,5 +1,6 @@
 import { Avatar, Box, Card, CardContent, Link, Typography } from '@mui/material'
-import { TextBoxOutline, MenuDown } from 'mdi-material-ui'
+import { MenuDown } from 'mdi-material-ui'
+import { ProfileIcon } from 'hugeicons-react'
 import React from 'react'
 
 const TotalProjects = () => {
@@ -7,8 +8,8 @@ const TotalProjects = () => {
         <Card sx={{ flex: 1, height: { xl: '190px' } }}>
             <CardContent>
                 <Box display="flex" flexDirection="column" mb={2}>
-                    <Avatar sx={{ bgcolor: "#3B7080", width: 42, height: 42 }}>
-                        <TextBoxOutline fontSize="medium" sx={{ fill: "#fff" }} />
+                    <Avatar sx={{ backgroundColor: "#3B7080", width: 42, height: 42 }}>
+                        <ProfileIcon color="#fff" />
                     </Avatar>
                 </Box>
                 <Typography variant="subtitle2" fontWeight="medium" color="text.secondary" mb={1}>

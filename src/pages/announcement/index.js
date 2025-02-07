@@ -10,6 +10,7 @@ import DocumentModal from 'src/common/DocumentModal'
 import { Toaster } from 'react-hot-toast'
 import ConfirmationModal from 'src/common/ConfirmationModal'
 import AnnouncementTable from 'src/views/announcement/AnnouncementTable'
+import { inputField, inputLabel } from 'src/Styles'
 
 const Announcement = () => {
     const {
@@ -120,9 +121,9 @@ const Announcement = () => {
                         editAnnouncement={editAnnouncement}
                     />
                     <TextField
-                        sx={{ mt: { xs: 3, sm: 0, lg: 0 } }}
+                        sx={{ mt: { xs: 3, sm: 0, lg: 0 }, ...inputField, ...inputLabel }}
                         label='Search Announcement'
-                        variant='outlined'
+                        variant='filled'
                         size='small'
                         value={searchQuery}
                         onChange={handleSearchChange}

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Card, CardHeader, CardContent, Typography, Box, IconButton, Menu, MenuItem, Avatar, AvatarGroup, Divider, useTheme } from "@mui/material";
-import { CalendarBlankOutline } from "mdi-material-ui";
 import { styled } from "@mui/material/styles";
 import { Doughnut } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { ArcElement } from "chart.js";
+import { Calendar04Icon } from "hugeicons-react";
 
 // Register required elements
 Chart.register(ArcElement);
@@ -87,9 +87,10 @@ const AttendanceOverview = () => {
                                 fontSize: "14px",
                                 display: "flex",
                                 alignItems: "center",
+                                gap: 1
                             }}
                         >
-                            <CalendarBlankOutline sx={{ fontSize: 18, marginRight: 1 }} />
+                            <Calendar04Icon size={18} />
                             {selectedPeriod}
                         </IconButton>
                         <Menu

@@ -5,7 +5,7 @@ import {
     Avatar,
     Box,
 } from '@mui/material';
-import { ClockPlusOutline } from 'mdi-material-ui';
+import { Calendar02Icon } from 'hugeicons-react';
 
 const TotalHoursWeek = () => {
     return (
@@ -32,7 +32,7 @@ const TotalHoursWeek = () => {
                         height: 30
                     }}
                 >
-                    <ClockPlusOutline fontSize='small' />
+                    <Calendar02Icon size={20} />
                 </Avatar>
                 <Typography fontSize={20} fontWeight={700} textAlign={"justify"} gutterBottom>
                     10 / <Typography component="span" fontSize={20} color="textSecondary">40</Typography>

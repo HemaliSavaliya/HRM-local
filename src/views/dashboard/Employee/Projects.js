@@ -1,5 +1,5 @@
 import { Avatar, Box, Button, Card, Divider, Grid, IconButton, Menu, MenuItem, Typography, useTheme } from '@mui/material';
-import { Calendar, DotsVertical } from 'mdi-material-ui';
+import { CalendarAdd01Icon, MoreVerticalSquare01Icon } from 'hugeicons-react';
 import React, { useState } from 'react'
 
 const Projects = () => {
@@ -71,7 +71,7 @@ const Projects = () => {
                                 >
                                     <Typography fontSize={14} fontWeight={600}>Office Management</Typography>
                                     <IconButton onClick={handleMenuClickPro} sx={{ padding: '0px !important' }}>
-                                        <DotsVertical fontSize='small' />
+                                        <MoreVerticalSquare01Icon size={15} />
                                     </IconButton>
                                 </Box>
                                 <Menu
@@ -103,7 +103,7 @@ const Projects = () => {
                                 {/* Deadline */}
                                 <Box display="flex" alignItems="center" marginBottom={4}>
                                     <Avatar sx={{ backgroundColor: "primary.main" }}>
-                                        <Calendar sx={{ color: "white" }} />
+                                        <CalendarAdd01Icon color='#fff' size={20} />
                                     </Avatar>
                                     <Box marginLeft={2}>
                                         <Typography fontSize={14} fontWeight={600}>14 Jan 2024</Typography>
@@ -233,7 +233,7 @@ const Projects = () => {
                                 >
                                     <Typography fontSize={14} fontWeight={600}>Office Management</Typography>
                                     <IconButton onClick={handleMenuClickPro} sx={{ padding: '0px !important' }}>
-                                        <DotsVertical fontSize='small' />
+                                        <MoreVerticalSquare01Icon size={15} />
                                     </IconButton>
                                 </Box>
                                 <Menu
@@ -265,7 +265,7 @@ const Projects = () => {
                                 {/* Deadline */}
                                 <Box display="flex" alignItems="center" marginBottom={4}>
                                     <Avatar sx={{ backgroundColor: "primary.main" }}>
-                                        <Calendar sx={{ color: "white" }} />
+                                        <CalendarAdd01Icon color='#fff' size={20} />
                                     </Avatar>
                                     <Box marginLeft={2}>
                                         <Typography fontSize={14} fontWeight={600}>14 Jan 2024</Typography>
@@ -395,7 +395,7 @@ const Projects = () => {
                                 >
                                     <Typography fontSize={14} fontWeight={600}>Office Management</Typography>
                                     <IconButton onClick={handleMenuClickPro} sx={{ padding: '0px !important' }}>
-                                        <DotsVertical fontSize='small' />
+                                        <MoreVerticalSquare01Icon size={15} />
                                     </IconButton>
                                 </Box>
                                 <Menu
@@ -427,7 +427,7 @@ const Projects = () => {
                                 {/* Deadline */}
                                 <Box display="flex" alignItems="center" marginBottom={4}>
                                     <Avatar sx={{ backgroundColor: "primary.main" }}>
-                                        <Calendar sx={{ color: "white" }} />
+                                        <CalendarAdd01Icon color='#fff' size={20} />
                                     </Avatar>
                                     <Box marginLeft={2}>
                                         <Typography fontSize={14} fontWeight={600}>14 Jan 2024</Typography>
@@ -557,7 +557,7 @@ const Projects = () => {
                                 >
                                     <Typography fontSize={14} fontWeight={600}>Office Management</Typography>
                                     <IconButton onClick={handleMenuClickPro} sx={{ padding: '0px !important' }}>
-                                        <DotsVertical fontSize='small' />
+                                        <MoreVerticalSquare01Icon size={15} />
                                     </IconButton>
                                 </Box>
                                 <Menu
@@ -589,7 +589,7 @@ const Projects = () => {
                                 {/* Deadline */}
                                 <Box display="flex" alignItems="center" marginBottom={4}>
                                     <Avatar sx={{ backgroundColor: "primary.main" }}>
-                                        <Calendar sx={{ color: "white" }} />
+                                        <CalendarAdd01Icon color='#fff' size={20} />
                                     </Avatar>
                                     <Box marginLeft={2}>
                                         <Typography fontSize={14} fontWeight={600}>14 Jan 2024</Typography>

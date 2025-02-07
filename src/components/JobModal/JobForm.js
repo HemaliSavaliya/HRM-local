@@ -15,6 +15,7 @@ import {
 import { useEffect, useState } from 'react'
 import JobFormLogic from './JobFormLogic'
 import axios from 'axios'
+import { cancelButton, inputField, inputLabel, saveButton } from 'src/Styles'
 
 const JobForm = ({ handleClose, editJobId, setOpen, jobData, addJobs, editJobs }) => {
     const { formData, handleInputChange, errors, validateForm, setFormData, initialFormValue } = JobFormLogic(
@@ -79,11 +80,14 @@ const JobForm = ({ handleClose, editJobId, setOpen, jobData, addJobs, editJobs }
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 label='Job Title'
                                 id='jobTitle'
                                 name='jobTitle'
                                 value={formData.jobTitle}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.jobTitle && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.jobTitle}</Typography>
@@ -92,19 +96,22 @@ const JobForm = ({ handleClose, editJobId, setOpen, jobData, addJobs, editJobs }
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 label='Position'
                                 id='position'
                                 name='position'
                                 value={formData.position}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.position && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.position}</Typography>
                             )}
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <FormControl fullWidth>
-                                <InputLabel id='form-layouts-separator-select-label'>Department</InputLabel>
+                            <FormControl fullWidth variant="filled" size='small'>
+                                <InputLabel id='form-layouts-separator-select-label' sx={inputLabel}>Department</InputLabel>
                                 <Select
                                     label='Department'
                                     defaultValue=''
@@ -113,6 +120,7 @@ const JobForm = ({ handleClose, editJobId, setOpen, jobData, addJobs, editJobs }
                                     name='department'
                                     value={formData.department}
                                     onChange={handleInputChange}
+                                    sx={inputField}
                                 >
                                     {departmentData.length === 0 ? (
                                         <MenuItem disabled>No Department</MenuItem>
@@ -132,11 +140,14 @@ const JobForm = ({ handleClose, editJobId, setOpen, jobData, addJobs, editJobs }
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 label='No. of position'
                                 id='noOfPosition'
                                 name='noOfPosition'
                                 value={formData.noOfPosition}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.noOfPosition && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.noOfPosition}</Typography>
@@ -145,6 +156,8 @@ const JobForm = ({ handleClose, editJobId, setOpen, jobData, addJobs, editJobs }
                         <Grid item xs={12} sm={12} sx={{ mb: 5 }}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 multiline
                                 rows={4}
                                 label='Job jobDescription'
@@ -152,6 +165,7 @@ const JobForm = ({ handleClose, editJobId, setOpen, jobData, addJobs, editJobs }
                                 name='jobDescription'
                                 value={formData.jobDescription}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.jobDescription && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.jobDescription}</Typography>
@@ -164,7 +178,7 @@ const JobForm = ({ handleClose, editJobId, setOpen, jobData, addJobs, editJobs }
                             size='large'
                             type='submit'
                             sx={{
-                                mr: 2,
+                                ...saveButton,
                                 '&.MuiButton-root:hover': {
                                     backgroundColor: theme.palette.primary.hover
                                 }
@@ -180,6 +194,7 @@ const JobForm = ({ handleClose, editJobId, setOpen, jobData, addJobs, editJobs }
                             variant='outlined'
                             onClick={handleClose}
                             disabled={loading} // Disable button while loading
+                            sx={cancelButton}
                         >
                             Cancel
                         </Button>

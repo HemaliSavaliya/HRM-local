@@ -1,5 +1,5 @@
 import { Box, Card, IconButton, Menu, MenuItem, Typography } from '@mui/material'
-import { DotsVertical } from 'mdi-material-ui';
+import { MoreVerticalSquare01Icon } from 'hugeicons-react';
 import dynamic from 'next/dynamic';
 import React, { useState } from 'react'
 const TotalProjectChart = dynamic(() => import('./charts/TotalProjectChart'), { ssr: false });
@@ -29,12 +29,10 @@ const TotalProjects = () => {
                         aria-expanded={open ? 'true' : undefined}
                         onClick={handleMenuClick}
                         sx={{
-                            width: 30,
-                            height: 30,
                             color: 'text.secondary',
                         }}
                     >
-                        <DotsVertical />
+                        <MoreVerticalSquare01Icon size={20} />
                     </IconButton>
                     <Menu
                         id="total-projects-menu"

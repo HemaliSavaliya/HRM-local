@@ -1,4 +1,5 @@
 import { Avatar, Box, Card, CardContent, Link, Typography } from '@mui/material'
+import { PencilEdit01Icon } from 'hugeicons-react'
 import { Pencil } from 'mdi-material-ui'
 import React from 'react'
 
@@ -12,23 +13,15 @@ const WelcomeCard = () => {
                         <Typography mb={1} sx={{ fontSize: { xs: 13, sm: 18, md: 20, lg: 20 } }} fontWeight={600} display="flex" alignItems="center">
                             Welcome Back, Adrian
                             <Link href="#" sx={{ ml: 4, display: "flex", alignItems: "center" }}>
-                                <Pencil fontSize="small" />
+                                <PencilEdit01Icon />
                             </Link>
                         </Typography>
-                        <Typography  sx={{ fontSize: { xs: 11, sm: 14, md: 14, lg: 14 } }}>
+                        <Typography sx={{ fontSize: { xs: 11, sm: 14, md: 14, lg: 14 } }}>
                             You have <Link href="#" color="primary" fontWeight={600}>21</Link> Pending Approvals &{' '}
                             <Link href="#" color="primary" fontWeight={600}>14</Link> Leave Requests
                         </Typography>
                     </Box>
                 </Box>
-                {/* <Box display="flex" alignItems="center" flexWrap="wrap" mb={1}>
-                    <Button variant="contained" color="secondary" sx={{ mr: 2, mb: 1 }} startIcon={<AddIcon />}>
-                        Add Project
-                    </Button>
-                    <Button variant="contained" color="primary" sx={{ mb: 1 }} startIcon={<AddIcon />}>
-                        Add Requests
-                    </Button>
-                </Box> */}
             </CardContent>
         </Card>
     )

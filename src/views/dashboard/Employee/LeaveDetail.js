@@ -1,7 +1,8 @@
 import { Box, Card, CardContent, CardHeader, Checkbox, Divider, FormControlLabel, Grid, IconButton, Menu, MenuItem, Typography, useTheme } from '@mui/material';
-import { CalendarAccountOutline, Circle } from 'mdi-material-ui';
+import { Circle } from 'mdi-material-ui';
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
+import { Calendar04Icon } from 'hugeicons-react';
 const LeaveDetailChart = dynamic(() => import('./charts/LeaveDetailChart'), { ssr: false });
 
 const LeaveDetail = () => {
@@ -43,7 +44,9 @@ const LeaveDetail = () => {
                                 height: 27,
                             }}
                         >
-                            <CalendarAccountOutline fontSize="small" />
+                            <Calendar04Icon size={18} />
+
+                            {/* <CalendarAccountOutline fontSize="small" /> */}
                             <Typography variant="body2" sx={{ ml: 1 }}>
                                 2024
                             </Typography>

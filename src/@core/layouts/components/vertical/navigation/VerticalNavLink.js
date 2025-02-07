@@ -21,12 +21,16 @@ const MenuNavLink = styled(ListItemButton)(({ theme }) => ({
     fontSize: '15px'
   },
 
-  '&:hover .MuiTypography-root': {
-    color: '#7366FF' // Text and icon color on hover
+  svg: {
+    width: 20
   },
 
-  '&:hover .MuiSvgIcon-root': {
-    color: '#7366FF' // Text and icon color on hover
+  '&:hover .MuiTypography-root': {
+    color: '#7366FF !important' // Text and icon color on hover
+  },
+
+  '&:hover svg': {
+    color: '#7366FF !important' // Text and icon color on hover
   },
 
   // Hover effect for both active and inactive states
@@ -38,7 +42,7 @@ const MenuNavLink = styled(ListItemButton)(({ theme }) => ({
   '&.active, &.active:hover': {
     transition: 'all 0.5s ease',
     backgroundColor: theme.palette.customColors.listHover,
-    color: '#7366FF' // Text and icon color when active
+    color: '#7366FF !important' // Text and icon color when active
   },
 
   // Styles for the ::after pseudo-element when the active class is applied
@@ -74,8 +78,8 @@ const MenuNavLink = styled(ListItemButton)(({ theme }) => ({
   },
 
   // Ensure the icon color changes when active
-  '&.active .MuiSvgIcon-root': {
-    color: '#7366FF' // Icon color when active
+  '&.active svg': {
+    color: '#7366FF !important' // Icon color when active
   },
 
   // Ensure the text color and font weight change when active

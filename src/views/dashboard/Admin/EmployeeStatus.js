@@ -14,7 +14,7 @@ import {
     useTheme,
     Divider,
 } from "@mui/material";
-import { CalendarBlankOutline } from "mdi-material-ui";
+import { Calendar04Icon } from "hugeicons-react";
 
 const EmployeeStatus = () => {
     const theme = useTheme();
@@ -45,9 +45,10 @@ const EmployeeStatus = () => {
                                 fontSize: "14px",
                                 display: "flex",
                                 alignItems: "center",
+                                gap: 1
                             }}
                         >
-                            <CalendarBlankOutline sx={{ fontSize: 18, marginRight: 1 }} />
+                            <Calendar04Icon size={18} />
                             {selectedPeriod}
                         </IconButton>
                         <Menu

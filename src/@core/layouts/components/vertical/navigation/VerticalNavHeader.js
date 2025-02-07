@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Box, IconButton, useMediaQuery } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { ChevronLeft, DotsGrid } from 'mdi-material-ui'
+import { ArrowLeft01Icon, ArrowLeftDoubleIcon } from 'hugeicons-react'
 
 // ** Styled Components
 const MenuHeaderWrapper = styled(Box)(({ theme }) => ({
@@ -37,7 +37,7 @@ const VerticalNavHeader = props => {
           <Box className='actions-left' ml={3.5}>
             {/* <img src={logoUrls} alt={`Company Logo`} style={{ width: 35, height: 35 }} /> */}
             <IconButton color='inherit' onClick={props.toggleNavVisibility}>
-              {isDesktop ? <DotsGrid /> : <ChevronLeft />}
+              {isDesktop ? <ArrowLeftDoubleIcon /> : <ArrowLeft01Icon />}
             </IconButton>
           </Box>
         </Box>

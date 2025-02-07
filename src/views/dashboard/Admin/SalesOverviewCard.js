@@ -11,8 +11,8 @@ const SalesOverviewCard = () => {
             />
             <Divider sx={{ margin: 0 }} />
             <CardContent>
-                <Box display="flex" alignItems="center" justifyContent="space-between">
-                    <Box display="flex" alignItems="center">
+                <Box display={{ xs: "block", lg: "flex" }} alignItems="center" justifyContent="space-between">
+                    <Box display="flex" alignItems="center" mb={{ xs: 2 }}>
                         <Typography variant="body2" color="textSecondary" sx={{ mr: 2 }}>
                             <Box sx={{
                                 background: '#F26522 !important',
@@ -40,7 +40,7 @@ const SalesOverviewCard = () => {
                 </Box>
                 <SalesOverviewChart />
             </CardContent>
-        </Card>
+        </Card >
     );
 };
 

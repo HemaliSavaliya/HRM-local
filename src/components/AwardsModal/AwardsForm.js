@@ -14,6 +14,7 @@ import {
 } from '@mui/material'
 import { useEffect, useState } from 'react'
 import AwardsFormLogic from './AwardsFormLogic'
+import { cancelButton, inputField, inputLabel, saveButton } from 'src/Styles'
 
 const AwardsForm = ({ handleClose, editAwardId, awardsData, setOpen, addAwards, editAwards }) => {
     const { formData, handleInputChange, errors, validateForm, setFormData, initialFormValue } = AwardsFormLogic(
@@ -29,7 +30,7 @@ const AwardsForm = ({ handleClose, editAwardId, awardsData, setOpen, addAwards, 
         const storedUser = localStorage.getItem('employee');
 
         if (storedUser) {
-            
+
             // Parse and filter active employee
             const parsedData = JSON.parse(storedUser);
 
@@ -92,11 +93,14 @@ const AwardsForm = ({ handleClose, editAwardId, awardsData, setOpen, addAwards, 
                         <Grid item xs={12} sm={12}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 label='Awards Name'
                                 id='awardsName'
                                 name='awardsName'
                                 value={formData.awardsName}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.awardsName && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.awardsName}</Typography>
@@ -105,6 +109,8 @@ const AwardsForm = ({ handleClose, editAwardId, awardsData, setOpen, addAwards, 
                         <Grid item xs={12} sm={12}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 label='Awards Details'
                                 id='awardsDetails'
                                 name='awardsDetails'
@@ -112,14 +118,15 @@ const AwardsForm = ({ handleClose, editAwardId, awardsData, setOpen, addAwards, 
                                 rows={3}
                                 value={formData.awardsDetails}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.awardsDetails && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.awardsDetails}</Typography>
                             )}
                         </Grid>
                         <Grid item xs={12} sm={12}>
-                            <FormControl fullWidth>
-                                <InputLabel id='form-layouts-separator-select-label'>Employee</InputLabel>
+                            <FormControl fullWidth variant="filled" size='small'>
+                                <InputLabel id='form-layouts-separator-select-label' sx={inputLabel}>Employee</InputLabel>
                                 <Select
                                     label='Employee'
                                     defaultValue=''
@@ -128,6 +135,7 @@ const AwardsForm = ({ handleClose, editAwardId, awardsData, setOpen, addAwards, 
                                     name='employeeName'
                                     value={formData.employeeName}
                                     onChange={handleInputChange}
+                                    sx={inputField}
                                 >
                                     {awardsUser.length === 0 ? (
                                         <MenuItem disabled>No Employee</MenuItem>
@@ -147,11 +155,14 @@ const AwardsForm = ({ handleClose, editAwardId, awardsData, setOpen, addAwards, 
                         <Grid item xs={12} sm={12} sx={{ mb: 5 }}>
                             <TextField
                                 fullWidth
+                                variant="filled"
+                                size='small'
                                 label='Reward'
                                 id='reward'
                                 name='reward'
                                 value={formData.reward}
                                 onChange={handleInputChange}
+                                sx={{ ...inputField, ...inputLabel }}
                             />
                             {errors.reward && (
                                 <Typography sx={{ color: '#FF4433', fontSize: '13px', pt: 1 }}>{errors.reward}</Typography>
@@ -164,9 +175,7 @@ const AwardsForm = ({ handleClose, editAwardId, awardsData, setOpen, addAwards, 
                             size='large'
                             type='submit'
                             sx={{
-                                mr: 2,
-                                lineHeight: 0,
-                                padding: '20px 25px !important',
+                                ...saveButton,
                                 '&.MuiButton-root:hover': {
                                     backgroundColor: theme.palette.primary.hover
                                 }
@@ -181,7 +190,7 @@ const AwardsForm = ({ handleClose, editAwardId, awardsData, setOpen, addAwards, 
                             color='secondary'
                             variant='outlined'
                             onClick={handleClose}
-                            sx={{ lineHeight: 0, padding: '20px 25px !important' }}
+                            sx={cancelButton}
                             disabled={loading} // Disable button while loading
                         >
                             Cancel

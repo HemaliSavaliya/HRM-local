@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Card, CardHeader, CardContent, Typography, Avatar, Menu, MenuItem, Button, IconButton, Divider, useTheme, Box, TableContainer, Table, TableBody, TableRow, TableCell, Badge } from "@mui/material";
-import { CalendarBlankOutline } from "mdi-material-ui";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import { Calendar04Icon } from "hugeicons-react";
 
 const invoicesData = [
     {
-        id: "INVOO2",
+        id: "INVOO1",
         name: "Redesign Website",
         company: "Logistics",
         amount: "$3560",
@@ -13,7 +13,7 @@ const invoicesData = [
         img: "images/avatars/avatar-2.png",
     },
     {
-        id: "INVOO5",
+        id: "INVOO2",
         name: "Module Completion",
         company: "Yip Corp",
         amount: "$4175",
@@ -29,7 +29,7 @@ const invoicesData = [
         img: "images/avatars/avatar-3.png",
     },
     {
-        id: "INVOO2",
+        id: "INVOO4",
         name: "Changes on the Board",
         company: "Ignis LLP",
         amount: "$1457",
@@ -37,7 +37,7 @@ const invoicesData = [
         img: "images/avatars/avatar-10.png",
     },
     {
-        id: "INVOO6",
+        id: "INVOO5",
         name: "Hospital Management",
         company: "HCL Corp",
         amount: "$6458",
@@ -81,9 +81,10 @@ const InvoicesCard = () => {
                                 fontSize: "14px",
                                 display: "flex",
                                 alignItems: "center",
+                                gap: 1
                             }}
                         >
-                            <CalendarBlankOutline sx={{ fontSize: 18, marginRight: 1 }} />
+                            <Calendar04Icon size={18} />
                             {selectedFilter}
                         </IconButton>
                         <Menu

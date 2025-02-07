@@ -10,6 +10,7 @@ import JobModal from 'src/components/JobModal/JobModal'
 import { Toaster } from 'react-hot-toast'
 import JobTable from './JobTable'
 import ConfirmationModal from 'src/common/ConfirmationModal'
+import { inputField, inputLabel } from 'src/Styles'
 
 const JobRequirement = () => {
   const {
@@ -66,9 +67,9 @@ const JobRequirement = () => {
             editJobs={editJobs}
           />
           <TextField
-            sx={{ mt: { xs: 3, sm: 0, lg: 0 } }}
+            sx={{ mt: { xs: 3, sm: 0, lg: 0 }, ...inputField, ...inputLabel }}
             label='Search Job'
-            variant='outlined'
+            variant='filled'
             size='small'
             value={searchQuery}
             onChange={handleSearchChange}
