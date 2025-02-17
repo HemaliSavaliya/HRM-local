@@ -122,11 +122,11 @@ const TabInfo = () => {
                                     />
                                 </ButtonStyled>
                                 {authToken?.role === 'admin' && (
-                                    <ResetButtonStyled variant='outlined' onClick={handleSaveChanges}>
+                                    <ResetButtonStyled variant='outlined' onClick={handleSaveChanges} sx={saveButton}>
                                         save
                                     </ResetButtonStyled>
                                 )}
-                                <ResetButtonStyled color='error' variant='outlined' onClick={resetProfileImage} sx={cancelButton}>
+                                <ResetButtonStyled color='error' variant='outlined' onClick={resetProfileImage} sx={{ ...cancelButton, ml: 0 }}>
                                     Reset
                                 </ResetButtonStyled>
                                 <Typography variant='body2' sx={{ marginTop: 5 }}>

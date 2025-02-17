@@ -14,7 +14,6 @@ import {
 } from '@mui/material'
 import { useEffect, useState } from 'react'
 import JobFormLogic from './JobFormLogic'
-import axios from 'axios'
 import { cancelButton, inputField, inputLabel, saveButton } from 'src/Styles'
 
 const JobForm = ({ handleClose, editJobId, setOpen, jobData, addJobs, editJobs }) => {

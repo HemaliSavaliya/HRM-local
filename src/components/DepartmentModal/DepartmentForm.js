@@ -51,8 +51,7 @@ const DepartmentForm = ({ handleClose, editDepartId, setOpen, departmentData, ad
 
             setFormData(initialFormValue)
             setOpen(false)
-        }
-        catch (error) {
+        } catch (error) {
             console.error('Error submitting the form:', error)
         } finally {
             setLoading(false) // Set loading to false once submission is done
@@ -143,6 +142,7 @@ const DepartmentForm = ({ handleClose, editDepartId, setOpen, departmentData, ad
                                     value={formData?.teamMembers || []}
                                     onChange={handleTeamMembersChange}
                                     disabled
+                                    sx={inputLabel}
                                     renderTags={(value, getTagProps) =>
                                         value.map((option, index) => {
                                             const { key, ...rest } = getTagProps({ index })
@@ -151,7 +151,7 @@ const DepartmentForm = ({ handleClose, editDepartId, setOpen, departmentData, ad
                                         })
                                     }
                                     renderInput={params => (
-                                        <TextField {...params} label='Team Members' id='teamMembers' name='teamMembers' />
+                                        <TextField {...params} variant="filled" size='small' sx={inputField} label='Team Members' id='teamMembers' name='teamMembers' />
                                     )}
                                 />
                             </Grid>

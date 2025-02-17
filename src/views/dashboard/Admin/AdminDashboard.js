@@ -1,4 +1,4 @@
-import { Box, Grid, List, ListItem, Typography, useMediaQuery } from '@mui/material'
+import { Box, Grid, List, ListItem, Typography } from '@mui/material'
 import { ChevronRight } from 'mdi-material-ui'
 import React from 'react'
 import WelcomeCard from './WelcomeCard'
@@ -26,8 +26,6 @@ import Projects from './Projects'
 import TasksStatistics from './TasksStatistics'
 
 const AdminDashboard = () => {
-    // const isXXL = useMediaQuery(theme.breakpoints.up('xxl')) // Detect XXL screens
-
     return (
         <Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 2 }}>

@@ -30,6 +30,8 @@ const LeaveTypeForm = ({ handleClose, leaveTypeData, editLeaveTypeId, setOpen, a
             return // If the form is not valid, don't submit
         }
 
+        setLoading(true)
+
         try {
             if (editLeaveTypeId) {
                 editLeaveType(formData, editLeaveTypeId)

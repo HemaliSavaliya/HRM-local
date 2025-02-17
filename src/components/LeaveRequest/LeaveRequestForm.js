@@ -49,6 +49,8 @@ const LeaveRequestForm = ({ handleClose, setOpen, addLeaveRequest }) => {
             return // If the form is not valid, don't submit
         }
 
+        setLoading(true)
+
         try {
             addLeaveRequest(formData)
 

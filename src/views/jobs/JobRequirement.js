@@ -78,9 +78,6 @@ const JobRequirement = () => {
 
         <JobTable searchQuery={searchQuery} jobData={jobData} loading={loading} handleEdit={handleEdit} handleDeleteJobs={handleDeleteJobs} />
       </Card>
-
-
-
     </>
   )
 }
